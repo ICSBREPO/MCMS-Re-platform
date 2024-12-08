@@ -1,16 +1,16 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29806.167
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35527.113 d17.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mcms", "mcms\mcms.csproj", "{A7ED03C2-7226-4668-9D9A-650E2A7F31AA}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9170ED26-2BAD-4D88-87BF-D3150C9AA6A6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mcms.iOS", "mcms.iOS\mcms.iOS.csproj", "{3284D1AA-24DF-466B-AD33-04E0E84917A1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mcms.UWP", "mcms.UWP\mcms.UWP.csproj", "{53F79339-C09A-4A9D-A7E1-736AD39FFC6A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mcms.Android", "mcms.Android\mcms.Android.csproj", "{3787836E-F7D3-4DB5-A8BF-C84B5D95B9FD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Xamarin", "Xamarin", "{61B5B26B-67DC-4E5F-8241-D97A7B4B12D1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -130,6 +130,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A7ED03C2-7226-4668-9D9A-650E2A7F31AA} = {61B5B26B-67DC-4E5F-8241-D97A7B4B12D1}
+		{3284D1AA-24DF-466B-AD33-04E0E84917A1} = {61B5B26B-67DC-4E5F-8241-D97A7B4B12D1}
+		{53F79339-C09A-4A9D-A7E1-736AD39FFC6A} = {61B5B26B-67DC-4E5F-8241-D97A7B4B12D1}
+		{3787836E-F7D3-4DB5-A8BF-C84B5D95B9FD} = {61B5B26B-67DC-4E5F-8241-D97A7B4B12D1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {509C0B68-297A-49F6-A177-13D5D20BE214}
