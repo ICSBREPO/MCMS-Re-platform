@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+    xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
+    xmlns:i18n="clr-namespace:mcms.Helpers"
+    xmlns:controls="clr-namespace:mcms.Controls"
+    xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    xmlns:syncfusion11="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms"
+    x:Name="workorderSpec"
+    x:Class="mcms.Views.Work.WorkDetail.Workorderspec.WorkorderSpecification">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Work/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+         <ContentView>
+              <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <syncfusion11:SfPicker
+                                        Grid.Row="0"
+                                        IsOpen="{Binding pickerIsOpen, Mode=TwoWay}"
+                                        ShowColumnHeader="False"
+                                        ShowFooter="True"
+                                        BackgroundColor="{DynamicResource Background}"
+                                        OKButtonBackgroundColor="{DynamicResource Background}"
+                                        CancelButtonBackgroundColor="{DynamicResource Background}"
+                                        CancelButtonTextColor="{DynamicResource PrimaryColor}"
+                                        OKButtonTextColor="{DynamicResource PrimaryColor}"
+                                        HeaderText="Domain Lookup"
+                                        OkButtonClicked="SfPicker_OkButtonClicked"
+                                        SelectedItemTextColor="{DynamicResource PrimaryColor}"
+                                        UnSelectedItemTextColor="{DynamicResource Label}"
+                                        HeaderBackgroundColor="{DynamicResource PrimaryColor}"
+                                        HeaderTextColor="{DynamicResource Background}"
+                                        SelectedItem="{Binding selecteddomain, Mode=TwoWay}"
+                                        ItemsSource="{Binding ListDomain}"
+                                        PickerMode="Dialog" />
+                <ScrollView Grid.Row="0" IsVisible="{Binding isloading}">
+                    <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                     <!--  <syncfusion1:SfExpander HeaderBackgroundColor="{DynamicResource TabBar}"> 
+                            <syncfusion1:SfExpander.Header> 
+                                <Grid>
+                                    <Label Margin="10" TextColor="{DynamicResource PrimaryColor}" Style="{StaticResource LabelSemiBold}"  Text="{Binding assettitle}" VerticalTextAlignment="Center" /> 
+                                </Grid>
+                            </syncfusion1:SfExpander.Header> 
+                            <syncfusion1:SfExpander.Content> -->
+                        <Grid>
+                            <Label Margin="10" TextColor="{DynamicResource PrimaryColor}" Style="{StaticResource LabelSemiBold}"  Text="{Binding assettitle}" VerticalTextAlignment="Center" />
+                        </Grid>
+                        <syncfusion:SfListView ItemsSource="{Binding workorder.assetspec}"
+                                                Margin="10"
+                                                x:Name="AssetList"
+                                                SelectionMode="None"
+                                                HorizontalOptions="FillAndExpand" 
+                                                VerticalOptions="FillAndExpand"
+                                                HeightRequest="{Binding heightassetspec}"
+                                                IsStickyHeader="True"
+                                                ItemSize="80">
+                                    <syncfusion:SfListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <controls:CustomShadowFrame x:Name="frame"
+                                                        VerticalOptions="FillAndExpand"
+                                                                        CornerRadius="10"
+                                                                        BackgroundColor="{DynamicResource Card}"
+                                                                        Padding="15,5"
+                                                                        Margin="15,5"
+                                                                        HasShadow="True"
+                                                                        BorderWidth="0">
+                                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource Card}" ColumnSpacing="0" RowSpacing="1">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="50*"/>
+                                                        <ColumnDefinition Width="40*"/>
+                                                        <ColumnDefinition Width="10*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+                                                    <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                                        <Label  Text="{Binding tnbclass}" FontFamily="{StaticResource Montserrat-SemiBold}" Font="Bold,17" HorizontalTextAlignment="Start" HorizontalOptions="Start" VerticalOptions="Center" TextColor="{DynamicResource Label}"/>
+                                                        <Label  Text="{Binding datatype, StringFormat='({0})'}" FontFamily="{StaticResource Montserrat-SemiBold}" Font="Bold,17" HorizontalTextAlignment="Start" HorizontalOptions="Start" VerticalOptions="Center" TextColor="{DynamicResource Label}"/>
+                                                    </StackLayout>
+                                                    
+                                                    <inputLayout:SfTextInputLayout
+                                                        VerticalOptions="StartAndExpand"
+                                                        Grid.RowSpan="2" Grid.Column="1"
+                                                        ContainerBackgroundColor="Transparent"
+                                                        ContainerType="Outlined"
+                                                        TrailingViewPosition="Outside"
+                                                        UnfocusedColor="{DynamicResource Background}"
+                                                        FocusedColor="{DynamicResource PrimaryColor}"
+                                                        OutlineCornerRadius="15">
+                                                            <Entry Placeholder="Enter Value" PlaceholderColor="{DynamicResource Gray-300}" TextColor="{DynamicResource Label}" Keyboard="{Binding xamtype}"  Text="{Binding alnvalue}" />
+                                                            <inputLayout:SfTextInputLayout.TrailingView>
+                                                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                                                <Label Text="{Binding measureunitid}" Margin="3,0,0,0" FontFamily="{StaticResource Montserrat-SemiBold}" Font="Bold,17" HorizontalTextAlignment="Start" HorizontalOptions="Start" VerticalOptions="Center" TextColor="{DynamicResource Label}" />
+                                                            </StackLayout> 
+                                                            </inputLayout:SfTextInputLayout.TrailingView>
+                                                    </inputLayout:SfTextInputLayout>
+                                                    <buttons:SfButton Grid.RowSpan="2" 
+                                                                      Grid.Column="2" 
+                                                                      IsVisible="{Binding islookup}"
+                                                                      BackgroundColor="Transparent"
+                                                                      HeightRequest="30"
+                                                                      WidthRequest="30"
+                                                                      VerticalOptions="Center"
+                                                                      HorizontalOptions="Center"
+                                                                      FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                                      Command="{Binding BindingContext.OpenClosePickerAssetCommand, Source={x:Reference workorderSpec}}"
+                                                                      CommandParameter="{Binding .}">
+                                                        <buttons:SfButton.Content>
+                                                            <i18n:TintedCachedImage Source="search.png" TintColor="{DynamicResource Label}"/>
+                                                        </buttons:SfButton.Content>
+                                                    </buttons:SfButton>
+                                                    <!--
+                                                    <Label Grid.RowSpan="2" Grid.Column="2" Text="{StaticResource Next}" Style="{StaticResource NextIconStyle}" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
+                                                    -->
+                                                    <Label Grid.Row="1" Grid.Column="0" Text="{Binding description}" FontFamily="{StaticResource Montserrat-SemiBold}" Font="Bold,17" HorizontalTextAlignment="Start" HorizontalOptions="Start" VerticalOptions="Center" TextColor="{DynamicResource Label}"/>
+                                                </Grid>
+                                            </controls:CustomShadowFrame>
+                                        </DataTemplate>
+                                    </syncfusion:SfListView.ItemTemplate>
+                                </syncfusion:SfListView>
+                         <!--   </syncfusion1:SfExpander.Content> 
+                        </syncfusion1:SfExpander> -->
+                    <!--    <syncfusion1:SfExpander HeaderBackgroundColor="{DynamicResource TabBar}"> 
+                            <syncfusion1:SfExpander.Header> 
+                                <Grid>
+                                    <Label Margin="10" TextColor="{DynamicResource PrimaryColor}" Style="{StaticResource LabelSemiBold}"  Text="{Binding locationtitle}" VerticalTextAlignment="Center" /> 
+                                </Grid>
+                            </syncfusion1:SfExpander.Header> 
+                            <syncfusion1:SfExpander.Content> -->
+
+                        <Grid>
+                            <Label Margin="10" TextColor="{DynamicResource PrimaryColor}" Style="{StaticResource LabelSemiBold}"  Text="{Binding locationtitle}" VerticalTextAlignment="Center" />
+                        </Grid>
+                        <syncfusion:SfListView ItemsSource="{Binding workorder.locationspec}"
+                                                Margin="10"
+                                                x:Name="LocationList"
+                                                SelectionMode="None"
+                                                HorizontalOptions="FillAndExpand" 
+                                                VerticalOptions="FillAndExpand"
+                                                HeightRequest="{Binding heightlocationspec}"
+                                                IsStickyHeader="True"
+                                                ItemSize="80">
+                                    <syncfusion:SfListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <controls:CustomShadowFrame
+                                                        VerticalOptions="FillAndExpand"
+                                                                        CornerRadius="10"
+                                                                        BackgroundColor="{DynamicResource Card}"
+                                                                        Padding="15,5"
+                                                                        Margin="15,5"
+                                                                        HasShadow="True"
+                                                                        BorderWidth="0">
+                                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource Card}" ColumnSpacing="0" RowSpacing="1">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="50*"/>
+                                                        <ColumnDefinition Width="40*"/>
+                                                        <ColumnDefinition Width="10*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <Grid.RowDefinitions>
+                                                        <RowDefinition Height="Auto"/>
+                                                        <RowDefinition Height="Auto"/>
+                                                    </Grid.RowDefinitions>
+
+                                                    <StackLayout Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                                                        <Label  Text="{Binding tnbclass}" FontFamily="{StaticResource Montserrat-SemiBold}" Font="Bold,17" HorizontalTextAlignment="Start" HorizontalOptions="Start" VerticalOptions="Center" TextColor="{DynamicResource Label}"/>
+                                                        <Label  Text="{Binding datatype, StringFormat='({0})'}" FontFamily="{StaticResource Montserrat-SemiBold}" Font="Bold,17" HorizontalTextAlignment="Start" HorizontalOptions="Start" VerticalOptions="Center" TextColor="{DynamicResource Label}"/>
+                                                    </StackLayout>
+
+                                                    <inputLayout:SfTextInputLayout
+                                                        VerticalOptions="StartAndExpand"
+                                                        Grid.RowSpan="2" Grid.Column="1"
+                                                        ContainerBackgroundColor="Transparent"
+                                                        ContainerType="Outlined"
+                                                        TrailingViewPosition="Outside"
+                                                        UnfocusedColor="{DynamicResource Background}"
+                                                        FocusedColor="{DynamicResource PrimaryColor}"
+                                                        OutlineCornerRadius="15">
+                                                            <Entry Placeholder="Enter Value" PlaceholderColor="{DynamicResource Gray-300}" TextColor="{DynamicResource Label}" Keyboard="{Binding xamtype}" Text="{Binding alnvalue}" />
+                                                            <inputLayout:SfTextInputLayout.TrailingView>
+                                                                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" WidthRequest="100">
+                                                                <Label Text="{Binding measureunitid}" Margin="3,0,0,0" FontFamily="{StaticResource Montserrat-SemiBold}" Font="Bold,17" HorizontalTextAlignment="Start" HorizontalOptions="Start" VerticalOptions="Center" TextColor="{DynamicResource Label}" />
+                                                            </StackLayout> 
+                                                            </inputLayout:SfTextInputLayout.TrailingView>
+                                                    </inputLayout:SfTextInputLayout>
+
+                                                    <buttons:SfButton Grid.RowSpan="2"
+                                                                      Grid.Column="2"
+                                                                      IsVisible="{Binding islookup}"
+                                                                      BackgroundColor="Transparent"
+                                                                      HeightRequest="30"
+                                                                      WidthRequest="30"
+                                                                      VerticalOptions="Center"
+                                                                      HorizontalOptions="Center"
+                                                                      FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                                      Command="{Binding BindingContext.OpenClosePickerLocationCommand, Source={x:Reference workorderSpec}}"
+                                                                      CommandParameter="{Binding .}">
+                                                        <buttons:SfButton.Content>
+                                                            <i18n:TintedCachedImage Source="search.png" TintColor="{DynamicResource Label}"/>
+                                                        </buttons:SfButton.Content>
+                                                    </buttons:SfButton>
+                                                    <!--
+                                                    <Label Grid.RowSpan="2" Grid.Column="2" Text="{StaticResource Next}" Style="{StaticResource NextIconStyle}" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
+                                                    -->
+                                                    <Label Grid.Row="1" Grid.Column="0" Text="{Binding description}" FontFamily="{StaticResource Montserrat-SemiBold}" Font="Bold,17" HorizontalTextAlignment="Start" HorizontalOptions="Start" VerticalOptions="Center" TextColor="{DynamicResource Label}"/>
+                                                </Grid>
+                                            </controls:CustomShadowFrame>
+                                        </DataTemplate>
+                                    </syncfusion:SfListView.ItemTemplate>
+                                </syncfusion:SfListView>
+                           <!-- </syncfusion1:SfExpander.Content> 
+                        </syncfusion1:SfExpander> -->
+                    </StackLayout>
+                </ScrollView>
+                <!-- Save Button-->
+                <buttons:SfButton
+                    Margin="15"
+                    Grid.Row="0"
+                    HorizontalOptions="End"
+                    VerticalOptions="End"
+                    ShowIcon="True"
+                    x:Name="SaveBtn"
+                    FontSize="29"
+                    FontFamily="{StaticResource MaterialIcons}"
+                    TextColor="{DynamicResource Background}"
+                    Text="{StaticResource Save}"
+                    CornerRadius="50" HeightRequest="60" WidthRequest="60"
+                    Command="{Binding SaveCommand}"
+                    Style="{StaticResource RoundButtonStyle3}"/>
+            </Grid>
+        </ContentView>
+    </ContentPage.Content>
+</ContentPage>

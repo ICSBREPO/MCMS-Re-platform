@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" 
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
+             xmlns:controls="clr-namespace:mcms.Controls"
+             NavigationPage.HasNavigationBar="False"
+             xmlns:i18n="clr-namespace:mcms.Helpers"
+             xmlns:helper="clr-namespace:Syncfusion.ListView.XForms.Helpers;assembly=Syncfusion.SfListView.XForms" xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
+             BackgroundColor="White"
+             x:Class="mcms.Views.Work.WorkDetail.Testform.TestformPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Work/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        <ResourceDictionary>
+            <helper:InverseBoolConverter x:Key="inverseBoolConverter"/>
+        </ResourceDictionary>
+
+    </ContentPage.Resources>
+
+    <ContentView VerticalOptions="FillAndExpand">
+        <Grid>
+            <syncfusion:SfListView x:Name="ChecklistView"
+                                    Grid.Row="0"
+                                    ItemsSource="{Binding workorder.tnbpsiwochecklisttype}" 
+                                    SelectionChangedCommand="{Binding SelectionPSIChecklistCommand}" 
+                                    SelectionChangedCommandParameter="{x:Reference ChecklistView}"
+                                    ItemSpacing="1" 
+                                    ItemSize="120"
+                                    IsScrollBarVisible="False"
+                                    HeaderSize="100"
+                                    Margin="10,0,10,0">
+                <syncfusion:SfListView.HeaderTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <BoxView Style="{StaticResource BoxviewStyle}" Margin="0,20,0,0"/>
+                            <Label Text="{i18n:Translate PSIChecklist}"
+                                    FontFamily="{StaticResource Montserrat-Bold}"
+                                    TextColor="{DynamicResource Label}"
+                                    FontSize="16"
+                                    Margin="3"/>
+                            <Label Text="{Binding checklistcount, StringFormat='Total Checklist : {0}'}" 
+                                    Margin="0,0,25,0" 
+                                    TextColor="{DynamicResource Label}" 
+                                    FontFamily="{StaticResource Montserrat-SemiBold}" 
+                                    FontSize="12" HorizontalOptions="End"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </syncfusion:SfListView.HeaderTemplate>
+                <syncfusion:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <badge:SfBadgeView HorizontalOptions="FillAndExpand" Padding="5,0,5,0" VerticalOptions="FillAndExpand">
+                            <badge:SfBadgeView.Content>
+                                <controls:CustomShadowFrame x:Name="frame"
+                                                    CornerRadius="10"
+                                                    BackgroundColor="{DynamicResource Card}"
+                                                    Padding="15,5"
+                                                    Margin="0,5"
+                                                    BorderWidth="0"
+                                                    HasShadow="True">
+                                    <Grid  RowSpacing="1"
+                                            Margin="5"
+                                            VerticalOptions="Start">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition Width="20"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label LineBreakMode="NoWrap"
+                                                Grid.Column="0"
+                                                Text="{Binding tnbchecklisttype, Mode=TwoWay}"
+                                                FontFamily="{StaticResource Montserrat-Bold}"
+                                                Margin="0,3"                                                 
+                                                HorizontalTextAlignment="Start"
+                                                VerticalTextAlignment="Center"
+                                                TextColor="{DynamicResource Label}">
+
+                                        </Label>
+                                        <Label Grid.Row="1"
+                                                Grid.Column="0"
+                                                LineBreakMode="WordWrap"
+                                                HorizontalTextAlignment="Start"
+                                                VerticalTextAlignment="Center"
+                                                TextColor="{DynamicResource Label}"
+                                                Text="{Binding tnbdescription, Mode=TwoWay}"
+                                                FontFamily="{StaticResource Montserrat-Regular}">
+                                        </Label>
+                                        <Label Grid.RowSpan="2"
+                                                Grid.Column="1"
+                                                HorizontalTextAlignment="Center"
+                                                VerticalTextAlignment="Center"
+                                                TextColor="{DynamicResource Label}"
+                                                Text="{Binding tnbpassper, StringFormat='Pass : {0} %'}"
+                                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                               IsVisible="false">
+                                        </Label>
+                                        <buttons:SfButton
+                                                    BackgroundImage="arrow.png"
+                                                    Grid.RowSpan="2"
+                                                    Grid.Column="2"
+                                                    HeightRequest="16"
+                                                    WidthRequest="10"
+                                                    HorizontalOptions="End"
+                                                    BackgroundColor="Transparent"
+                                                    VerticalOptions="Center"/>
+                                    </Grid>
+                                </controls:CustomShadowFrame>
+                            </badge:SfBadgeView.Content>
+                            <badge:SfBadgeView.BadgeSettings>
+                                <badge:BadgeSetting BadgeType="Warning"  Offset="-5, -10" BadgePosition="BottomRight" BadgeIcon="{Binding badgeicon}"/>
+                            </badge:SfBadgeView.BadgeSettings>
+                        </badge:SfBadgeView>
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
+            </syncfusion:SfListView>
+        </Grid>
+        
+    </ContentView>
+</ContentPage>

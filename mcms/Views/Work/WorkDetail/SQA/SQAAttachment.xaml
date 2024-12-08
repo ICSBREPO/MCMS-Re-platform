@@ -1,0 +1,162 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:i18n="clr-namespace:mcms.Helpers"
+    NavigationPage.HasNavigationBar="False"
+    x:Class="mcms.Views.Work.WorkDetail.SQA.SQAAttachment">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Work/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="graphics:SfGradientView">
+                <Setter Property="BackgroundBrush">
+                    <Setter.Value>
+                        <graphics:SfLinearGradientBrush>
+                            <graphics:SfLinearGradientBrush.GradientStops>
+                                <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                                <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                            </graphics:SfLinearGradientBrush.GradientStops>
+                        </graphics:SfLinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid RowSpacing="0" BackgroundColor="{DynamicResource Background}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0" x:Name="iOSSafeArea"/>
+                    <RowDefinition Height="55"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <graphics:SfGradientView Grid.RowSpan="3"/>
+                <Grid
+                    Grid.Row="1"
+                    Padding="16,8"
+                    BackgroundColor="{StaticResource Transparent}"
+                    HeightRequest="48"
+                    HorizontalOptions="Fill">
+                    <buttons:SfButton   
+                            Text="{StaticResource Back}"
+                            TextColor="{DynamicResource Background}"
+                            Style="{StaticResource IconButtonStyle}"
+                            CornerRadius="4"
+                            Command="{Binding BackPopAsyncCommand}"
+                            HorizontalOptions="Start"
+                            HorizontalTextAlignment="Start"
+                            Padding="0"/>
+                    <Label
+                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                            FontSize="20"
+                            HorizontalOptions="CenterAndExpand"
+                            LineHeight="1.25"
+                            Text="{i18n:Translate SQAChecklist}"
+                            TextColor="{DynamicResource Background}"
+                            VerticalOptions="StartAndExpand" />
+                </Grid>
+                <border:SfBorder 
+                            Grid.Row="2"
+                            CornerRadius="10,10,0,0" 
+                            HorizontalOptions="FillAndExpand"
+                            BorderColor="{DynamicResource Background}"
+                            BorderWidth="1" 
+                            BackgroundColor="{DynamicResource Background}">
+                <Label Text="{i18n:Translate SQAAttachmets}"
+                                Style="{StaticResource LabelSemiBold}" 
+                                HorizontalOptions="CenterAndExpand" 
+                                VerticalOptions="CenterAndExpand" 
+                                Padding="0,10" />
+                </border:SfBorder>
+                <syncfusion:SfListView Grid.Row="3"
+                                        ItemSpacing="3"
+                                        SelectionMode="Single"
+                                        x:Name="doclinkListView"
+                                        SelectionChangedCommand="{Binding SelectedDoclinksListCommand}"
+                                        SelectionChangedCommandParameter="{x:Reference doclinkListView}"
+                                        ItemsSource="{Binding AttachmentListData}"
+                                        IsScrollBarVisible="True">
+                    <syncfusion:SfListView.LayoutManager>
+                        <syncfusion:GridLayout SpanCount="2" />
+                    </syncfusion:SfListView.LayoutManager>
+                    <syncfusion:SfListView.ItemSize>
+                        <OnPlatform x:TypeArguments="x:Double">
+                            <OnPlatform.Android>
+                                <OnIdiom x:TypeArguments="x:Double" Phone="150" Tablet="150" />
+                            </OnPlatform.Android>
+                            <OnPlatform.iOS>
+                                <OnIdiom x:TypeArguments="x:Double" Phone="150" Tablet="230" />
+                            </OnPlatform.iOS>
+                            <OnPlatform.WinPhone>
+                                <OnIdiom x:TypeArguments="x:Double" Desktop="230" Tablet="230"/>
+                            </OnPlatform.WinPhone>
+                        </OnPlatform>
+                    </syncfusion:SfListView.ItemSize>
+                    <syncfusion:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid RowSpacing="0" ColumnSpacing="0">
+                                <Image Source="{Binding previewdoc, Converter={StaticResource Base64ToImageConverter}}" Aspect="AspectFill" MinimumHeightRequest="40" MinimumWidthRequest="40" />
+                                <Grid VerticalOptions="End" ColumnSpacing="0" Opacity="0.75" BackgroundColor="{DynamicResource Card}">
+                                    <Grid.HeightRequest>
+                                        <OnPlatform x:TypeArguments="x:Double">
+                                            <OnPlatform.WinPhone>
+                                                <OnIdiom x:TypeArguments="x:Double" Phone="30" Tablet="40" />
+                                            </OnPlatform.WinPhone>
+                                            <OnPlatform.Android>
+                                                <OnIdiom x:TypeArguments="x:Double" Phone="30" Tablet="40" />
+                                            </OnPlatform.Android>
+                                            <OnPlatform.iOS>
+                                                <OnIdiom x:TypeArguments="x:Double" Phone="30" Tablet="40" />
+                                            </OnPlatform.iOS>
+                                        </OnPlatform>
+                                    </Grid.HeightRequest>
+                                    <Label Text="{Binding description}" TextColor="{DynamicResource Label}"
+                                        VerticalTextAlignment="Center"
+                                        Margin="20,0,0,0"
+                                        HorizontalTextAlignment="Start">
+                                        <Label.FontSize>
+                                            <OnPlatform x:TypeArguments="x:Double">
+                                                <OnPlatform.WinPhone>
+                                                    <OnIdiom x:TypeArguments="x:Double" Phone="12" Tablet="18" />
+                                                </OnPlatform.WinPhone>
+                                                <OnPlatform.Android>
+                                                    <OnIdiom x:TypeArguments="x:Double" Phone="10" Tablet="15" />
+                                                </OnPlatform.Android>
+                                                <OnPlatform.iOS>
+                                                    <OnIdiom x:TypeArguments="x:Double" Phone="10" Tablet="15" />
+                                                </OnPlatform.iOS>
+                                            </OnPlatform>
+                                        </Label.FontSize>
+                                    </Label>
+                                </Grid>
+                            </Grid>
+                        </DataTemplate>
+                    </syncfusion:SfListView.ItemTemplate>
+
+                </syncfusion:SfListView>
+                 <!-- Save SQA Button-->
+                <buttons:SfButton
+                        Margin="15"
+                        Grid.Row="3"
+                        HorizontalOptions="End"
+                        VerticalOptions="End"
+                        ShowIcon="True"
+                        FontSize="29"
+                        IsVisible="{Binding isSave}"
+                        TextColor="{DynamicResource Background}"
+                        Text="{StaticResource Add}"
+                        CornerRadius="50" HeightRequest="60" WidthRequest="60"
+                        Command="{Binding OptionAttachments}"
+                        Style="{StaticResource RoundButtonStyle3}"/>
+            </Grid>
+    </ContentPage.Content>
+</ContentPage>

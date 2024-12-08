@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:controls="clr-namespace:mcms.Controls" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    BackgroundColor="{DynamicResource Background}"
+    x:Class="mcms.Views.Setting.Faqs">
+
+     <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="graphics:SfGradientView">
+                <Setter Property="BackgroundBrush">
+                    <Setter.Value>
+                        <graphics:SfLinearGradientBrush>
+                            <graphics:SfLinearGradientBrush.GradientStops>
+                                <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                                <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                            </graphics:SfLinearGradientBrush.GradientStops>
+                        </graphics:SfLinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowSpacing="0" BackgroundColor="{DynamicResource Background}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0" x:Name="iOSSafeArea"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <graphics:SfGradientView Grid.RowSpan="3"/>
+        <StackLayout
+            Grid.Row="1"
+            Padding="16,8"
+            BackgroundColor="{StaticResource Transparent}"
+            HeightRequest="48"
+            HorizontalOptions="Fill"
+            Orientation="Horizontal"
+            Spacing="0">
+            <buttons:SfButton
+                        Text="{StaticResource Back}"
+                        Style="{StaticResource NavigationBarButtonStyle}"
+                        CornerRadius="4"
+                Margin="0,6,0,0"
+                        Command="{Binding BackToSettingCommand}"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
+                        Padding="0"/>
+            <Label
+                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                    FontSize="20"
+                    HorizontalTextAlignment="Center"
+                    HorizontalOptions="Center"
+                    LineHeight="1.25"
+                    Text="FAQs"
+                    TextColor="{DynamicResource Gray-White}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+        </StackLayout>
+
+        <border:SfBorder
+            Grid.Row="2"
+            CornerRadius="10,10,0,0"
+            HorizontalOptions="FillAndExpand" 
+            BorderWidth="0" 
+            BorderColor="Transparent" 
+            BackgroundColor="{DynamicResource Background}" />
+         <StackLayout VerticalOptions="FillAndExpand" Grid.Row="3">
+              <syncfusion:SfListView 
+                            x:Name="faqsListView"
+                            AutoFitMode="DynamicHeight"
+                            SelectionMode ="Single"
+                            HorizontalOptions="Fill"
+                            ItemSpacing="2"
+                            ItemsSource="{Binding FaqsListData}"
+                            IsScrollBarVisible="False">
+                        <syncfusion:SfListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <controls:CustomShadowFrame
+                                        x:Name="frame"
+                                        BackgroundColor="{DynamicResource Background}"
+                                        HasShadow="True"
+                                        BorderWidth="0">
+                                           <Grid>
+                                               <Grid.RowDefinitions>
+                                                   <RowDefinition Height="30*"></RowDefinition>
+                                                   <RowDefinition Height="Auto"></RowDefinition>
+                                               </Grid.RowDefinitions>
+                                               <Grid.ColumnDefinitions>
+                                                   <ColumnDefinition Width="*"></ColumnDefinition>
+                                               </Grid.ColumnDefinitions>
+                                               <StackLayout
+                                                   Padding="15,15,15,15">
+                                                    <Label
+                                                        Grid.Row="0"
+                                                        Grid.Column="0"
+                                                        Text="{Binding title}"
+                                                        FontSize="13"
+                                                        TextColor="{DynamicResource HyperLink}"></Label>
+                                                   <Label
+                                                        Grid.Row="1"
+                                                        Grid.Column="0"
+                                                        Text="{Binding description}"
+                                                        FontSize="13"
+                                                        TextColor="{DynamicResource Label}"></Label>
+                                               </StackLayout>
+                                           </Grid>
+                                    </controls:CustomShadowFrame>
+                                </ViewCell>
+                            </DataTemplate>
+                    </syncfusion:SfListView.ItemTemplate>
+                 </syncfusion:SfListView>
+         </StackLayout>
+    </Grid>
+</ContentPage>

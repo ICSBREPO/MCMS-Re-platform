@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:controls="clr-namespace:mcms.Controls"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             x:Class="mcms.Views.PopupPages.DomainLookupPermits">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Work/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <buttons:SfButton Text="{StaticResource Close}"
+                              Clicked="Cancel_Clicked"
+                              Grid.Row="0"
+                              Style="{StaticResource CloseLookupStyle}"/>
+            <StackLayout Grid.Row="1">
+                <ScrollView>
+                    <syncfusion:SfListView Margin="10"
+                                           x:Name="DomainList"
+                                           BackgroundColor="{DynamicResource Gray-White}"
+                                           ItemSize="80"
+                                           ItemSpacing="2"
+                                           ItemsSource="{Binding DomainData}">
+                        <syncfusion:SfListView.ItemTemplate>
+                            <DataTemplate>
+                                <controls:CustomShadowFrame x:Name="frame"
+                                                CornerRadius="10"
+                                                BackgroundColor="{DynamicResource Card}"
+                                                Padding="15,5"
+                                                Margin="15,5"
+                                                HasShadow="True"
+                                                BorderWidth="0">
+                                    <StackLayout BackgroundColor="{DynamicResource Card}" VerticalOptions="CenterAndExpand">
+                                        <Label Text="{Binding value}" FontSize="Subtitle" />
+                                        <Label Text="{Binding description}" FontSize="Small"/>
+                                    </StackLayout>
+                                </controls:CustomShadowFrame>
+                            </DataTemplate>
+                        </syncfusion:SfListView.ItemTemplate>
+                    </syncfusion:SfListView>
+                </ScrollView>
+
+            </StackLayout>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

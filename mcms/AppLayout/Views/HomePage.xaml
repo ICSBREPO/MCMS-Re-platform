@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    x:Class="mcms.AppLayout.Views.HomePage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:i18n="clr-namespace:mcms.Helpers"
+    xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    Title="{StaticResource HomePageTitle}"
+    Style="{StaticResource ContentPageStyle}">
+     
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="graphics:SfGradientView">
+                <Setter Property="BackgroundBrush">
+                    <Setter.Value>
+                        <graphics:SfLinearGradientBrush>
+                            <graphics:SfLinearGradientBrush.GradientStops>
+                                <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                                <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                            </graphics:SfLinearGradientBrush.GradientStops>
+                        </graphics:SfLinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+   <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="iOSSafeArea" Height="0" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+       
+        <graphics:SfGradientView Grid.Row="0" Grid.RowSpan="3" />
+
+       <StackLayout
+            x:Name="ActionBarContent"
+            Grid.Row="1"
+            HorizontalOptions="FillAndExpand"
+            Orientation="Horizontal"
+            VerticalOptions="FillAndExpand">
+
+            <Button  Style="{StaticResource ActionBarBackButtonStyle}" />
+
+            <Label
+                Margin="-10,0,0,0"
+                HorizontalOptions="StartAndExpand"
+                Style="{StaticResource ActionBarLabelStyle}"
+                Text="{i18n:Translate Home}"
+                VerticalOptions="CenterAndExpand" />
+
+            <Button
+                HorizontalOptions="EndAndExpand"
+                Style="{StaticResource ActionBarSettingIconStyle}"
+                VerticalOptions="CenterAndExpand" />
+
+           <border:SfBorder
+            Grid.Row="2"
+            Grid.RowSpan="2"
+            Padding="0,10,0,0"
+            BackgroundColor="{DynamicResource Gray-White}"
+            BorderWidth="0"
+            CornerRadius="10,10,0,0">
+
+            
+
+            </border:SfBorder>
+        </StackLayout>
+   </Grid>
+</ContentPage>

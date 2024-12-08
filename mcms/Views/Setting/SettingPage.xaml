@@ -1,0 +1,604 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:mcms.Controls"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+    xmlns:views="clr-namespace:mcms.Views.Setting" 
+    xmlns:sfavatar="clr-namespace:Syncfusion.XForms.AvatarView;assembly=Syncfusion.Core.XForms"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:i18n="clr-namespace:mcms.Helpers"
+    xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    x:Class="mcms.Views.Setting.SettingPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="graphics:SfGradientView">
+                <Setter Property="BackgroundBrush">
+                    <Setter.Value>
+                        <graphics:SfLinearGradientBrush>
+                            <graphics:SfLinearGradientBrush.GradientStops>
+                                <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                                <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                            </graphics:SfLinearGradientBrush.GradientStops>
+                        </graphics:SfLinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+
+        <StackLayout BackgroundColor="{DynamicResource Background}">
+            <Grid  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="70" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                <StackLayout Grid.Row="0">
+                    <graphics:SfGradientView  HorizontalOptions="Fill" HeightRequest="64"/>
+                    <StackLayout
+                        x:Name="TitleBar"
+                        Margin="0,-78,0,0"
+                        Padding="16,8"
+                        BackgroundColor="{StaticResource Transparent}"
+                        HeightRequest="48"
+                        HorizontalOptions="Fill"
+                        Orientation="Horizontal"
+                        Spacing="0">
+
+                        <Label
+                            Margin="16,0"
+                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                            FontSize="20"
+                            HorizontalOptions="StartAndExpand"
+                            LineHeight="1.25"
+                            Text="{i18n:Translate Setting}"
+                            TextColor="{DynamicResource Background}"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center" />
+
+                        <buttons:SfButton
+                            Grid.Column="1"
+                            HorizontalOptions="End"
+                            x:Name="MenuButton"
+                            Style="{StaticResource NavigationBarButtonStyle}"
+                            Text="{StaticResource Menu}" />
+
+                    </StackLayout>
+
+                    <!--  Border Radius after top nav  -->
+
+                    <border:SfBorder
+                        Margin="0,-10"
+                        HeightRequest="19" 
+                        CornerRadius="10,10,0,0"
+                        HorizontalOptions="Fill" 
+                        BorderWidth="0" 
+                        BorderColor="Transparent" 
+                        BackgroundColor="{DynamicResource Background}" />
+                </StackLayout>
+
+                <ScrollView  VerticalOptions="Fill" Grid.Row="1">
+                        <StackLayout BackgroundColor="{DynamicResource Background}" Spacing="0">
+
+                            <!--  Header label for account setting  -->
+                            <Grid BackgroundColor="{DynamicResource Background}">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="93" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="{OnIdiom Phone='20*', Tablet='10*', Desktop='10*'}" />
+                                    <ColumnDefinition Width="{OnIdiom Phone='80*', Tablet='90*', Desktop='90*'}" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding EditProfileCommand}"/>
+                                </Grid.GestureRecognizers>
+                                <BoxView/>
+                                <ffimageloading:CachedImage Margin="5,0,0,0" VerticalOptions="FillAndExpand" WidthRequest="40" HeightRequest="40"  
+                                    Aspect="AspectFit" Source="{Binding UserBinding.picture}">
+                                    <ffimageloading:CachedImage.Transformations>
+                                        <fftransformations:CircleTransformation BorderHexColor="#FBFBFB">
+                                            <fftransformations:CircleTransformation.BorderSize>
+                                                <OnPlatform x:TypeArguments="x:Double">
+                                                    <On Platform="iOS" Value="40" />
+                                                    <On Platform="Android" Value="30" />
+                                                    <On Platform="UWP" Value="40" />
+                                            </OnPlatform>
+                                            </fftransformations:CircleTransformation.BorderSize>
+                                        </fftransformations:CircleTransformation>
+                                    </ffimageloading:CachedImage.Transformations>
+                                </ffimageloading:CachedImage>
+                                <BoxView Grid.Row="0" Grid.Column="1"/>
+                                <StackLayout HorizontalOptions="Start" VerticalOptions="Center" Grid.Column="1" Grid.Row="0">
+                                    <Label Text="{Binding UserBinding.displayname}" TextColor="{DynamicResource Label}" Grid.Column="1" Grid.Row="0" Font="Bold,700" FontSize="13"/>
+                                    <Label Text="{Binding UserBinding.email}" TextColor="{DynamicResource Label}" Grid.Column="1" Grid.Row="1" Font="Bold,400" FontSize="13"/>
+                                 </StackLayout>
+                            </Grid>
+
+
+                            <!--  Header lable for change Configuration  -->
+                            <Label
+                                Margin="0,0,0,0"
+                                Padding="16,0,0,0"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="13"
+                                HeightRequest="50"
+                                HorizontalOptions="Fill"
+                                LineHeight="{OnPlatform Default=-1,Android=1.25}"
+                                Text="{i18n:Translate Configuration}"
+                                TextColor="{DynamicResource Label}"
+                                BackgroundColor="{DynamicResource TabBar}"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center" />
+
+                            <Grid VerticalOptions="Fill"
+                                  HorizontalOptions="Fill"
+                                  RowSpacing="0"
+                                  ColumnSpacing="0">
+
+                                  <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                  </Grid.ColumnDefinitions>
+
+                                  <Grid.RowDefinitions>
+                                    <RowDefinition Height="1"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="1"/>
+                                  </Grid.RowDefinitions>
+
+                                  <BoxView BackgroundColor="{DynamicResource Background}"
+                                           HeightRequest="0.5"
+                                           HorizontalOptions="Fill"
+                                           Grid.Row="0"/>
+
+                                  <controls:TapAnimationGrid
+                                            BackgroundColor="{DynamicResource Card}"
+                                            ColumnSpacing="0"
+                                            RowSpacing="0"
+                                            Grid.Row="1"
+                                            Command="{Binding GoToChangeLanguage}"
+                                            Tapped="False">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label
+                                                Grid.Row="0" Grid.Column="0" Margin="19,0,0,0"
+                                                Style="{StaticResource LabelStyle}"
+                                                FontFamily="{StaticResource MaterialIcons}"
+                                                Text="{StaticResource Translate}" />
+                                        <Label
+                                            Grid.Column="1"
+                                            Style="{StaticResource LabelStyle}"
+                                            Text="{i18n:Translate ChangeLanguage}" />
+                                        <Label
+                                            Grid.Column="2"
+                                            Style="{StaticResource IconLabelStyle}"
+                                            Text="{StaticResource Next}" />
+                                  </controls:TapAnimationGrid>
+
+                                  <BoxView BackgroundColor="{DynamicResource Background}"
+                                           HeightRequest="0.5"
+                                           HorizontalOptions="Fill"
+                                           Grid.Row="2"/>
+                            </Grid>
+
+                            <Grid VerticalOptions="Fill"
+                                  HorizontalOptions="Fill"
+                                  RowSpacing="0"
+                                  ColumnSpacing="0">
+
+                                  <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                  </Grid.ColumnDefinitions>
+
+                                  <Grid.RowDefinitions>
+                                    <RowDefinition Height="1"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="1"/>
+                                  </Grid.RowDefinitions>
+
+                                  <BoxView BackgroundColor="{DynamicResource Background}"
+                                           HeightRequest="0.5"
+                                           HorizontalOptions="Fill"
+                                           Grid.Row="0"/>
+
+                                  <controls:TapAnimationGrid
+                                            BackgroundColor="{DynamicResource Card}"
+                                            ColumnSpacing="0"
+                                            RowSpacing="0"
+                                            Grid.Row="1"
+                                            Command="{Binding goToTheme}"
+                                            Tapped="False">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label
+                                                Grid.Row="0" Grid.Column="0" Margin="19,0,0,0"
+                                                Style="{StaticResource LabelStyle}"
+                                                FontFamily="{StaticResource MaterialIcons}"
+                                                Text="{StaticResource Theme}" />
+                                        <Label
+                                            Grid.Column="1"
+                                            Style="{StaticResource LabelStyle}"
+                                            Text="{i18n:Translate ChangeTheme}" />
+                                        <Label
+                                            Grid.Column="2"
+                                            Style="{StaticResource IconLabelStyle}"
+                                            Text="{StaticResource Next}" />
+                                  </controls:TapAnimationGrid>
+
+                                  <BoxView BackgroundColor="{DynamicResource Background}"
+                                           HeightRequest="0.5"
+                                           HorizontalOptions="Fill"
+                                           Grid.Row="2"/>
+                            </Grid>
+      
+                            <Label
+                                Grid.Row="0"
+                                Margin="0,0,0,0"
+                                Padding="19,0,0,0"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="13"
+                                HeightRequest="50"
+                                HorizontalOptions="Fill"
+                                LineHeight="{OnPlatform Default=-1,Android=1.25}"
+                                Text="{i18n:Translate Support}"
+                                TextColor="{DynamicResource Label}"
+                                BackgroundColor="{DynamicResource TabBar}"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center" />
+                            <!--  Header label for Support setting  -->
+                        
+
+                            <!--  Grid for help label and navigation bar icon  -->
+                            <Grid VerticalOptions="Fill"
+                                  HorizontalOptions="Fill"
+                                  RowSpacing="0"
+                                  ColumnSpacing="0">
+
+                                  <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                  </Grid.ColumnDefinitions>
+
+                                  <Grid.RowDefinitions>
+                                    <RowDefinition Height="1"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="1"/>
+                                  </Grid.RowDefinitions>
+
+                                  <BoxView BackgroundColor="{DynamicResource Background}"
+                                           HeightRequest="0.5"
+                                           HorizontalOptions="Fill"
+                                           Grid.Row="0"/>
+
+                                   <controls:TapAnimationGrid
+                                            BackgroundColor="{DynamicResource Card}"
+                                            ColumnSpacing="0"
+                                            Command="{Binding GoToContentHelp}"
+                                            RowSpacing="0"
+                                            Grid.Row="1"
+                                            Tapped="False">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label
+                                                Grid.Row="0" Grid.Column="0" Margin="19,0,0,0"
+                                                Style="{StaticResource LabelStyle}"
+                                                FontFamily="{StaticResource MaterialIcons}"
+                                                Text="{StaticResource Help}" />
+                                        <Label
+                                            Grid.Column="1"
+                                            Style="{StaticResource LabelStyle}"
+                                            Text="{i18n:Translate Help}" />
+                                        <Label
+                                            Grid.Column="2"
+                                            Style="{StaticResource IconLabelStyle}"
+                                            Text="{StaticResource Next}" />
+                                    </controls:TapAnimationGrid>
+
+                                  <BoxView BackgroundColor="{DynamicResource Background}"
+                                           HeightRequest="0.5"
+                                           HorizontalOptions="Fill"
+                                           Grid.Row="2"/>
+                             </Grid>
+
+
+                            <!--  Grid for term of service link label and navigation bar icon  -->
+                            <Grid VerticalOptions="Fill"
+                                  HorizontalOptions="Fill"
+                                  RowSpacing="0"
+                                  ColumnSpacing="0">
+
+                                  <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                  </Grid.ColumnDefinitions>
+
+                                  <Grid.RowDefinitions>
+                                    <RowDefinition Height="1"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="1"/>
+                                  </Grid.RowDefinitions>
+
+                                  <BoxView BackgroundColor="{DynamicResource Background}"
+                                           HeightRequest="0.5"
+                                           HorizontalOptions="Fill"
+                                           Grid.Row="0"/>
+                                   <controls:TapAnimationGrid
+                                        BackgroundColor="{DynamicResource Card}"
+                                        ColumnSpacing="0"
+                                        Command="{Binding GoToTermOfService}"
+                                        RowSpacing="0"
+                                        Grid.Row="1"
+                                        Tapped="False">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <Label
+                                                Grid.Row="0" Grid.Column="0" Margin="19,0,0,0"
+                                                Style="{StaticResource LabelStyle}"
+                                                FontFamily="{StaticResource MaterialIcons}"
+                                                Text="{StaticResource Terms}" />
+                                        <Label
+                                            Grid.Column="1"
+                                            Style="{StaticResource LabelStyle}"
+                                            Text="{i18n:Translate Termofservice}" />
+                                        <Label
+                                            Grid.Column="2"
+                                            Style="{StaticResource IconLabelStyle}"
+                                            Text="{StaticResource Next}"/>
+                                   </controls:TapAnimationGrid>
+                                   <BoxView BackgroundColor="{DynamicResource Background}"
+                                            HeightRequest="0.5"
+                                            HorizontalOptions="Fill"
+                                            Grid.Row="2"/>
+                            </Grid>
+
+
+                            <!--  Grid for faqs label and navigation bar icon  -->
+                            <Grid VerticalOptions="Fill"
+                                  HorizontalOptions="Fill"
+                                  RowSpacing="0"
+                                  ColumnSpacing="0">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="1"/>
+                                </Grid.RowDefinitions>
+
+                                <BoxView BackgroundColor="{DynamicResource Background}"
+                                        HeightRequest="0.5"
+                                        HorizontalOptions="Fill"
+                                        Grid.Row="0"/>
+                                    <controls:TapAnimationGrid
+                                            BackgroundColor="{DynamicResource Card}"
+                                            ColumnSpacing="0"
+                                            Command="{Binding GoToFaqs}"
+                                            RowSpacing="0"
+                                            Grid.Row="1"
+                                            Tapped="False">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                             <Label
+                                                    Grid.Row="0" Grid.Column="0" Margin="19,0,0,0"
+                                                    Style="{StaticResource LabelStyle}"
+                                                    FontFamily="{StaticResource MaterialIcons}"
+                                                    Text="{StaticResource Faq}" />
+                                            <Label
+                                                Grid.Column="1"
+                                                Style="{StaticResource LabelStyle}"
+                                                Text="FAQs" />
+                                            <Label
+                                                Grid.Column="2"
+                                                Style="{StaticResource IconLabelStyle}"
+                                                Text="{StaticResource Next}"/>
+                                    </controls:TapAnimationGrid>
+                                <BoxView BackgroundColor="{DynamicResource Background}"
+                                        HeightRequest="0.5"
+                                        HorizontalOptions="Fill"
+                                        Grid.Row="2"/>
+                            </Grid>
+                        
+                            <!--  Grid for App version Menu  -->
+                            <Grid VerticalOptions="Fill"
+                                  HorizontalOptions="Fill"
+                                  RowSpacing="0"
+                                  ColumnSpacing="0">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="1"/>
+                                </Grid.RowDefinitions>
+
+                                <BoxView BackgroundColor="{DynamicResource Background}"
+                                        HeightRequest="0.5"
+                                        HorizontalOptions="Fill"
+                                        Grid.Row="0"/>
+                                 <Grid
+                                    BackgroundColor="{DynamicResource Card}"
+                                    ColumnSpacing="0"
+                                    Grid.Row="1"
+                                    RowSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="{OnIdiom Phone='60*', Tablet='70*', Desktop='70*'}" />
+                                        <ColumnDefinition Width="{OnIdiom Phone='30*', Tablet='30*', Desktop='30*'}" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                                Grid.Row="0" Grid.Column="0" Margin="19,0,0,0"
+                                                Style="{StaticResource LabelStyle}"
+                                                FontFamily="{StaticResource MaterialIcons}"
+                                                Text="{StaticResource Version}" />
+                                    <Label
+                                        Grid.Column="1"
+                                        Style="{StaticResource LabelStyle}"
+                                        Text="{i18n:Translate AppVersion}" />
+                                    <Label
+                                        x:Name="Version"
+                                        Grid.Column="2"
+                                        Style="{StaticResource LabelStyle}"
+                                        HorizontalOptions="End"
+                                        HorizontalTextAlignment="End"/>
+                                </Grid>
+
+                                <BoxView BackgroundColor="{DynamicResource Background}"
+                                        HeightRequest="0.5"
+                                        HorizontalOptions="Fill"
+                                        Grid.Row="2"/>
+                            </Grid>
+
+                            <!--  Grid for App logout Menu  -->
+                            <!--<Grid VerticalOptions="Fill"
+                                  HorizontalOptions="Fill"
+                                  RowSpacing="0"
+                                  ColumnSpacing="0">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="1"/>
+                                </Grid.RowDefinitions>
+
+                                <BoxView BackgroundColor="{DynamicResource Background}"
+                                        HeightRequest="0.5"
+                                        HorizontalOptions="Fill"
+                                        Grid.Row="0"/>
+                                 <Grid
+                                    BackgroundColor="{DynamicResource Card}"
+                                    ColumnSpacing="0"
+                                    Grid.Row="1"
+                                    RowSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="{OnIdiom Phone='60*', Tablet='70*', Desktop='70*'}" />
+                                        <ColumnDefinition Width="{OnIdiom Phone='30*', Tablet='30*', Desktop='30*'}" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                                Grid.Row="0" Grid.Column="0" Margin="19,0,0,0"
+                                                Style="{StaticResource LabelStyle}"
+                                                FontFamily="{StaticResource MaterialIcons}"
+                                                Text="{StaticResource Version}" />
+                                    <Label
+                                        Grid.Column="1"
+                                        Style="{StaticResource LabelStyle}"
+                                        Text="{i18n:Translate AppVersion}" />
+                                    <Label
+                                        Grid.Column="2"
+                                        Style="{StaticResource LabelStyle}"
+                                        Text="1.0"
+                                        HorizontalOptions="End"
+                                        HorizontalTextAlignment="End"/>
+                                </Grid>
+
+                                <BoxView BackgroundColor="{DynamicResource Background}"
+                                        HeightRequest="0.5"
+                                        HorizontalOptions="Fill"
+                                        Grid.Row="2"/>
+                            </Grid>-->
+
+                             <!--  Grid for logout label and navigation bar icon  -->
+                            <Grid VerticalOptions="Fill"
+                                  HorizontalOptions="Fill"
+                                  RowSpacing="0"
+                                  ColumnSpacing="0">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="1"/>
+                                </Grid.RowDefinitions>
+
+                                <BoxView BackgroundColor="{DynamicResource Background}"
+                                        HeightRequest="0.5"
+                                        HorizontalOptions="Fill"
+                                        Grid.Row="0"/>
+                                    <controls:TapAnimationGrid
+                                            BackgroundColor="{DynamicResource Card}"
+                                            ColumnSpacing="0"
+                                            Command="{Binding LogoutCommand}"
+                                            RowSpacing="0"
+                                            Grid.Row="1"
+                                            Tapped="False">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                             <Label
+                                                    Grid.Row="0" Grid.Column="0" Margin="19,0,0,0"
+                                                    Style="{StaticResource LabelStyle}"
+                                                    FontFamily="{StaticResource FontIcons}"
+                                                    Text="{StaticResource Logout}" />
+                                            <Label
+                                                Grid.Column="1"
+                                                Style="{StaticResource LabelStyle}"
+                                                Text="{i18n:Translate Logout}" />
+                                            <Label
+                                                Grid.Column="2"
+                                                Style="{StaticResource IconLabelStyle}"
+                                                Text="{StaticResource Next}"/>
+                                    </controls:TapAnimationGrid>
+                                <BoxView BackgroundColor="{DynamicResource Background}"
+                                        HeightRequest="0.5"
+                                        HorizontalOptions="Fill"
+                                        Grid.Row="2"/>
+                            </Grid>
+
+
+                            <!--  Logout button  -->
+                            <!--<buttons:SfButton
+                                VerticalOptions="End"
+                                Margin="0,24,0,32"
+                                Command="{Binding LogoutCommand}"
+                                BackgroundColor="{DynamicResource PrimaryColor}"
+                                BorderColor="{DynamicResource PrimaryColor}"
+                                BorderWidth="1"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                HeightRequest="40"
+                                HorizontalOptions="Center"
+                                Style="{StaticResource RoundButtonStyle}"
+                                Text="{i18n:Translate Logout}"
+                                TextColor="{DynamicResource Background}"
+                                WidthRequest="245" />-->
+                        </StackLayout>
+                </ScrollView>
+            </Grid>
+        </StackLayout>
+        
+    </ContentPage.Content>
+</ContentPage>

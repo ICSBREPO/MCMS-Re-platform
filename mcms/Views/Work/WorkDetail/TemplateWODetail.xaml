@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+    xmlns:navigationdrawer="clr-namespace:Syncfusion.SfNavigationDrawer.XForms;assembly=Syncfusion.SfNavigationDrawer.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms"
+    xmlns:tabView="clr-namespace:Syncfusion.XForms.TabView;assembly=Syncfusion.SfTabView.XForms"
+    xmlns:local="clr-namespace:mcms.Helpers"
+    xmlns:i18n="clr-namespace:mcms.Helpers"
+    xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms" xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:controls="clr-namespace:mcms.Controls"
+    x:Name="TemplateWO"
+    x:Class="mcms.Views.Work.WorkDetail.TemplateWODetail"
+    NavigationPage.HasNavigationBar="False"
+    BackgroundColor="{DynamicResource Background}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Work/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="graphics:SfGradientView">
+                <Setter Property="BackgroundBrush">
+                    <Setter.Value>
+                        <graphics:SfLinearGradientBrush>
+                            <graphics:SfLinearGradientBrush.GradientStops>
+                                <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                                <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                            </graphics:SfLinearGradientBrush.GradientStops>
+                        </graphics:SfLinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <navigationdrawer:SfNavigationDrawer x:Name="navigationDrawer"  BackgroundColor="{DynamicResource Background}" Position="Right" DrawerWidth="300" DrawerFooterHeight="0" DrawerHeaderHeight="100">
+            <navigationdrawer:SfNavigationDrawer.ContentView>
+
+                <StackLayout VerticalOptions="FillAndExpand">
+                    <Grid RowSpacing="0" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource Background}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="0" x:Name="iOSSafeArea"/>
+                            <RowDefinition Height="55"/>
+                            <RowDefinition Height="130"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        
+                        <graphics:SfGradientView Grid.RowSpan="3"/>
+
+                        <Grid
+                            Grid.Row="1"
+                            Padding="16,8"
+                            BackgroundColor="{StaticResource Transparent}"
+                            HeightRequest="48"
+                            HorizontalOptions="FillAndExpand"
+                            IsVisible="True"
+                            ColumnSpacing="0"
+                            VerticalOptions="FillAndExpand">
+
+                            <!--  Back button command  -->
+                            <buttons:SfButton  x:Name="backButton"
+                                            CornerRadius="4"
+                                            Style="{StaticResource IconButtonStyle}"
+                                            VerticalTextAlignment="Center"
+                                            VerticalOptions="Center"
+                                            HorizontalOptions="Start"
+                                            TextColor="{DynamicResource Background}"
+                                            Command="{Binding BackToWOListCommand}"
+                                            Text="{StaticResource Back}"
+                                            Grid.Column="0"/>
+
+                            <!--  Workorder page Title  -->
+                            <Label
+                                Grid.ColumnSpan="3"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="20"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding title}"
+                                TextColor="{DynamicResource Background}"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center" />
+
+                            <!--  Menu button command  -->
+                            <buttons:SfButton  x:Name="menuButton"
+                                                    CornerRadius="4"
+                                                    Style="{StaticResource IconButtonStyle}"
+                                                    VerticalTextAlignment="Center"
+                                                    VerticalOptions="Center"
+                                                    HorizontalOptions="End"
+                                                    Text="{StaticResource Drawer}"
+                                                    TextColor="{DynamicResource Background}"
+                                                    Grid.Column="2"
+                                                    Clicked="menuButton_Clicked"/>
+
+                        </Grid>
+
+                        <border:SfBorder
+                            Grid.Row="2"
+                            CornerRadius="10,10,0,0"
+                            HorizontalOptions="FillAndExpand" 
+                            BorderWidth="0" 
+                            BorderColor="Transparent">
+                            <Grid>
+                                <graphics:SfGradientView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                                    <graphics:SfGradientView.BackgroundBrush>           
+                                        <graphics:SfLinearGradientBrush StartPoint="0.5, 0" EndPoint="0.5, 1">                
+                                            <graphics:SfLinearGradientBrush.GradientStops>
+                                                <graphics:SfGradientStop Color="{DynamicResource Card}" Offset="0" />
+                                                <graphics:SfGradientStop Color="{DynamicResource Background}" Offset="1" />
+                                            </graphics:SfLinearGradientBrush.GradientStops>                
+                                        </graphics:SfLinearGradientBrush>            
+                                    </graphics:SfGradientView.BackgroundBrush>
+                                </graphics:SfGradientView>  
+                                 <StackLayout>
+                                     <Label Text="{Binding subtitle}" HeightRequest="30" Margin="5" Style="{StaticResource LabelSemiBold}" HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand" Padding="0" />
+                                     <ScrollView Orientation="Horizontal" HorizontalScrollBarVisibility="Never" HorizontalOptions="CenterAndExpand" Margin="0,5,0,0">
+                                        <progressBar:SfStepProgressBar BindableLayout.ItemsSource="{Binding WoProgressList, Mode=TwoWay}"  HorizontalOptions="CenterAndExpand" WidthRequest="700" BackgroundColor="Transparent" Orientation="Horizontal" x:Name="stepProgress" Margin="16,5,0,0">
+                                            <progressBar:SfStepProgressBar.NotStartedStepStyle>
+                                                <progressBar:StepStyle x:TypeArguments="progressBar:NotStartedStepState" ProgressLineColor="{DynamicResource PrimaryColor}" MarkerContentSize="40" MarkerSize="30" MarkerShapeType="Circle" MarkerStrokeColor="Red" MarkerStrokeWidth="3" MarkerContentType="Cross" MarkerContentFillColor="Red"/>
+                                            </progressBar:SfStepProgressBar.NotStartedStepStyle>
+
+                                            <progressBar:SfStepProgressBar.InProgressStepStyle>
+                                                <progressBar:StepStyle x:TypeArguments="progressBar:InProgressStepState" ProgressLineColor="{DynamicResource PrimaryColor}" MarkerContentSize="40" MarkerSize="30" MarkerShapeType="Circle" MarkerStrokeColor="#e6b83c" MarkerStrokeWidth="3" MarkerContentType="None" MarkerFillColor="White"/>
+                                            </progressBar:SfStepProgressBar.InProgressStepStyle>
+
+                                            <progressBar:SfStepProgressBar.CompletedStepStyle>
+                                                <progressBar:StepStyle x:TypeArguments="progressBar:CompletedStepState" ProgressLineColor="{DynamicResource PrimaryColor}" MarkerContentSize="40" MarkerSize="30" MarkerShapeType="Circle" MarkerStrokeColor="Green" MarkerContentType="Tick" MarkerStrokeWidth="3" MarkerContentFillColor="White" MarkerFillColor="White"/>
+                                            </progressBar:SfStepProgressBar.CompletedStepStyle>
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate>
+                                                    <progressBar:StepView x:Name="stepView1" ImageSource="{Binding ProgressImage}" Status="{Binding Status}">
+                                                        <progressBar:StepView.PrimaryFormattedText>
+                                                            <FormattedString>
+                                                                <Span Text="{Binding Title}" FontSize="12" FontAttributes="Bold" TextColor="{DynamicResource Label}"/>
+                                                            </FormattedString>
+                                                        </progressBar:StepView.PrimaryFormattedText>
+                                                    </progressBar:StepView>
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate> 
+                                        </progressBar:SfStepProgressBar>
+                                    </ScrollView>
+                                </StackLayout>
+                            </Grid>
+                        </border:SfBorder>
+                        <tabView:SfTabView Margin="10,0,10,0"
+                                           Grid.Row="3"
+                                           VerticalOptions="FillAndExpand"
+                                           VisibleHeaderCount="1"
+                                           DisplayMode="NoHeader">
+                            <tabView:SfTabItem Title="{i18n:Translate Alternative}" Content="{Binding WOContent.Content}"/>
+                        </tabView:SfTabView>
+                    </Grid>
+                </StackLayout>
+            </navigationdrawer:SfNavigationDrawer.ContentView>
+
+            <navigationdrawer:SfNavigationDrawer.DrawerHeaderView>
+                <StackLayout BackgroundColor="{DynamicResource Background}">
+                    <Label Text="Menu" HorizontalTextAlignment="Center" Padding="20" FontFamily="{DynamicResource Montserrat-Regular}" TextColor="{DynamicResource Label}"/>
+                    <BoxView BackgroundColor="{DynamicResource Gray-300}" HeightRequest="1" />
+                </StackLayout>
+            </navigationdrawer:SfNavigationDrawer.DrawerHeaderView>
+
+            <navigationdrawer:SfNavigationDrawer.DrawerContentView>
+                    <syncfusion:SfListView
+                                        Margin="3"
+                                        ItemSize="200"
+                                        ItemSpacing="1"
+                                        VerticalOptions="StartAndExpand"
+                                        RowSpacing="1"
+                                        BackgroundColor="{DynamicResource Background}"
+                                        ColumnSpacing="1"
+                                        x:Name="submenuLinks"
+                                        IsScrollBarVisible="False"
+                                        HorizontalOptions="CenterAndExpand"
+                                        SelectionMode="None"
+                                        ItemsSource="{Binding SubmenuList}">
+
+                        <syncfusion:SfListView.LayoutManager>
+                            <syncfusion:GridLayout SpanCount="2" />
+                        </syncfusion:SfListView.LayoutManager>
+
+                        <syncfusion:SfListView.ItemTemplate>
+                            <DataTemplate>
+                                    <StackLayout>
+                                        <badge:SfBadgeView BadgeText="{Binding MenuBadge, Mode=TwoWay}" HorizontalOptions="Center" VerticalOptions="Center" Padding="12">
+                                            <badge:SfBadgeView.BadgeSettings>
+                                                    <badge:BadgeSetting
+                                                                BadgeAlignment="Center"
+                                                                TextPadding="7"
+                                                                FontSize="13"
+                                                                BadgeType="None"
+                                                                FontAttributes="Bold"
+                                                                BackgroundColor="{Binding Background}"
+                                                                CornerRadius="100"
+                                                                TextColor="{Binding TextColor}"/>
+                                                </badge:SfBadgeView.BadgeSettings>
+                                                <badge:SfBadgeView.Content>
+                                                    <buttons:SfButton  
+                                                                CornerRadius="10"
+                                                                VerticalTextAlignment="Center"
+                                                                VerticalOptions="Center"
+                                                                HeightRequest="100"
+                                                                WidthRequest="100"
+                                                                HorizontalOptions="Center"
+                                                                BorderWidth="1"
+                                                                Clicked="menuButton_Clicked"
+                                                                Command="{Binding BindingContext.ChangeWOContentCommand, Source={x:Reference TemplateWO} }"
+                                                                CommandParameter="{Binding SlugMenu}"
+                                                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                                Style="{StaticResource RoundButtonStyle}">
+                                                        <buttons:SfButton.Content>
+                                                                <local:TintedCachedImage HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Source="{Binding MenuImage}" TintColor="{DynamicResource Background}" Margin="15" />
+                                                        </buttons:SfButton.Content>
+                                                    </buttons:SfButton>
+                                                </badge:SfBadgeView.Content>
+                                        </badge:SfBadgeView>
+                                       <Label Text="{Binding MenuTitle}" Style="{StaticResource LabelDrawer}" TextColor="{DynamicResource Label}"/>
+                                    </StackLayout>
+                            </DataTemplate>
+                        </syncfusion:SfListView.ItemTemplate>
+
+                    </syncfusion:SfListView>
+            </navigationdrawer:SfNavigationDrawer.DrawerContentView>
+        </navigationdrawer:SfNavigationDrawer>
+    </ContentPage.Content>
+</ContentPage>

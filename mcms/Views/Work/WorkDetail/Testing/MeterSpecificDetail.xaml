@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             x:Class="mcms.Views.Work.WorkDetail.Testing.MeterSpecificDetail"
+             xmlns:i18n="clr-namespace:mcms.Helpers"
+             xmlns:syncfusion1="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms"
+             BackgroundColor="{DynamicResource Background}"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Work/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            
+            <Style TargetType="graphics:SfGradientView">
+                <Setter Property="BackgroundBrush">
+                    <Setter.Value>
+                        <graphics:SfLinearGradientBrush>
+                            <graphics:SfLinearGradientBrush.GradientStops>
+                                <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                                <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                            </graphics:SfLinearGradientBrush.GradientStops>
+                        </graphics:SfLinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+         <Grid RowSpacing="0" BackgroundColor="{DynamicResource Background}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0" x:Name="iOSSafeArea"/>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <graphics:SfGradientView Grid.RowSpan="3"/>
+            <Grid
+                Grid.Row="1"
+                Padding="16,8"
+                BackgroundColor="{StaticResource Transparent}"
+                HeightRequest="48"
+                HorizontalOptions="Fill">
+                <buttons:SfButton
+                        Text="{StaticResource Back}"
+                        Style="{StaticResource IconButtonStyle}"
+                        CornerRadius="4"
+                        TextColor="{DynamicResource Background}"
+                        Command="{Binding BackToCommand}"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
+                        Padding="0"/>
+                <Label
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        LineHeight="1.25"
+                        Text="{i18n:Translate MeterDetails}"
+                        TextColor="{DynamicResource Background}"
+                        VerticalOptions="StartAndExpand" />
+            </Grid>
+            <border:SfBorder
+                        Grid.Row="2"
+                        CornerRadius="10,10,0,0" 
+                        HorizontalOptions="FillAndExpand"
+                        BorderColor="{DynamicResource Background}"
+                        BorderWidth="1" 
+                        BackgroundColor="{DynamicResource Background}">
+                <Label Text="{Binding selectedMeter.tnbmetername}" Style="{StaticResource LabelSemiBold}" Margin="10" FontSize="17" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" />
+            </border:SfBorder>
+
+            <syncfusion1:SfPicker Grid.Row="3"
+                                        IsOpen="{Binding pickerIsOpen, Mode=TwoWay}"
+                                        ShowColumnHeader="False"
+                                        ShowFooter="True"
+                                        BackgroundColor="{DynamicResource Background}"
+                                        OKButtonBackgroundColor="{DynamicResource Background}"
+                                        CancelButtonBackgroundColor="{DynamicResource Background}"
+                                        CancelButtonTextColor="{DynamicResource PrimaryColor}"
+                                        OKButtonTextColor="{DynamicResource PrimaryColor}"
+                                        HeaderText="Domain Lookup"
+                                        OkButtonClicked="SfPicker_OkButtonClicked"
+                                        SelectedItemTextColor="{DynamicResource PrimaryColor}"
+                                        UnSelectedItemTextColor="{DynamicResource Label}"
+                                        HeaderBackgroundColor="{DynamicResource PrimaryColor}"
+                                        HeaderTextColor="{DynamicResource Background}"
+                                        SelectedItem="{Binding selecteddomain, Mode=TwoWay}"
+                                        ItemsSource="{Binding ListDomain}"
+                                        PickerMode="Dialog" />
+            <ScrollView Grid.Row="3" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never">
+                <StackLayout>
+                    <Grid Margin="20,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="1"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="1"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="1"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="1"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="1"/>
+                        </Grid.RowDefinitions>
+
+                        <StackLayout Grid.Row="0" Grid.Column="0" Margin="0,10,10,10">
+                            <Label Text="{i18n:Translate MeterName}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Label Text="{Binding selectedMeter.tnbmetername}" Style="{StaticResource LabelDescWoDetail}"/>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="0" Grid.Column="1" Margin="10,10,0,10">
+                            <Label Text="{i18n:Translate Description}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Label Text="{Binding selectedMeter.meterdescription}" Style="{StaticResource LabelDescWoDetail}"/>
+                        </StackLayout>
+
+                        <BoxView Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource BoxviewStyle}"/>
+
+                        <StackLayout Grid.Row="2" Grid.Column="0" Margin="0,10,10,10">
+                            <Label Text="{i18n:Translate Location:}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Label Text="{Binding selectedMeter.tnblocation}" Style="{StaticResource LabelDescWoDetail}"/>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="2" Grid.Column="1" Margin="10,10,0,10">
+                            <Label Text="{i18n:Translate Asset}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Label Text="{Binding selectedMeter.tnbassetnum}" Style="{StaticResource LabelDescWoDetail}"/>
+                        </StackLayout>
+
+                        <BoxView Grid.Row="3" Grid.ColumnSpan="2" Style="{StaticResource BoxviewStyle}"/>
+
+                        <StackLayout Grid.Row="4" Grid.Column="0" Margin="0,10,10,10">
+                            <Label Text="{i18n:Translate NewReading}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <inputLayout:SfTextInputLayout
+                                VerticalOptions="Center"
+                                Grid.Column="0"
+                                ContainerBackgroundColor="Transparent"
+                                ContainerType="Outlined"
+                                TrailingViewPosition="Outside"
+                                UnfocusedColor="{DynamicResource LabelTitleWoDetail}"
+                                FocusedColor="{DynamicResource PrimaryColor}"
+                                OutlineCornerRadius="15">
+                                    <Entry Placeholder="Enter Value" PlaceholderColor="{DynamicResource Label}" TextColor="{DynamicResource Label}"   Text="{Binding selectedMeter.tnbnewreading}" x:Name="languageEntry"/>
+                                </inputLayout:SfTextInputLayout>
+
+                                    <Label Grid.Column="1" Text="{Binding selectedMeter.measureunitid}" Margin="3,0,0,0" FontFamily="{StaticResource Montserrat-SemiBold}" Font="Bold,14" HorizontalTextAlignment="Start" HorizontalOptions="Start" VerticalOptions="Center" TextColor="{DynamicResource Label}" />
+
+                                    <buttons:SfButton Grid.Column="2"
+                                                      Margin="3,0,0,0"
+                                                            IsVisible="{Binding selectedMeter.islookup}"
+                                                            BackgroundColor="Transparent"
+                                                            HeightRequest="30"
+                                                            WidthRequest="30"
+                                                            HorizontalOptions="Center"
+                                                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                            Command="{Binding OpenClosePickerCommand}"
+                                                            CommandParameter="{Binding selectedMeter}">
+                                        <buttons:SfButton.Content>
+                                            <i18n:TintedCachedImage Source="search.png" TintColor="{DynamicResource Label}"/>
+                                        </buttons:SfButton.Content>
+                                    </buttons:SfButton>
+                            </Grid>
+                            
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="4" Grid.Column="1" Margin="10,10,0,10">
+                            <Label Text="{i18n:Translate Remarks}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <inputLayout:SfTextInputLayout 
+                                            ContainerBackgroundColor="{StaticResource Gray-100}"
+                                            ContainerType="Outlined"
+                                            FocusedColor="{DynamicResource PrimaryColor}"
+                                            OutlineCornerRadius="15">
+                                <Entry Text="{Binding selectedMeter.tnbremarks, Mode=TwoWay}" TextColor="{StaticResource Gray-800}" FontSize="14" FontFamily="{StaticResource Montserrat-Regular}"/>
+                            </inputLayout:SfTextInputLayout>
+                        </StackLayout>
+
+                        <BoxView Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource BoxviewStyle}"/>
+
+                        <StackLayout Grid.Row="6" Grid.Column="0" Margin="0,10,10,10">
+                            <Label Text="{i18n:Translate MeterType}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Label Text="{Binding selectedMeter.metertype}" Style="{StaticResource LabelDescWoDetail}"/>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="6" Grid.Column="1" Margin="10,10,0,10">
+                            <Label Text="{i18n:Translate LastReadingDate}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Label Text="{Binding selectedMeter.tnblastreadingdate}" Style="{StaticResource LabelDescWoDetail}"/>
+                        </StackLayout>
+
+                        <BoxView Grid.Row="7" Grid.ColumnSpan="2" Style="{StaticResource BoxviewStyle}"/>
+
+                        <StackLayout Grid.Row="8" Grid.Column="0" Margin="0,10,10,10">
+                            <Label Text="{i18n:Translate LastReading}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Label Text="{Binding selectedMeter.tnblastreading}" Style="{StaticResource LabelDescWoDetail}"/>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="8" Grid.Column="1" Margin="10,10,0,10">
+                            <Label Text="{i18n:Translate Result}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Label Text="{Binding selectedMeter.tnbresult}" Style="{StaticResource LabelDescWoDetail}"/>
+                        </StackLayout>
+
+                        <BoxView Grid.Row="9" Grid.ColumnSpan="2" Style="{StaticResource BoxviewStyle}"/>
+                    </Grid>
+
+                    <!-- Button Save Changes -->
+                    <!--<StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="EndAndExpand" Margin="0,0,0,50">
+                        <buttons:SfButton Text="{i18n:Translate Save}" Style="{StaticResource RoundButtonStyle1}" HorizontalOptions="Center"/>
+                    </StackLayout>-->
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:synfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
+             xmlns:controls="clr-namespace:mcms.Controls"
+             xmlns:i18n="clr-namespace:mcms.Helpers"
+    xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
+    x:Class="mcms.Views.Work.WorkDetail.SQA.SQAList">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Work/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ContentView>
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Row="0" >
+                    <Label Text="{Binding sqacount, StringFormat='Total SQA List : {0}'}" Margin="0,20,20,0" FontFamily="{StaticResource Montserrat-SemiBold}" TextColor="{DynamicResource Label}"  FontSize="12" HorizontalOptions="End"/>
+                    
+                    <!-- List of SQA Created-->
+                    <synfusion:SfListView x:Name="SqaListView"
+                                              ItemSize="120"
+                                              Margin="5"
+                                              HorizontalOptions="FillAndExpand"
+                                              VerticalOptions="FillAndExpand"
+                                              SelectionChangedCommand="{Binding SelectedSQAListCommand}"
+                                              SelectionChangedCommandParameter="{x:Reference SqaListView}"
+                                              ItemsSource="{Binding SQAListData, Mode=TwoWay}"
+                                              IsScrollBarVisible="False">
+
+                            <synfusion:SfListView.ItemTemplate>
+                                <DataTemplate>
+                                    <badge:SfBadgeView HorizontalOptions="FillAndExpand" Padding="5,0,5,0" VerticalOptions="FillAndExpand">
+                                            <badge:SfBadgeView.Content>
+                                                <controls:CustomShadowFrame x:Name="frame"
+                                                    CornerRadius="10"
+                                                    BackgroundColor="{DynamicResource Card}"
+                                                    Padding="15,5"
+                                                    Margin="0,5"
+                                                    BorderWidth="0"
+                                                    HasShadow="True">
+                                        <Grid 
+                                                  RowSpacing="1"
+                                                  VerticalOptions="Start">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="30"/>
+                                                    <RowDefinition Height="35"/>
+                                                </Grid.RowDefinitions>
+
+                                                <Label LineBreakMode="NoWrap"
+                                                       Text="{Binding status, StringFormat='SQA Form Status : {0}'}"
+                                                       FontFamily="{StaticResource Montserrat-Bold}"
+                                                       Margin="3"                                                 
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalTextAlignment="Center"
+                                                       TextColor="{DynamicResource Label}">
+                                                    <Label.FontSize>
+                                                        <OnPlatform x:TypeArguments="x:Double">
+                                                            <OnPlatform.WinPhone>
+                                                                <OnIdiom x:TypeArguments="x:Double" 
+                                                                         Phone="20" 
+                                                                         Tablet="20" />
+                                                            </OnPlatform.WinPhone>
+                                                            <OnPlatform.Android>
+                                                                <OnIdiom x:TypeArguments="x:Double"
+                                                                        Phone="16"
+                                                                        Tablet="18" />
+                                                            </OnPlatform.Android>
+                                                            <OnPlatform.iOS>
+                                                                <OnIdiom x:TypeArguments="x:Double"
+                                                                        Phone="18"
+                                                                        Tablet="20" />
+                                                            </OnPlatform.iOS>
+                                                        </OnPlatform>
+                                                    </Label.FontSize>
+                                                </Label>
+                                                <Label Grid.Row="1"
+                                                       Grid.Column="0"
+                                                       LineBreakMode="NoWrap"
+                                                       HorizontalTextAlignment="Start"
+                                                       VerticalTextAlignment="Center"
+                                                       TextColor="{DynamicResource Label}"
+                                                       FontFamily="{StaticResource Montserrat-Regular}">
+                                                    <Label.Text>
+                                                        <MultiBinding StringFormat="{}{0} created at {1}">
+                                                            <Binding Path="description" />
+                                                            <Binding Path="statusdate" />
+                                                        </MultiBinding>
+                                                    </Label.Text>
+                                                    <Label.FontSize>
+                                                        <OnPlatform x:TypeArguments="x:Double">
+                                                            <OnPlatform.WinPhone>
+                                                                <OnIdiom x:TypeArguments="x:Double" 
+                                                                         Phone="18" 
+                                                                         Tablet="18" />
+                                                            </OnPlatform.WinPhone>
+                                                            <OnPlatform.Android>
+                                                                <OnIdiom x:TypeArguments="x:Double"
+                                                                         Phone="12"
+                                                                         Tablet="14" />
+                                                            </OnPlatform.Android>
+                                                            <OnPlatform.iOS>
+                                                                <OnIdiom x:TypeArguments="x:Double"
+                                                                         Phone="12"
+                                                                         Tablet="14" />
+                                                            </OnPlatform.iOS>
+                                                        </OnPlatform>
+                                                    </Label.FontSize>
+                                                </Label>
+                                            </Grid>
+                                    </controls:CustomShadowFrame>
+                                            </badge:SfBadgeView.Content>
+                                            <badge:SfBadgeView.BadgeSettings>
+                                                <badge:BadgeSetting BadgeType="Warning"  Offset="-5, -10" BadgePosition="BottomRight" BadgeIcon="{Binding badgeicon}"/>
+                                            </badge:SfBadgeView.BadgeSettings>
+                                    </badge:SfBadgeView>
+                                </DataTemplate>
+                            </synfusion:SfListView.ItemTemplate>
+                        </synfusion:SfListView>
+                </StackLayout>
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,250">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <!-- No SQA List Image-->
+                        <Image Source="nochecklist.png"
+                               Grid.Row="0"
+                               Margin="20"
+                                IsVisible="{Binding NoSQA}" 
+                                VerticalOptions="Center" 
+                                HorizontalOptions="Center"/>
+                        <Label Text="{i18n:Translate NoSqaCreated}"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="16"
+                               Grid.Row="1"
+                                TextColor="{DynamicResource PrimaryDarkenColor}"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                IsVisible="{Binding NoSQA}"/>
+                    </Grid>
+                </StackLayout>
+               
+
+                <!-- Create SQA Button-->
+                <buttons:SfButton
+                    Margin="15"
+                    Grid.Row="0"
+                    HorizontalOptions="End"
+                    VerticalOptions="End"
+                    ShowIcon="True"
+                    x:Name="AddSqa"
+                    FontSize="29"
+                    TextColor="{DynamicResource Background}"
+                    Text="{StaticResource Add}"
+                    CornerRadius="50" HeightRequest="60" WidthRequest="60"
+                    Command="{Binding AddSqaCommand}"
+                    Style="{StaticResource RoundButtonStyle3}"/>
+            </Grid>
+        </ContentView>
+    </ContentPage.Content>
+</ContentPage>

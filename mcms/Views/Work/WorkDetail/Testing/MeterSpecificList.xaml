@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:controls="clr-namespace:mcms.Controls"
+             xmlns:renderers="clr-namespace:mcms.Renderers"
+             xmlns:i18n="clr-namespace:mcms.Helpers"
+    xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    xmlns:syncfusion1="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms"
+    x:Class="mcms.Views.Work.WorkDetail.Testing.MeterSpecificList"
+             x:Name="meterlist"
+             BackgroundColor="{DynamicResource Background}"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Work/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="graphics:SfGradientView">
+                <Setter Property="BackgroundBrush">
+                    <Setter.Value>
+                        <graphics:SfLinearGradientBrush>
+                            <graphics:SfLinearGradientBrush.GradientStops>
+                                <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                                <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                            </graphics:SfLinearGradientBrush.GradientStops>
+                        </graphics:SfLinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid RowSpacing="0" BackgroundColor="{DynamicResource Background}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0" x:Name="iOSSafeArea"/>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <graphics:SfGradientView Grid.RowSpan="3"/>
+            <Grid
+                Grid.Row="1"
+                Padding="16,8"
+                BackgroundColor="{StaticResource Transparent}"
+                HeightRequest="48"
+                HorizontalOptions="Fill">
+                <buttons:SfButton
+                        Text="{StaticResource Back}"
+                        TextColor="{DynamicResource Background}"
+                        Style="{StaticResource IconButtonStyle}"
+                        CornerRadius="4"
+                        Command="{Binding BackToCommand}"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
+                        Padding="0"/>
+                <Label
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        LineHeight="1.25"
+                        Text="{i18n:Translate MeterSpecificList}"
+                        TextColor="{DynamicResource Background}"
+                        VerticalOptions="StartAndExpand" />
+            </Grid>
+            <border:SfBorder
+                        Grid.Row="2"
+                        CornerRadius="10,10,0,0" 
+                        HorizontalOptions="FillAndExpand"
+                        BorderColor="{DynamicResource Background}"
+                        BorderWidth="1" 
+                        BackgroundColor="{DynamicResource Background}">
+                <Label Text="{Binding selectedMeterGroup.tnbmetergroup}" Style="{StaticResource LabelSemiBold}"  Margin="10" FontSize="17" HorizontalOptions="CenterAndExpand" VerticalOptions="FillAndExpand" />
+            </border:SfBorder>
+            <syncfusion1:SfPicker       Grid.Row="3"
+                                        IsOpen="{Binding pickerIsOpen, Mode=TwoWay}"
+                                        ShowColumnHeader="False"
+                                        ShowFooter="True"
+                                        BackgroundColor="{DynamicResource Background}"
+                                        OKButtonBackgroundColor="{DynamicResource Background}"
+                                        CancelButtonBackgroundColor="{DynamicResource Background}"
+                                        CancelButtonTextColor="{DynamicResource PrimaryColor}"
+                                        OKButtonTextColor="{DynamicResource PrimaryColor}"
+                                        HeaderText="Domain Lookup"
+                                        OkButtonClicked="SfPicker_OkButtonClicked"
+                                        SelectedItemTextColor="{DynamicResource PrimaryColor}"
+                                        UnSelectedItemTextColor="{DynamicResource Label}"
+                                        HeaderBackgroundColor="{DynamicResource PrimaryColor}"
+                                        HeaderTextColor="{DynamicResource Background}"
+                                        SelectedItem="{Binding selecteddomain, Mode=TwoWay}"
+                                        ItemsSource="{Binding ListDomain}"
+                                        PickerMode="Dialog" />
+            <StackLayout Grid.Row="3" Margin="0,10">
+                <syncfusion:SfListView
+                    x:Name="MeterSpecificLists"
+                    ItemsSource="{Binding selectedMeterGroup.tnbwometers, Mode=TwoWay}"
+                    SelectionChangedCommand="{Binding SelectedMeterSpecificCommand}"
+                    SelectionChangedCommandParameter="{x:Reference MeterSpecificLists}"
+                    ItemSpacing="3"
+                    SelectionMode="Single"
+                    AutoFitMode="Height"
+                    IsScrollBarVisible="False">
+                    <syncfusion:SfListView.ItemTemplate>
+                        <DataTemplate>
+                            <controls:CustomShadowFrame x:Name="frame"
+                                                        VerticalOptions="FillAndExpand"
+                                                CornerRadius="10"
+                                                BackgroundColor="{DynamicResource Card}"
+                                                Padding="15,5"
+                                                Margin="15,5"
+                                                HasShadow="True"
+                                                BorderWidth="0">
+                                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" BackgroundColor="{DynamicResource Card}" ColumnSpacing="0" RowSpacing="1">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="50*"/>
+                                        <ColumnDefinition Width="20*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="10*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Row="0" Grid.Column="0" Text="{Binding tnbmetername}" FontFamily="{StaticResource Montserrat-SemiBold}" Font="Bold,17" HorizontalTextAlignment="Start" HorizontalOptions="Start" VerticalOptions="Center" TextColor="{DynamicResource Label}"/>
+                                    
+                                    <inputLayout:SfTextInputLayout
+                                        VerticalOptions="Center"
+                                        Grid.RowSpan="2" Grid.Column="1"
+                                        ContainerBackgroundColor="Transparent"
+                                        ContainerType="Outlined"
+                                        TrailingViewPosition="Outside"
+                                        UnfocusedColor="{DynamicResource Background}"
+                                        FocusedColor="{DynamicResource PrimaryColor}"
+                                        OutlineCornerRadius="15">
+                                            <Entry Placeholder="Enter Value" PlaceholderColor="{DynamicResource Gray-300}" TextColor="{DynamicResource Label}"   Text="{Binding tnbnewreading}" x:Name="languageEntry"/>
+                                    </inputLayout:SfTextInputLayout>
+
+                                    <Label Grid.RowSpan="2" Grid.Column="2" Text="{Binding measureunitid}" Margin="3,0,0,0" FontFamily="{StaticResource Montserrat-SemiBold}" Font="Bold,17" HorizontalTextAlignment="Start" HorizontalOptions="Start" VerticalOptions="Center" TextColor="{DynamicResource Label}" />
+
+                                    <buttons:SfButton Grid.RowSpan="2"
+                                                      Grid.Column="3"
+                                                      Margin="3,0,0,0"
+                                                                    IsVisible="{Binding islookup}"
+                                                                    BackgroundColor="Transparent"
+                                                                    HeightRequest="30"
+                                                                    WidthRequest="30"
+                                                                    HorizontalOptions="Center"
+                                                                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                                    Command="{Binding BindingContext.OpenClosePickerCommand, Source={x:Reference meterlist}}"
+                                                                    CommandParameter="{Binding .}">
+                                            <buttons:SfButton.Content>
+                                                <i18n:TintedCachedImage Source="search.png" TintColor="{DynamicResource Label}"/>
+                                            </buttons:SfButton.Content>
+                                        </buttons:SfButton>
+                                    <Label Grid.RowSpan="2" Grid.Column="4" Text="{StaticResource Next}" Style="{StaticResource NextIconStyle}" HorizontalOptions="EndAndExpand" HorizontalTextAlignment="End"/>
+                                    <Label Grid.Row="1" Grid.Column="0" Text="{Binding meterdescription}" FontFamily="{StaticResource Montserrat-SemiBold}" Font="Bold,17" HorizontalTextAlignment="Start" HorizontalOptions="Start" VerticalOptions="Center" TextColor="{DynamicResource Label}"/>
+                                </Grid>
+                            </controls:CustomShadowFrame>
+                        </DataTemplate>
+                    </syncfusion:SfListView.ItemTemplate>
+                </syncfusion:SfListView>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

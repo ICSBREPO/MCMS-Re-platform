@@ -1,0 +1,192 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <ProduceReferenceAssembly>true</ProduceReferenceAssembly>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Syncfusion.Xamarin.Expander" Version="19.2.0.51" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator" Version="19.2.0.51" />
+    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="19.2.0.51" />
+    <PackageReference Include="System.Collections.Specialized" Version="4.3.0" />
+    <PackageReference Include="Syncfusion.Xamarin.SfChart" Version="19.2.0.51" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="19.2.0.49" />
+    <PackageReference Include="Xamarin.Controls.SignaturePad.Forms" Version="3.0.0" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.2" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="19.2.0.51" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="19.2.0.51" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="19.2.0.51" />
+    <PackageReference Include="Syncfusion.Xamarin.SfTabView" Version="19.2.0.51" />
+    <PackageReference Include="PropertyChanged.Fody" Version="3.4.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
+    <PackageReference Include="Xamarin.Build.Download" Version="0.10.0" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
+    <PackageReference Include="SQLiteNetExtensions" Version="2.1.0" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="19.2.0.51" />
+    <PackageReference Include="Acr.UserDialogs" Version="7.1.0.514" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="19.2.0.51" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNavigationDrawer" Version="19.2.0.51" />
+    <PackageReference Include="Syncfusion.Xamarin.SfProgressBar" Version="19.2.0.51" />
+    <PackageReference Include="Xam.Plugin.Media" Version="5.0.1" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh" Version="19.2.0.51" />
+    <PackageReference Include="HLI.Globalization" Version="1.0.1" />
+    <PackageReference Include="Plugin.Multilingual" Version="1.0.2" />
+    <PackageReference Include="DLToolkit.Forms.Controls.FlowListView" Version="2.0.11" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
+    <PackageReference Include="Syncfusion.Xamarin.SfBadgeView" Version="19.2.0.51" />
+    <PackageReference Include="Xamarin.Plugin.FilePicker" Version="2.1.41" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPdfViewer" Version="19.2.0.51" />
+    <PackageReference Include="PhotoBrowser.Forms" Version="0.1.4" />
+    <PackageReference Include="Xamarin.Forms.GoogleMaps" Version="3.3.0" />
+    <PackageReference Include="RestSharp" Version="106.11.7" />
+    <PackageReference Include="SkiaSharp.Views.Forms" Version="2.80.3" />
+    <PackageReference Include="SkiaSharp.Svg" Version="1.60.0" />
+    <PackageReference Include="SkiaSharp.Extended" Version="1.60.0" />
+    <PackageReference Include="Syncfusion.Xamarin.SfSignaturePad" Version="19.2.0.51" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AppLayout\" />
+    <Folder Include="AppLayout\Views\" />
+    <Folder Include="Themes\" />
+    <Folder Include="Views\Tabbed\" />
+    <Folder Include="Views\Notification\" />
+    <Folder Include="Views\Setting\" />
+    <Folder Include="Views\Login\" />
+    <Folder Include="Behaviors\" />
+    <Folder Include="ApiServices\" />
+    <Folder Include="Helpers\" />
+    <Folder Include="Renderers\" />
+    <Folder Include="Resources\" />
+    <Folder Include="Views\Work\WorkDetail\Permit\" />
+    <Folder Include="Views\Setting\ChangeProfile\" />
+    <Folder Include="Views\Work\WorkDetail\Testing\" />
+    <Folder Include="Views\Work\WorkDetail\ChildWork\" />
+    <Folder Include="Views\Work\WorkDetail\Attachment\" />
+    <Folder Include="Views\PopupPages\" />
+    <Folder Include="Views\Work\WorkDetail\Woklog\" />
+    <Folder Include="Views\ImagePreview\" />
+    <Folder Include="Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Resources\AppResources.Designer.cs">
+      <DependentUpon>AppResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Resources\AppResources.my.Designer.cs">
+      <DependentUpon>AppResources.my.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resx\AppResources.my.Designer.cs">
+      <DependentUpon>AppResources.my.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resx\AppResources.en.Designer.cs">
+      <DependentUpon>AppResources.en.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resx\AppResources.Designer.cs">
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="AppResources.ms.Designer.cs">
+      <DependentUpon>AppResources.ms.resx</DependentUpon>
+    </Compile>
+    <Compile Update="AppResources.Designer.cs">
+      <DependentUpon>AppResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+    <Compile Update="Views\Work\WorkDetail\Attachment\AttachmentList.xaml.cs">
+      <DependentUpon>AttachmentList.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Work\WorkDetail\SQA\DigitalSignatureForm.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Work\WorkDetail\SQA\DigitalSignatureList.xaml.cs">
+      <DependentUpon>%(Filename)</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\NoInternet.svg" />
+    <EmbeddedResource Include="Images\NoItem.svg" />
+    <EmbeddedResource Include="Images\NoPhotos.svg" />
+    <EmbeddedResource Include="Images\NoTasks.svg" />
+    <EmbeddedResource Include="Images\SomethingWentWrong.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Views\Work\WorkDetail\SQA\ChangeSqaStatus.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Work\WorkDetail\SQA\SQADetail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Work\WorkDetail\SQA\SQAList.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Work\WorkDetail\SQA\SQATemplate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\AppResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\AppResources.my.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.my.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resx\AppResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resx\AppResources.my.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.my.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resx\AppResources.en.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.en.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="AppResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="AppResources.ms.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.ms.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Work\WorkDetail\Testform\TestformDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\AppResources.en" />
+    <None Remove="RestSharp" />
+    <None Remove="SkiaSharp.Views.Forms" />
+    <None Remove="SkiaSharp.Svg" />
+    <None Remove="SkiaSharp.Extended" />
+    <None Remove="Images\" />
+    <None Remove="Images\NoInternet.svg" />
+    <None Remove="Images\NoItem.svg" />
+    <None Remove="Images\NoPhotos.svg" />
+    <None Remove="Images\NoTasks.svg" />
+    <None Remove="Images\SomethingWentWrong.svg" />
+    <None Remove="Syncfusion.Xamarin.SfSignaturePad" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Views\Work\WorkDetail\Testform\TestformPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Work\WorkDetail\Workorderspec\AssetDetail.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Work\WorkDetail\Workorderspec\WorkorderSpecification.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

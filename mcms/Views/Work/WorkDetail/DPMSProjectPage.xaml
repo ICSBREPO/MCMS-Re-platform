@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    xmlns:i18n="clr-namespace:mcms.Helpers" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:svg="clr-namespace:mcms.Controls" xmlns:core="clr-namespace:Syncfusion.XForms.Core;assembly=Syncfusion.Core.XForms"
+    x:Class="mcms.Views.Work.WorkDetail.DPMSProjectPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Work/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentView VerticalOptions="FillAndExpand">
+        <ScrollView VerticalScrollBarVisibility="Never">
+            <StackLayout>
+                <StackLayout IsVisible="{Binding nointernet}"
+                    BackgroundColor="Transparent"
+                    Spacing="0"
+                    VerticalOptions="Center">
+
+                    <!--  Display the svg illustration image  -->
+                    <svg:SVGImage 
+                        x:Name="ErrorImage"
+                        Margin="{x:OnIdiom Phone='0,0,0,0',
+                                           Desktop='0',
+                                           Tablet='0'}"
+                        HeightRequest="{core:OnPlatformOrientationDoubleValue Default=300,
+                                                                              AndroidPhonePortrait=200,
+                                                                              AndroidPhoneLandscape=140,
+                                                                              iOSPhonePortrait=200,
+                                                                              iOSPhoneLandscape=140}"
+                        Source = "NoInternet.svg"
+                        VerticalOptions="Center"
+                        WidthRequest="{x:OnIdiom Phone=200,
+                                                 Desktop=300,
+                                                 Tablet=300}" />
+
+                    <!--  Label to display header  -->
+                    <Label
+                        Margin="0,32,0,8"
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontSize="20"
+                        HorizontalTextAlignment="Center"
+                        Style="{StaticResource LabelSqaTitle}"
+                        Text="{i18n:Translate NOINTERNET}"
+                        VerticalTextAlignment="Center" />
+
+                    <!--  Label to display content  -->
+                    <Label
+                        Margin="8,0,8,0"
+                        FontFamily="{StaticResource Montserrat-Medium}"
+                        FontSize="16"
+                        Style="{StaticResource LabelStyle}"
+                        HorizontalTextAlignment="Center"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="{i18n:Translate YOU}"
+                        VerticalTextAlignment="Center" />
+                </StackLayout>
+
+                <!--  Try again button  -->
+                <buttons:SfButton
+                    Margin="0,0,0,40"
+                    IsVisible="{Binding nointernet}"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="EndAndExpand"
+                    WidthRequest="200"
+                    Command="{Binding TryAgainCommand}"
+                    Style="{StaticResource RoundButtonStyle3}"
+                    Text="{i18n:Translate TRYAGAIN}" />
+
+
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" IsVisible="{Binding internet}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Row="0">
+                        <Grid Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label  Text="% KVT" Grid.Row="0" Grid.Column="0" Style="{StaticResource LabelSqaTitle}"/>
+                            <StackLayout Grid.Row="1" Grid.Column="0">
+                                <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                                ContainerType="Outlined"
+                                                                TrailingViewPosition="Inside"
+                                                               FocusedColor="{DynamicResource PrimaryColor}"
+                                                               Margin="0,0,18,0"
+                                                                OutlineCornerRadius="15">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Entry Grid.Row="0" Grid.Column="0" Text="{Binding dpmswo.tnbwodpms[0].tnbkvt}" FontSize="14" TextColor="{StaticResource Gray-800}" FontFamily="{StaticResource Montserrat-Regular}"  />
+                                        <buttons:SfCheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding dpmswo.tnbwodpms[0].tnbkvtna}" WidthRequest="60" Text="NA?" FontFamily="{StaticResource Montserrat-Regular}" FontSize="11" CheckedColor="{DynamicResource PrimaryColor}" />
+                                    </Grid>
+                                </inputLayout:SfTextInputLayout>
+                            </StackLayout>
+
+                            <Label Text="% SAVT" Grid.Row="0" Grid.Column="1" Style="{StaticResource LabelSqaTitle}"/>
+                            <StackLayout Grid.Row="1" Grid.Column="1">
+                                <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                                ContainerType="Outlined"
+                                                                TrailingViewPosition="Inside"
+                                                               FocusedColor="{DynamicResource PrimaryColor}"
+                                                               Margin="0,0,18,0"
+                                                                OutlineCornerRadius="15">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Entry Grid.Row="0" Grid.Column="0"  Text="{Binding dpmswo.tnbwodpms[0].tnbsavt}" FontSize="14" TextColor="{StaticResource Gray-800}" FontFamily="{StaticResource Montserrat-Regular}"  />
+                                        <buttons:SfCheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding dpmswo.tnbwodpms[0].tnbsavtna}" WidthRequest="60" Text="NA?" FontFamily="{StaticResource Montserrat-Regular}" FontSize="11" CheckedColor="{DynamicResource PrimaryColor}" />
+                                    </Grid>
+                                </inputLayout:SfTextInputLayout>
+                            </StackLayout>
+
+                            <Label Text="% KVR" Grid.Row="2" Grid.Column="0" Style="{StaticResource LabelSqaTitle}"/>
+                            <StackLayout Grid.Row="3" Grid.Column="0">
+                                <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                                ContainerType="Outlined"
+                                                               TrailingViewPosition="Inside"
+                                                               FocusedColor="{DynamicResource PrimaryColor}"
+                                                                Margin="0,0,18,0"
+                                                                OutlineCornerRadius="15">
+
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Entry Grid.Row="0" Grid.Column="0" Text="{Binding dpmswo.tnbwodpms[0].tnbkvr}" FontSize="14" TextColor="{StaticResource Gray-800}" FontFamily="{StaticResource Montserrat-Regular}"  />
+                                        <buttons:SfCheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding dpmswo.tnbwodpms[0].tnbkvrna}" WidthRequest="60" Text="NA?" FontFamily="{StaticResource Montserrat-Regular}" FontSize="11" CheckedColor="{DynamicResource PrimaryColor}" />
+                                    </Grid>
+                                </inputLayout:SfTextInputLayout>
+                            </StackLayout>
+
+                            <Label Text="% SAVR"  Grid.Row="2" Grid.Column="1" Style="{StaticResource LabelSqaTitle}"/>
+                            <StackLayout Grid.Row="3" Grid.Column="1">
+                                <inputLayout:SfTextInputLayout 
+                                                        ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                        ContainerType="Outlined"
+                                                        Margin="0,0,18,0"
+                                                        TrailingViewPosition="Inside"
+                                                        FocusedColor="{DynamicResource PrimaryColor}"
+                                                        OutlineCornerRadius="15">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Entry Grid.Row="0" Grid.Column="0" Text="{Binding dpmswo.tnbwodpms[0].tnbsavr}" TextColor="{StaticResource Gray-800}" FontSize="14" FontFamily="{StaticResource Montserrat-Regular}" />
+                                        <buttons:SfCheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding dpmswo.tnbwodpms[0].tnbsavrna}" WidthRequest="60" Text="NA?" FontFamily="{StaticResource Montserrat-Regular}" FontSize="11" CheckedColor="{DynamicResource PrimaryColor}" />
+                                    </Grid>
+                                </inputLayout:SfTextInputLayout>
+                            </StackLayout>
+
+
+                            <Label Text="% PE" Grid.Row="4" Grid.Column="0" Style="{StaticResource LabelSqaTitle}"/>
+                            <StackLayout Grid.Row="5" Grid.Column="0">
+                                <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                               ContainerType="Outlined"
+                                                               TrailingViewPosition="Inside"
+                                                               FocusedColor="{DynamicResource PrimaryColor}"
+                                                                Margin="0,0,18,0"
+                                                                OutlineCornerRadius="15">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Entry Grid.Row="0" Grid.Column="0" Text="{Binding dpmswo.tnbwodpms[0].tnbpe}" TextColor="{StaticResource Gray-800}" FontSize="14" FontFamily="{StaticResource Montserrat-Regular}" />
+                                        <buttons:SfCheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding dpmswo.tnbwodpms[0].tnbpena}" WidthRequest="60" Text="NA?" FontFamily="{StaticResource Montserrat-Regular}" FontSize="11" CheckedColor="{DynamicResource PrimaryColor}" />
+                                    </Grid>
+                                </inputLayout:SfTextInputLayout>
+                            </StackLayout>
+
+                            <Label Text="% JTG" Grid.Row="4" Grid.Column="1" Style="{StaticResource LabelSqaTitle}"/>
+                            <StackLayout Grid.Row="5" Grid.Column="1">
+                                <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                                ContainerType="Outlined"
+                                                               TrailingViewPosition="Inside"
+                                                                Margin="0,0,18,0"
+                                                                OutlineCornerRadius="15">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Entry Grid.Row="0" Grid.Column="0" Text="{Binding dpmswo.tnbwodpms[0].tnbjtg}" x:Name="manufacturer" Placeholder="{i18n:Translate PleaseEnter}" PlaceholderColor="{StaticResource Gray-800}" FontSize="14" FontFamily="{StaticResource Montserrat-Regular}"  />
+                                        <buttons:SfCheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding dpmswo.tnbwodpms[0].tnbjtgna}" WidthRequest="60" Text="NA?" FontFamily="{StaticResource Montserrat-Regular}" FontSize="11" CheckedColor="{DynamicResource PrimaryColor}" />
+                                    </Grid>
+                                </inputLayout:SfTextInputLayout>
+                            </StackLayout>
+
+                            <Label Text="% HDD" Grid.Row="6" Grid.Column="0" Style="{StaticResource LabelSqaTitle}"/>
+                            <StackLayout Grid.Row="7" Grid.Column="0">
+                                <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                                ContainerType="Outlined"
+                                                               TrailingViewPosition="Inside"
+                                                               FocusedColor="{DynamicResource PrimaryColor}"
+                                                                Margin="0,0,18,0"
+                                                                OutlineCornerRadius="15">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Entry Grid.Row="0" Grid.Column="0" Text="{Binding dpmswo.tnbwodpms[0].tnbhdd}" TextColor="{StaticResource Gray-800}" FontSize="14" FontFamily="{StaticResource Montserrat-Regular}" />
+                                        <buttons:SfCheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding dpmswo.tnbwodpms[0].tnbhddna}" WidthRequest="60" Text="NA?" FontFamily="{StaticResource Montserrat-Regular}" FontSize="11" CheckedColor="{DynamicResource PrimaryColor}" />
+                                    </Grid>
+                                </inputLayout:SfTextInputLayout>
+                            </StackLayout>
+
+                            <Label Text="% SK5" Grid.Row="6" Grid.Column="1" Style="{StaticResource LabelSqaTitle}"/>
+                            <StackLayout Grid.Row="7" Grid.Column="1">
+                                <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                                ContainerType="Outlined"
+                                                                Margin="0,0,18,0"
+                                                                TrailingViewPosition="Inside"
+                                                               FocusedColor="{DynamicResource PrimaryColor}"
+                                                                OutlineCornerRadius="15">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Entry Grid.Row="0" Grid.Column="0" Text="{Binding dpmswo.tnbwodpms[0].tnbsk5}" x:Name="manufacturingcountry" Placeholder="{i18n:Translate PleaseEnter}" PlaceholderColor="{StaticResource Gray-800}" FontSize="14" FontFamily="{StaticResource Montserrat-Regular}"  />
+                                        <buttons:SfCheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding dpmswo.tnbwodpms[0].tnbsk5na}" WidthRequest="60" Text="NA?" FontFamily="{StaticResource Montserrat-Regular}" FontSize="11" CheckedColor="{DynamicResource PrimaryColor}" />
+                                    </Grid>
+                                </inputLayout:SfTextInputLayout>
+                            </StackLayout>
+
+                            <Label Text="% SVC" Grid.Row="8" Grid.Column="0" Style="{StaticResource LabelSqaTitle}"/>
+                            <StackLayout Grid.Row="9" Grid.Column="0">
+                                <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                                ContainerType="Outlined"
+                                                                Margin="0,0,18,0"
+                                                               FocusedColor="{DynamicResource PrimaryColor}"
+                                                                TrailingViewPosition="Inside"
+                                                                OutlineCornerRadius="15">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Entry Grid.Row="0" Grid.Column="0" Text="{Binding dpmswo.tnbwodpms[0].tnbsvc}" Placeholder="{i18n:Translate PleaseEnter}" TextColor="{StaticResource Gray-800}" FontSize="14" FontFamily="{StaticResource Montserrat-Regular}" />
+                                        <buttons:SfCheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding dpmswo.tnbwodpms[0].tnbsvcna}" WidthRequest="60" Text="NA?" FontFamily="{StaticResource Montserrat-Regular}" FontSize="11" CheckedColor="{DynamicResource PrimaryColor}" />
+                                    </Grid>
+                                </inputLayout:SfTextInputLayout>
+                            </StackLayout>
+
+                            <Label Text="% MP" Grid.Row="8" Grid.Column="1" Style="{StaticResource LabelSqaTitle}"/>
+                            <StackLayout Grid.Row="9" Grid.Column="1">
+                                <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                                ContainerType="Outlined"
+                                                               TrailingViewPosition="Inside"
+                                                               FocusedColor="{DynamicResource PrimaryColor}"
+                                                                 Margin="0,0,18,0"
+                                                                OutlineCornerRadius="15">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Entry Grid.Row="0" Grid.Column="0" Text="{Binding dpmswo.tnbwodpms[0].tnbmp}"  Placeholder="{i18n:Translate PleaseEnter}" PlaceholderColor="{StaticResource Gray-800}" FontSize="14" FontFamily="{StaticResource Montserrat-Regular}" />
+                                        <buttons:SfCheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding dpmswo.tnbwodpms[0].tnbmpna}" WidthRequest="60" Text="NA?" FontFamily="{StaticResource Montserrat-Regular}" FontSize="11" CheckedColor="{DynamicResource PrimaryColor}" />
+                                    </Grid>
+                                </inputLayout:SfTextInputLayout>
+                            </StackLayout>
+
+
+                        </Grid>
+                    </StackLayout>
+
+                    <!-- Save Button-->
+                    <buttons:SfButton
+                        Margin="0,15"
+                        Grid.Row="1"
+                        HorizontalOptions="End"
+                        VerticalOptions="End"
+                        ShowIcon="True"
+                        x:Name="SaveBtn"
+                        FontSize="29"
+                        FontFamily="{StaticResource MaterialIcons}"
+                        TextColor="{DynamicResource Background}"
+                        Text="{StaticResource Save}"
+                        CornerRadius="50" HeightRequest="60" WidthRequest="60"
+                        Command="{Binding SaveCommand}"
+                        Style="{StaticResource RoundButtonStyle3}"/>
+                </Grid>
+            </StackLayout>
+        </ScrollView>
+    </ContentView>
+</ContentPage>

@@ -1,0 +1,188 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"  xmlns:syncfusion="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms"
+    x:Class="mcms.Views.Work.WorkDetail.Woklog.WorklogForm"
+    BackgroundColor="{DynamicResource Background}"
+    NavigationPage.HasNavigationBar="False"
+    xmlns:i18n="clr-namespace:mcms.Helpers">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Work/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="graphics:SfGradientView">
+                <Setter Property="BackgroundBrush">
+                    <Setter.Value>
+                        <graphics:SfLinearGradientBrush>
+                            <graphics:SfLinearGradientBrush.GradientStops>
+                                <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                                <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                            </graphics:SfLinearGradientBrush.GradientStops>
+                        </graphics:SfLinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid RowSpacing="0" BackgroundColor="{DynamicResource Background}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0" x:Name="iOSSafeArea"/>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <graphics:SfGradientView Grid.RowSpan="3"/>
+            <Grid
+                Grid.Row="1"
+                Padding="16,8"
+                BackgroundColor="{StaticResource Transparent}"
+                HeightRequest="48"
+                HorizontalOptions="Fill">
+                <buttons:SfButton
+                        Text="{StaticResource Back}"
+                        TextColor="{DynamicResource Background}"
+                        Style="{StaticResource IconButtonStyle}"
+                        CornerRadius="4"
+                        Command="{Binding BackPage}"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
+                        Padding="0"/>
+                <Label
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        LineHeight="1.25"
+                        Text="{i18n:Translate Worklog}"
+                        TextColor="{DynamicResource Background}"
+                        VerticalOptions="StartAndExpand" />
+            </Grid>
+            <border:SfBorder
+                        Grid.Row="2"
+                        CornerRadius="10,10,0,0" 
+                        HorizontalOptions="FillAndExpand"
+                        BorderColor="{DynamicResource Background}"
+                        BorderWidth="1" 
+                        BackgroundColor="{DynamicResource Background}">
+                <Label Text="{Binding subtitle}"
+                            Style="{StaticResource LabelSemiBold}" 
+                            HorizontalOptions="CenterAndExpand" 
+                            VerticalOptions="CenterAndExpand" 
+                            Padding="0,10" />
+            </border:SfBorder>
+
+
+            <syncfusion:SfPicker
+                            Grid.Row="3"
+                            IsOpen="{Binding pickerIsOpen}"
+                            ShowColumnHeader="False"
+                            ShowFooter="True"
+                            CancelButtonTextColor="{DynamicResource PrimaryColor}"
+                            OKButtonTextColor="{DynamicResource PrimaryColor}"
+                            HeaderText="Type Worklog"
+                            HeaderTextColor="White"
+                            SelectedItemTextColor="{DynamicResource PrimaryColor}"
+                            HeaderBackgroundColor="{DynamicResource PrimaryColor}"
+                            SelectedItem="{Binding selectedWorklog.logtype}"
+                            ItemsSource="{Binding TypeList}"
+                            PickerMode="Dialog" />
+
+            <ScrollView Margin="10" Grid.Row="3" VerticalScrollBarVisibility="Never" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" x:Name="containerForm">
+                        <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand">
+                            <Label Text="{Binding selectedWorklog.createby, StringFormat='Created by: {0}'}" FontSize="13" Style="{DynamicResource LabelSemiBold}" BackgroundColor="Transparent" Margin="0,0,0,5"></Label>
+                            <Label Text="{Binding selectedWorklog.createdate, StringFormat='Date: {0}'}" FontSize="13" Style="{DynamicResource LabelSemiBold}" BackgroundColor="Transparent" Margin="0,0,0,5"></Label>
+                        </StackLayout>
+
+
+                        <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand" Margin="-7,6,0,6">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="25"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <CheckBox Grid.Row="0" Grid.Column="0"  IsChecked="{Binding selectedWorklog.clientviewable}" Color="{DynamicResource PrimaryColor}"/>
+                                <Label Grid.Column="1" VerticalTextAlignment="Center" Grid.Row="0" Text="Client Viewable" FontSize="13" Style="{DynamicResource LabelSemiBold}" BackgroundColor="Transparent"></Label>
+                            </Grid>
+                        </StackLayout>
+
+
+                        <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand">
+                            <Label Text="Type" FontSize="13" Style="{DynamicResource LabelSemiBold}" BackgroundColor="Transparent"></Label>
+                            <inputLayout:SfTextInputLayout
+                                ContainerBackgroundColor="White"
+                                ErrorColor="Red"
+                                ContainerType="Outlined"
+                                ErrorText="{Binding ErrorWorklogTypeEntryMessage}"
+                                HasError="{Binding isErrorWorklogTypeEntry}"
+                                FocusedColor="{DynamicResource PrimaryColor}">
+                                    <Entry Text="{Binding selectedWorklog.logtype}" Placeholder="Please Select" IsReadOnly="true" x:Name="worklogTypeEntry"/>
+                                    <inputLayout:SfTextInputLayout.TrailingView>
+                                        <ImageButton
+                                            HeightRequest="40"
+                                            Command="{Binding PickerActionCommand}"
+                                            BackgroundColor="Transparent"
+                                            Source="search.png"/>     
+                                    </inputLayout:SfTextInputLayout.TrailingView>
+                            </inputLayout:SfTextInputLayout>
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand">
+                        <Label Text="{i18n:Translate Summary}" FontSize="13" Style="{DynamicResource LabelSemiBold}" BackgroundColor="Transparent"></Label>
+                            <inputLayout:SfTextInputLayout
+                                ContainerBackgroundColor="White"
+                                ErrorColor="Red"
+                                ErrorText="{Binding ErrorWorklogSummaryEntryMessage}"
+                                HasError="{Binding isErrorWorklogSummaryEntry}"
+                                FocusedColor="{DynamicResource PrimaryColor}"
+                                ContainerType="Outlined">
+                                <Editor Text="{Binding selectedWorklog.description}" Placeholder="Please enter summary" HeightRequest="130"></Editor>
+                            </inputLayout:SfTextInputLayout>
+                        </StackLayout>
+
+                        <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="FillAndExpand">
+                        <Label Text="{i18n:Translate WorklogDetails}" FontSize="13" Style="{DynamicResource LabelSemiBold}" BackgroundColor="Transparent"></Label>
+                            <inputLayout:SfTextInputLayout
+                                ContainerBackgroundColor="White"
+                                ErrorColor="Red"
+                                ErrorText="{Binding ErrorWorklogDetailEntryMessage}"
+                                HasError="{Binding isErrorWorklogDetailEntry}"
+                                FocusedColor="{DynamicResource PrimaryColor}"
+                                ContainerType="Outlined">
+                                <Editor Text="{Binding selectedWorklog.tnbremarks}" Placeholder="Please enter details"  HeightRequest="130"></Editor>
+                            </inputLayout:SfTextInputLayout>
+                        </StackLayout>
+
+                        
+
+	                </StackLayout>
+            </ScrollView>
+            <buttons:SfButton
+                        Margin="15"
+                        Grid.Row="3"
+                        HorizontalOptions="End"
+                        VerticalOptions="End"
+                        ShowIcon="True"
+                        FontSize="29"
+                        FontFamily="{StaticResource MaterialIcons}"
+                        TextColor="{DynamicResource Background}"
+                        Text="{StaticResource Save}"
+                        CornerRadius="50" HeightRequest="60" WidthRequest="60"
+                        Command="{Binding SaveWorklogCommand}"
+                        Style="{StaticResource RoundButtonStyle3}"/>
+            
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

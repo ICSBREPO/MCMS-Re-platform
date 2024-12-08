@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:syncfusion="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:gradient="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             IsVisible="False"
+             xmlns:i18n="clr-namespace:mcms.Helpers"
+             x:Class="mcms.Views.Work.FilterWo"
+             x:Name="FilterWoView"
+             BindingContext="{Binding ParentContext, Source={x:Reference FilterWoView}}">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <BoxView x:Name="ShadowView"
+                 IsVisible="False" 
+                 BackgroundColor="{DynamicResource Gray-500}"
+                 Opacity="0.4"
+                 Grid.Row="0">
+            <BoxView.GestureRecognizers>
+                <TapGestureRecognizer Tapped="CloseSettings"/>
+            </BoxView.GestureRecognizers>
+        </BoxView>
+
+
+        <border:SfBorder VerticalOptions="CenterAndExpand"
+                             BackgroundColor="{DynamicResource Background}"
+                             BorderColor="Transparent"
+                             CornerRadius="15"
+                             Grid.Row="0"
+                             x:Name="MainContent"
+                             Opacity="0"
+                             TranslationY="300"
+                             Margin="{OnIdiom Tablet='120,30', Phone='30', Desktop='250,30'}">
+
+            <StackLayout Padding="15">
+
+                <ScrollView VerticalScrollBarVisibility="Never">
+                    <StackLayout>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50*"/>
+                                <ColumnDefinition Width="50*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Label Text="{i18n:Translate Sortby}" Grid.Row="0" Grid.Column="0" TextColor="{DynamicResource Label}" FontFamily="{DynamicResource Montserrat-SemiBold}" FontSize="18" HorizontalOptions="StartAndExpand"/>
+                            <syncfusion:SfRadioGroup Grid.Row="1" Grid.Column="0" x:Name="sortby" >
+                                <syncfusion:SfRadioButton x:Name="newest" Text="{i18n:Translate Newest}" IsChecked="{Binding Newest}" TextColor="{DynamicResource Label}" FontFamily="{DynamicResource Montserrat-Regular}" FontSize="14"/>
+                                <syncfusion:SfRadioButton x:Name="Oldest" Text="{i18n:Translate Oldest}" IsChecked="{Binding Oldest}" TextColor="{DynamicResource Label}" FontFamily="{DynamicResource Montserrat-Regular}" FontSize="14"/>
+                            </syncfusion:SfRadioGroup>
+
+                            <Label Text="{i18n:Translate Favourite}"  Grid.Row="0" Grid.Column="1" TextColor="{DynamicResource Label}" FontFamily="{DynamicResource Montserrat-SemiBold}" FontSize="18" HorizontalOptions="StartAndExpand"/>
+                            <syncfusion:SfRadioGroup Grid.Row="1" Grid.Column="1"  x:Name="favoriteRadio">
+                                <syncfusion:SfRadioButton Text="{i18n:Translate No}" IsChecked="{Binding noFav}" TextColor="{DynamicResource Label}" FontFamily="{DynamicResource Montserrat-Regular}" FontSize="14"/>
+                                <syncfusion:SfRadioButton Text="{i18n:Translate Yes}" IsChecked="{Binding yesFav}" TextColor="{DynamicResource Label}" FontFamily="{DynamicResource Montserrat-Regular}" FontSize="14"/>
+                            </syncfusion:SfRadioGroup>
+                        </Grid>
+                        
+
+                        <BoxView BackgroundColor="{DynamicResource Gray-300}" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0,15"/>
+
+                        <Label Text="{i18n:Translate Filterby}" TextColor="{DynamicResource Label}" FontFamily="{DynamicResource Montserrat-Bold}" FontSize="16" HorizontalOptions="StartAndExpand"/>
+
+                        <Label Text="Status" TextColor="{DynamicResource Label}" FontFamily="{DynamicResource Montserrat-SemiBold}" FontSize="18" HorizontalOptions="StartAndExpand" Margin="0,15,0,0"/>
+                        <syncfusion:SfChipGroup  ItemsSource="{Binding WOStatus}" SelectedItems="{Binding SelectedWOStatus}" DisplayMemberPath="value"  ChipTextSize="Small" Type="Filter" SelectionIndicatorColor="{DynamicResource Gray-White}" ChipBackgroundColor="{DynamicResource Gray-200}" SelectedChipBackgroundColor="{DynamicResource PrimaryColor}"/>
+
+                        <Label Text="{i18n:Translate Workscope}" TextColor="{DynamicResource Label}" FontFamily="{DynamicResource Montserrat-SemiBold}" FontSize="18" HorizontalOptions="StartAndExpand" Margin="0,15,0,0"/>
+                        <syncfusion:SfChipGroup ItemsSource="{Binding WorkScope}" SelectedItems="{Binding SelectedWorkScope}" DisplayMemberPath="value" ChipTextSize="Small" Type="Filter" SelectionIndicatorColor="{DynamicResource Gray-White}" ChipBackgroundColor="{DynamicResource Gray-200}" SelectedChipBackgroundColor="{DynamicResource PrimaryColor}"/>
+
+                        <Label Text="{i18n:Translate Worktype}" TextColor="{DynamicResource Label}" FontFamily="{DynamicResource Montserrat-SemiBold}" FontSize="18" HorizontalOptions="StartAndExpand" Margin="0,15,0,0"/>
+                        <syncfusion:SfChipGroup ItemsSource="{Binding WorkType}" SelectedItems="{Binding SelectedWorkType}" DisplayMemberPath="value" ChipTextSize="Small" Type="Filter" SelectionIndicatorColor="{DynamicResource Gray-White}" ChipBackgroundColor="{DynamicResource Gray-200}" SelectedChipBackgroundColor="{DynamicResource PrimaryColor}"/>
+
+                        <Label Text="{i18n:Translate Vertical}" TextColor="{DynamicResource Label}" FontFamily="{DynamicResource Montserrat-SemiBold}" FontSize="18" HorizontalOptions="StartAndExpand" Margin="0,15,0,0"/>
+                        <syncfusion:SfChipGroup ItemsSource="{Binding Vertical}" SelectedItems="{Binding SelectedVertical}" DisplayMemberPath="value" ChipTextSize="Small" Type="Filter" SelectionIndicatorColor="{DynamicResource Gray-White}" ChipBackgroundColor="{DynamicResource Gray-200}" SelectedChipBackgroundColor="{DynamicResource PrimaryColor}"/>
+
+                        <Label Text="{i18n:Translate Subvertical}" TextColor="{DynamicResource Label}" FontFamily="{DynamicResource Montserrat-SemiBold}" FontSize="18" HorizontalOptions="StartAndExpand" Margin="0,15,0,0"/>
+                        <syncfusion:SfChipGroup ItemsSource="{Binding SubVertical}" SelectedItems="{Binding SelectedSubVertical}" DisplayMemberPath="value" ChipTextSize="Small" Type="Filter" SelectionIndicatorColor="{DynamicResource Gray-White}" ChipBackgroundColor="{DynamicResource Gray-200}" SelectedChipBackgroundColor="{DynamicResource PrimaryColor}"/>
+
+                       
+                       <Grid VerticalOptions="StartAndExpand" Margin="0,20,0,0" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <syncfusion:SfButton Grid.Column="0" CornerRadius="10" HorizontalOptions="FillAndExpand" TextColor="{DynamicResource Background}" Text="{i18n:Translate Apply}" Command="{Binding ApplyFilterCommand}">
+                                <syncfusion:SfButton.BackgroundGradient>
+                                    <gradient:SfLinearGradientBrush>
+                                        <gradient:SfLinearGradientBrush.GradientStops>
+                                            <gradient:SfGradientStop Color="{DynamicResource PrimaryColor}" Offset="0"/>
+                                            <gradient:SfGradientStop Color="{DynamicResource PrimaryGradient}" Offset="1"/>
+                                        </gradient:SfLinearGradientBrush.GradientStops>
+                                    </gradient:SfLinearGradientBrush>
+                                </syncfusion:SfButton.BackgroundGradient>
+                            </syncfusion:SfButton>
+
+                            <syncfusion:SfButton Grid.Column="1" CornerRadius="10" HorizontalOptions="FillAndExpand" TextColor="{DynamicResource Background}" Text="{i18n:Translate Clear}" Command="{Binding ClearFilterCommand}" x:Name="Clear_Button">
+                                <syncfusion:SfButton.BackgroundGradient>
+                                    <gradient:SfLinearGradientBrush>
+                                        <gradient:SfLinearGradientBrush.GradientStops>
+                                            <gradient:SfGradientStop Color="{DynamicResource PrimaryColor}" Offset="0"/>
+                                            <gradient:SfGradientStop Color="{DynamicResource PrimaryGradient}" Offset="1"/>
+                                        </gradient:SfLinearGradientBrush.GradientStops>
+                                    </gradient:SfLinearGradientBrush>
+                                </syncfusion:SfButton.BackgroundGradient>
+                            </syncfusion:SfButton>
+
+                        </Grid>
+                    </StackLayout>
+                </ScrollView>
+
+                
+            </StackLayout>
+        </border:SfBorder>
+    </Grid>
+</ContentView>

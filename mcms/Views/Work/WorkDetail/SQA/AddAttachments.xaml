@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="{DynamicResource Background}"
+    xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+    xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms" 
+    xmlns:navigationdrawer="clr-namespace:Syncfusion.SfNavigationDrawer.XForms;assembly=Syncfusion.SfNavigationDrawer.XForms" 
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" xmlns:controls="clr-namespace:mcms.Controls"
+    xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    xmlns:i18n="clr-namespace:mcms.Helpers" xmlns:syncfusion1="clr-namespace:Syncfusion.SfPdfViewer.XForms;assembly=Syncfusion.SfPdfViewer.XForms"
+    x:Class="mcms.Views.Work.WorkDetail.SQA.AddAttachments">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Work/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="graphics:SfGradientView">
+                <Setter Property="BackgroundBrush">
+                    <Setter.Value>
+                        <graphics:SfLinearGradientBrush>
+                            <graphics:SfLinearGradientBrush.GradientStops>
+                                <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                                <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                            </graphics:SfLinearGradientBrush.GradientStops>
+                        </graphics:SfLinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid RowSpacing="0" BackgroundColor="{DynamicResource Background}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0" x:Name="iOSSafeArea"/>
+                    <RowDefinition Height="55"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <graphics:SfGradientView Grid.RowSpan="3"/>
+                <Grid
+                    Grid.Row="1"
+                    Padding="16,8"
+                    BackgroundColor="{StaticResource Transparent}"
+                    HeightRequest="48"
+                    HorizontalOptions="Fill">
+                    <buttons:SfButton
+                            Text="{StaticResource Back}"
+                            TextColor="{DynamicResource Background}"
+                            Style="{StaticResource IconButtonStyle}"
+                            CornerRadius="4"
+                            Command="{Binding BackModalCommand}" 
+                            HorizontalOptions="Start"
+                            HorizontalTextAlignment="Start"
+                            Padding="0"/>
+                    <Label
+                            FontFamily="{StaticResource Montserrat-SemiBold}"
+                            FontSize="20"
+                            HorizontalOptions="Center"
+                            LineHeight="1.25"
+                            Text="{i18n:Translate SQAChecklist}"
+                            TextColor="{DynamicResource Background}"
+                            VerticalOptions="StartAndExpand" />
+                </Grid>
+                <border:SfBorder
+                            Grid.Row="2"
+                            CornerRadius="10,10,0,0" 
+                            HorizontalOptions="FillAndExpand"
+                            BorderColor="{DynamicResource Background}"
+                            BorderWidth="1" 
+                            BackgroundColor="{DynamicResource Background}">
+                    <Label Text="{i18n:Translate AttachmentForm}"
+                                Style="{StaticResource LabelSemiBold}" 
+                                HorizontalOptions="CenterAndExpand" 
+                                VerticalOptions="CenterAndExpand" 
+                                Padding="0,10" />
+                </border:SfBorder>
+                <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="20" Grid.Row="3">
+                    <controls:CustomShadowFrame x:Name="frame"
+                                                CornerRadius="10"
+                                                BackgroundColor="{DynamicResource Card}"
+                                                Padding="15,5"
+                                                Margin="10"
+                                                BorderWidth="0"
+                                                HasShadow="True">
+                         <StackLayout>
+                             <StackLayout Margin="0,10,0,10">
+                                 <syncfusion1:SfPdfViewer x:Name="pdfViewer" InputFileStream="{Binding m_pdfDocumentStream}" IsVisible="{Binding isPdf}" HeightRequest="400"/>
+                                 <Image Source="{Binding TempAttachment.previewdoc, Converter={StaticResource Base64ToImageConverter}}" Aspect="AspectFit" MinimumHeightRequest="40" MinimumWidthRequest="40" IsVisible="{Binding isImage}"/>
+
+
+                             </StackLayout>
+                             <Label FontFamily="{StaticResource Montserrat-Bold}"
+                                        FontSize="16"
+                                        Text="{i18n:Translate Title}"
+                                        TextColor="{DynamicResource Label}" />
+                             <Label FontFamily="{StaticResource Montserrat-Regular}"
+                                        FontSize="14"
+                                        Text="{Binding TempAttachment.title}"
+                                        TextColor="{DynamicResource Label}" />
+                             <BoxView HeightRequest="1" HorizontalOptions="Fill" Color="{DynamicResource Label}"/>
+                             <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                            ContainerType="Outlined"
+                                                            FocusedColor="{DynamicResource PrimaryColor}"
+                                                            Margin="0,0,18,0"
+                                                        OutlineCornerRadius="15">
+                                <Editor AutoSize="TextChanges" Text="{Binding TempAttachment.description}"  Placeholder="{i18n:Translate Description}" PlaceholderColor="{StaticResource Gray-800}" FontSize="14" FontFamily="{StaticResource Montserrat-Regular}" />
+                             </inputLayout:SfTextInputLayout>
+                             <buttons:SfButton
+                                                    Grid.Row="0"
+                                                    Margin="15"
+                                                    HorizontalOptions="CenterAndExpand"
+                                                    VerticalOptions="End"
+                                                    ShowIcon="True"
+                                                    FontSize="20"
+                                                    FontFamily="{StaticResource Montserrat-Regular}"
+                                                    Text="{i18n:Translate Save}"
+                                                    CornerRadius="50" HeightRequest="60" WidthRequest="100"
+                                                    Command="{Binding SaveDoclinksCommand}"
+                                                    Style="{StaticResource RoundButtonStyle3}"/>
+                         </StackLayout>
+                    </controls:CustomShadowFrame>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

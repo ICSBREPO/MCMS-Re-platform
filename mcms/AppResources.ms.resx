@@ -1,0 +1,792 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddAttachment" xml:space="preserve">
+    <value>Tambah Lampiran</value>
+  </data>
+  <data name="AddSignature" xml:space="preserve">
+    <value>Tambah Tandatangan</value>
+  </data>
+  <data name="Alert" xml:space="preserve">
+    <value>PERINGATAN!</value>
+  </data>
+  <data name="Alternative" xml:space="preserve">
+    <value>Altenatif</value>
+  </data>
+  <data name="Apply" xml:space="preserve">
+    <value>GUNA</value>
+  </data>
+  <data name="Approvedby" xml:space="preserve">
+    <value>Dilulus Oleh</value>
+  </data>
+  <data name="Approvedby:" xml:space="preserve">
+    <value>Diluluskan Oleh : </value>
+  </data>
+  <data name="ApprovedComment" xml:space="preserve">
+    <value>Komen - Diluluskan Oleh : </value>
+  </data>
+  <data name="Approveddate" xml:space="preserve">
+    <value>Tarikh Diluluskan</value>
+  </data>
+  <data name="Approveddate:" xml:space="preserve">
+    <value>Tarikh Diluluskan : </value>
+  </data>
+  <data name="ApprovedWorkorder" xml:space="preserve">
+    <value>Arahan Kerja Diluluskan</value>
+  </data>
+  <data name="AppVersion" xml:space="preserve">
+    <value>Versi Aplikasi</value>
+  </data>
+  <data name="Asset" xml:space="preserve">
+    <value>Aset : </value>
+  </data>
+  <data name="AssetCondition" xml:space="preserve">
+    <value>Keadaan Asset</value>
+  </data>
+  <data name="Attachment" xml:space="preserve">
+    <value>Lampiran</value>
+  </data>
+  <data name="Attachment:" xml:space="preserve">
+    <value>Lampiran : </value>
+  </data>
+  <data name="AttachmentDetail" xml:space="preserve">
+    <value>Perincian Lampiran</value>
+  </data>
+  <data name="AttachmentForm" xml:space="preserve">
+    <value>Borang Lampiran</value>
+  </data>
+  <data name="AttachmentName" xml:space="preserve">
+    <value>Nama Lampiran</value>
+  </data>
+  <data name="Attachments" xml:space="preserve">
+    <value>Lampiran</value>
+  </data>
+  <data name="AuditNo" xml:space="preserve">
+    <value>No Audit</value>
+  </data>
+  <data name="AuthorizedPerson" xml:space="preserve">
+    <value>Individu Berkuasa :</value>
+  </data>
+  <data name="BankDraft" xml:space="preserve">
+    <value>Draf Bank : </value>
+  </data>
+  <data name="BankGuarantee" xml:space="preserve">
+    <value>Jaminan Bank : </value>
+  </data>
+  <data name="Businessarea" xml:space="preserve">
+    <value>Kawasan Perniagaan : </value>
+  </data>
+  <data name="Brand" xml:space="preserve">
+    <value>Jenama : </value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Batal</value>
+  </data>
+  <data name="ChangeLanguage" xml:space="preserve">
+    <value>Ubah Bahasa</value>
+  </data>
+  <data name="ChangeProfilePicture" xml:space="preserve">
+    <value>Ubah Gambar Profil</value>
+  </data>
+  <data name="ChangeSQAStatus" xml:space="preserve">
+    <value>Ubah Status SQA</value>
+  </data>
+  <data name="ChangeStatus" xml:space="preserve">
+    <value>Ubah Status</value>
+  </data>
+  <data name="ChangeTheme" xml:space="preserve">
+    <value>Ubah Tema</value>
+  </data>
+  <data name="Checklist" xml:space="preserve">
+    <value>Semakan </value>
+  </data>
+  <data name="ChecklistForm" xml:space="preserve">
+    <value>Borang Senarai Semak </value>
+  </data>
+  <data name="ChecklistType" xml:space="preserve">
+    <value>Jenis Semakan</value>
+  </data>
+  <data name="ChildWorkorders" xml:space="preserve">
+    <value>Arahan Kerja Bawah</value>
+  </data>
+  <data name="ChooseFile" xml:space="preserve">
+    <value>Pilih Fail </value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>KOSONG</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Tutup</value>
+  </data>
+  <data name="ClicktoDownload" xml:space="preserve">
+    <value>Klik Untuk Muat Turun</value>
+  </data>
+  <data name="Configuration" xml:space="preserve">
+    <value>KONFIGURASI</value>
+  </data>
+  <data name="Comments" xml:space="preserve">
+    <value>Catatan</value>
+  </data>
+  <data name="CompetentPerson" xml:space="preserve">
+    <value>Individu Kompeten :</value>
+  </data>
+  <data name="CompanyDepartment" xml:space="preserve">
+    <value>Syarikat/Jabatan</value>
+  </data>
+  <data name="ContractorName" xml:space="preserve">
+    <value>Nama Kontraktor</value>
+  </data>
+  <data name="Correctionnote" xml:space="preserve">
+    <value>Nota Pembetulan</value>
+  </data>
+  <data name="Createdby" xml:space="preserve">
+    <value>Dicipta Oleh</value>
+  </data>
+  <data name="Createddate" xml:space="preserve">
+    <value>Tarikh Diciptakan</value>
+  </data>
+  <data name="DataLookup" xml:space="preserve">
+    <value>Carian Data</value>
+  </data>
+  <data name="DefectDescription:" xml:space="preserve">
+    <value>Keterangan Kerosakan : </value>
+  </data>
+  <data name="DefectRecifiedDate:" xml:space="preserve">
+    <value>Tarikh Kerosakan Dinyatakan : </value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Padam</value>
+  </data>
+  <data name="DeliveryDate" xml:space="preserve">
+    <value>Tarikh Penghantaran</value>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Keterangan</value>
+  </data>
+  <data name="Descriptions" xml:space="preserve">
+    <value>Keterangan : </value>
+  </data>
+  <data name="DigitalSignature" xml:space="preserve">
+    <value>Tandatangan Digital</value>
+  </data>
+  <data name="Disclaimer" xml:space="preserve">
+    <value>Penafian</value>
+  </data>
+  <data name="Discovery" xml:space="preserve">
+    <value>Penemuan :</value>
+  </data>
+  <data name="DownloadMaster" xml:space="preserve">
+    <value>Muat Turun Data</value>
+  </data>
+  <data name="DownloadAttachment" xml:space="preserve">
+    <value>Muat turun Lampiran</value>
+  </data>
+  <data name="EnterNewReading" xml:space="preserve">
+    <value>Masukkan Bacaan Terbaharu </value>
+  </data>
+  <data name="Fail" xml:space="preserve">
+    <value>Gagal ? </value>
+  </data>
+  <data name="Favourite" xml:space="preserve">
+    <value>Kegemaran</value>
+  </data>
+  <data name="Filterby" xml:space="preserve">
+    <value>Ditapis Mengikut</value>
+  </data>
+  <data name="Finish" xml:space="preserve">
+    <value>TAMAT</value>
+  </data>
+  <data name="First" xml:space="preserve">
+    <value>Anda memasuki kawasan yang selamat! IP, Masa Masuk, Nama Pengguna anda telah diperhatikan dan dihantar ke pentadbir pelayan! Perkhidmatan ini hanya terhad kepada pengguna yang dibenarkan.</value>
+  </data>
+  <data name="ForanyenquirieS" xml:space="preserve">
+    <value>Untuk sebarang pertanyaan mengenai akaun anda, sila hubungi talian hotline di bawah.</value>
+  </data>
+  <data name="FullName" xml:space="preserve">
+    <value>Nama Penuh</value>
+  </data>
+  <data name="GetGPS" xml:space="preserve">
+    <value>Dapatkan GPS</value>
+  </data>
+  <data name="GPSCoordinate" xml:space="preserve">
+    <value>Koordinat GPS</value>
+  </data>
+  <data name="GPSCoordinateNew" xml:space="preserve">
+    <value>Koordinat GPS (BAHARU)</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Bantuan</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Laman Utama</value>
+  </data>
+  <data name="HotlineCare" xml:space="preserve">
+    <value>Talian Perkhidmatan Pelanggan (Malaysia)</value>
+  </data>
+  <data name="ImName" xml:space="preserve">
+    <value>Nama IM</value>
+  </data>
+  <data name="ImStaffIcPhone" xml:space="preserve">
+    <value>No IM Kakitangan/No  IC/No Telefon</value>
+  </data>
+  <data name="IncludeAttachments" xml:space="preserve">
+    <value>Sertakan Lampiran</value>
+  </data>
+  <data name="InprogressWorkorder" xml:space="preserve">
+    <value>Arahan Kerja Sedang Dijalankan</value>
+  </data>
+  <data name="InputCBNumber" xml:space="preserve">
+    <value>Masukkan Nombor CB</value>
+  </data>
+  <data name="Issueby" xml:space="preserve">
+    <value>Isu Oleh : </value>
+  </data>
+  <data name="IssueStatusDate" xml:space="preserve">
+    <value>Tarikh Status Isu : </value>
+  </data>
+  <data name="Issueto" xml:space="preserve">
+    <value>Isu Kepada : </value>
+  </data>
+  <data name="LastReading" xml:space="preserve">
+    <value>Bacaan Terdahulu : </value>
+  </data>
+  <data name="LastReadingDate" xml:space="preserve">
+    <value>Tarikh Bacaan Terdahulu : </value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Lokasi</value>
+  </data>
+  <data name="Location:" xml:space="preserve">
+    <value>Lokasi : </value>
+  </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Log Keluar</value>
+  </data>
+  <data name="MarkAll" xml:space="preserve">
+    <value>TANDA SEMUA SEBAGAI DIBACA</value>
+  </data>
+  <data name="Manufacturer" xml:space="preserve">
+    <value>Pengilang</value>
+  </data>
+  <data name="Manufacturingcountry" xml:space="preserve">
+    <value>Negara Pembuatan</value>
+  </data>
+  <data name="ManufacturingDate" xml:space="preserve">
+    <value>Tarikh Pembuatan</value>
+  </data>
+  <data name="Manufacturepart" xml:space="preserve">
+    <value>Bahagian Pembuatan</value>
+  </data>
+  <data name="MeterDetails" xml:space="preserve">
+    <value>Perincian Meter</value>
+  </data>
+  <data name="MeterName" xml:space="preserve">
+    <value>Nama Meter : </value>
+  </data>
+  <data name="MeterSpecificList" xml:space="preserve">
+    <value>Senarai Meter Spesifik </value>
+  </data>
+  <data name="MeterSpecificToMeterGroup" xml:space="preserve">
+    <value>Meter Spesifik kepada Kumpulan Meter</value>
+  </data>
+  <data name="MeterType" xml:space="preserve">
+    <value>Jenis Meter : </value>
+  </data>
+  <data name="Newest" xml:space="preserve">
+    <value>Terbaharu</value>
+  </data>
+  <data name="NewestWorkorders" xml:space="preserve">
+    <value>Arahan Kerja Terbaharu</value>
+  </data>
+  <data name="NewReading" xml:space="preserve">
+    <value>Bacaan Terbaharu : </value>
+  </data>
+  <data name="NewReadingDate" xml:space="preserve">
+    <value>Tarikh Bacaan Terbaharu : </value>
+  </data>
+  <data name="NewSqaStatus" xml:space="preserve">
+    <value>Status SQA Baharu </value>
+  </data>
+  <data name="NewStatus" xml:space="preserve">
+    <value>Status Baharu :</value>
+  </data>
+  <data name="NewStatusHere" xml:space="preserve">
+    <value>New Status </value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Tidak</value>
+  </data>
+  <data name="NoAttachmentCreated" xml:space="preserve">
+    <value>Ops Maaf! Tiada sebarang Lampiran yang direkodkan.</value>
+  </data>
+  <data name="NoChildCreated" xml:space="preserve">
+    <value>Ops Maaf! Tiada sebarang Arahan Kerja yang direkodkan.</value>
+  </data>
+  <data name="NOINTERNET" xml:space="preserve">
+    <value>TIADA INTERNET!</value>
+  </data>
+  <data name="NonRotatingItem" xml:space="preserve">
+    <value>Item Tidak Berputar</value>
+  </data>
+  <data name="NoMeterCreated" xml:space="preserve">
+    <value>Ops Maaf! Tiada sebarang Meter yang direkodkan.</value>
+  </data>
+  <data name="NoPermitCreated" xml:space="preserve">
+    <value>Ops Maaf! Tiada sebarang Permit yang direkodkan.</value>
+  </data>
+  <data name="NoSqaCreated" xml:space="preserve">
+    <value>Ops Maaf! Tiada senarai Borang SQA yang dicipta.</value>
+  </data>
+  <data name="NotApplicable" xml:space="preserve">
+    <value>Tidak Berkenaan</value>
+  </data>
+  <data name="Notification" xml:space="preserve">
+    <value>Notifikasi</value>
+  </data>
+  <data name="NoWorklogCreated" xml:space="preserve">
+    <value>Ops Maaf! Tiada sebarang Log Kerja yang direkodkan.</value>
+  </data>
+  <data name="Oldest" xml:space="preserve">
+    <value>Lama</value>
+  </data>
+  <data name="Pass" xml:space="preserve">
+    <value>Lulus ?</value>
+  </data>
+  <data name="PassWithCondition" xml:space="preserve">
+    <value>Lulus Dengan Syarat ?</value>
+  </data>
+  <data name="Percentage" xml:space="preserve">
+    <value>Peratusan : </value>
+  </data>
+  <data name="PermitAttachment" xml:space="preserve">
+    <value>Lampiran Permit</value>
+  </data>
+  <data name="PermitDetail" xml:space="preserve">
+    <value>Perincian Permit</value>
+  </data>
+  <data name="Permittype" xml:space="preserve">
+    <value>Jenis Permit :</value>
+  </data>
+  <data name="PersonalProtectiveEquipment" xml:space="preserve">
+    <value>Alat Pelindung Diri?</value>
+  </data>
+  <data name="PhoneNumber" xml:space="preserve">
+    <value>No. Telefon</value>
+  </data>
+  <data name="Pickyourcolor" xml:space="preserve">
+    <value>Pilih Warna Anda</value>
+  </data>
+  <data name="Pickyourtheme" xml:space="preserve">
+    <value>Pilih Tema Anda</value>
+  </data>
+  <data name="PleaseEnter" xml:space="preserve">
+    <value>Sila Masukkan Maklumat</value>
+  </data>
+  <data name="PleaseEnterDescription" xml:space="preserve">
+    <value>Sila Masukkan Keterangan</value>
+  </data>
+  <data name="Preparedby" xml:space="preserve">
+    <value>Disediakan Oleh : </value>
+  </data>
+  <data name="PreparedComment" xml:space="preserve">
+    <value>Komen - Disediakan Oleh : </value>
+  </data>
+  <data name="Prepareddate" xml:space="preserve">
+    <value>Tarikh Disediakan : </value>
+  </data>
+  <data name="Privacyandpolicy" xml:space="preserve">
+    <value>Privasi dan Polisi</value>
+  </data>
+  <data name="ProjectID" xml:space="preserve">
+    <value>ID Projek : </value>
+  </data>
+  <data name="ProjectPhase" xml:space="preserve">
+    <value>Fasa Projek :</value>
+  </data>
+  <data name="PSIChecklist" xml:space="preserve">
+    <value>Semakan PSI</value>
+  </data>
+  <data name="Questions" xml:space="preserve">
+    <value>Soalan</value>
+  </data>
+  <data name="Receivedby" xml:space="preserve">
+    <value>Diterima Oleh</value>
+  </data>
+  <data name="RecordStatistic" xml:space="preserve">
+    <value>Statistik Catatan</value>
+  </data>
+  <data name="Remarks" xml:space="preserve">
+    <value>Catatan</value>
+  </data>
+  <data name="Remarks:" xml:space="preserve">
+    <value>Catatan : </value>
+  </data>
+  <data name="Response:" xml:space="preserve">
+    <value>Tindak Balas :</value>
+  </data>
+  <data name="Result" xml:space="preserve">
+    <value>Keputusan : </value>
+  </data>
+  <data name="Retake" xml:space="preserve">
+    <value>Ambil Semula</value>
+  </data>
+  <data name="SafetyFormQualityAssurance" xml:space="preserve">
+    <value>Borang Keselamatan dan Jaminan Kualiti SQA</value>
+  </data>
+  <data name="SafetynScopework" xml:space="preserve">
+    <value>Taklimat Keselamatan dan Skop Kerja?</value>
+  </data>
+  <data name="Savetodevice" xml:space="preserve">
+    <value>Simpan ke peranti</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Simpan</value>
+  </data>
+  <data name="SaveChanges" xml:space="preserve">
+    <value>Simpan Perubahan</value>
+  </data>
+  <data name="SavedBehavior" xml:space="preserve">
+    <value>Selamat</value>
+  </data>
+  <data name="Scopeofwork" xml:space="preserve">
+    <value>Skop Kerja</value>
+  </data>
+  <data name="SearchWorkorder" xml:space="preserve">
+    <value>Carian Arahan Kerja</value>
+  </data>
+  <data name="Second" xml:space="preserve">
+    <value>Pengubahsuaian, penyalinan, pembiakan, penerbitan semula, muat naik, pengeposan, penghantaran atau penyebaran dengan cara apa pun dari maklumat tersebut di laman web, termasuk teks, grafik, kod dan / atau perisian tanpa izin secara bertulis adalah dilarang.</value>
+  </data>
+  <data name="SelectPreferredLanguage" xml:space="preserve">
+    <value>PILIH BAHASA PILIHAN ANDA</value>
+  </data>
+  <data name="Setting" xml:space="preserve">
+    <value>Tetapan</value>
+  </data>
+  <data name="Signature" xml:space="preserve">
+    <value>Tandatangan</value>
+  </data>
+  <data name="Sortby" xml:space="preserve">
+    <value>Disusun Mengikut</value>
+  </data>
+  <data name="SQAAttachmets" xml:space="preserve">
+    <value>Lampiran SQA</value>
+  </data>
+  <data name="SQAChecklist" xml:space="preserve">
+    <value>Semakan SQA/SQE</value>
+  </data>
+  <data name="SQAFormPage" xml:space="preserve">
+    <value>Borang Halaman SQA/SQE</value>
+  </data>
+  <data name="SQAStatus" xml:space="preserve">
+    <value>Status SQA</value>
+  </data>
+  <data name="StaffIcPhone" xml:space="preserve">
+    <value>No Kakitangan/No IC/No Telefon</value>
+  </data>
+  <data name="Start" xml:space="preserve">
+    <value>MULA</value>
+  </data>
+  <data name="State" xml:space="preserve">
+    <value>Negeri : </value>
+  </data>
+  <data name="Station" xml:space="preserve">
+    <value>Stesen :</value>
+  </data>
+  <data name="StatusDate" xml:space="preserve">
+    <value>Tarikh Status : </value>
+  </data>
+  <data name="StatusDescription" xml:space="preserve">
+    <value>Keterangan Status :</value>
+  </data>
+  <data name="SubStation" xml:space="preserve">
+    <value>Sub Stesen : </value>
+  </data>
+  <data name="Subvertical" xml:space="preserve">
+    <value>Subvertikal</value>
+  </data>
+  <data name="Subvertical:" xml:space="preserve">
+    <value>Sub Vertikel : </value>
+  </data>
+  <data name="Subzone" xml:space="preserve">
+    <value>Subzon : </value>
+  </data>
+  <data name="Summary" xml:space="preserve">
+    <value>Ringkasan</value>
+  </data>
+  <data name="Support" xml:space="preserve">
+    <value>SOKONGAN</value>
+  </data>
+  <data name="Team" xml:space="preserve">
+    <value>Pasukan</value>
+  </data>
+  <data name="Termofservice" xml:space="preserve">
+    <value>Penafian dari TNB</value>
+  </data>
+  <data name="Testformpage" xml:space="preserve">
+    <value>Borang Halaman Ujian</value>
+  </data>
+  <data name="Testing" xml:space="preserve">
+    <value>Percubaan </value>
+  </data>
+  <data name="TestResult" xml:space="preserve">
+    <value>Keputusan Ujian</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Tajuk</value>
+  </data>
+  <data name="TnbDisclaimer" xml:space="preserve">
+    <value>ANDA SEKARANG MEMASUKI HARTA TNB!</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Jumlah</value>
+  </data>
+  <data name="TotalPercentage:" xml:space="preserve">
+    <value>Jumlah Peratusan</value>
+  </data>
+  <data name="TotalScore" xml:space="preserve">
+    <value>Jumlah Markah :</value>
+  </data>
+  <data name="TotalScore:" xml:space="preserve">
+    <value>Jumlah Markah</value>
+  </data>
+  <data name="TotalWorkorder" xml:space="preserve">
+    <value>Jumlah Arahan Kerja</value>
+  </data>
+  <data name="Trustfund" xml:space="preserve">
+    <value>Dana Amanah : </value>
+  </data>
+  <data name="TRYAGAIN" xml:space="preserve">
+    <value>CUBA LAGI!!</value>
+  </data>
+  <data name="TypeChart" xml:space="preserve">
+    <value>Jenis Carta</value>
+  </data>
+  <data name="TypeHere" xml:space="preserve">
+    <value>Taip Disini </value>
+  </data>
+  <data name="UnsavedBehavior" xml:space="preserve">
+    <value>Tidak Selamat</value>
+  </data>
+  <data name="UnsecuredBehaviorScoring" xml:space="preserve">
+    <value>Pemarkahan Tingkah Laku Tidak Selamat</value>
+  </data>
+  <data name="Upload" xml:space="preserve">
+    <value>Muat Naik</value>
+  </data>
+  <data name="Validatedby" xml:space="preserve">
+    <value>Disahkan Oleh : </value>
+  </data>
+  <data name="ValidatedComment" xml:space="preserve">
+    <value>Komen - Disahkan Oleh : </value>
+  </data>
+  <data name="Validateddate" xml:space="preserve">
+    <value>Tarikh Disahkan : </value>
+  </data>
+  <data name="Value:" xml:space="preserve">
+    <value>Nilai : </value>
+  </data>
+  <data name="VendorName" xml:space="preserve">
+    <value>Nama Vendor</value>
+  </data>
+  <data name="Vertical" xml:space="preserve">
+    <value>Vertikal</value>
+  </data>
+  <data name="Vertical:" xml:space="preserve">
+    <value>Vertikel : </value>
+  </data>
+  <data name="View" xml:space="preserve">
+    <value>Lihat</value>
+  </data>
+  <data name="ViewAll" xml:space="preserve">
+    <value>Lihat Semua</value>
+  </data>
+  <data name="ViewBy" xml:space="preserve">
+    <value>Dilihat oleh : </value>
+  </data>
+  <data name="Viewchartby" xml:space="preserve">
+    <value>Lihat Carta oleh : </value>
+  </data>
+  <data name="VoltageLevel" xml:space="preserve">
+    <value>Kadar Voltan : </value>
+  </data>
+  <data name="WBSElement" xml:space="preserve">
+    <value>Elemen WBS : </value>
+  </data>
+  <data name="WithoutAttachments" xml:space="preserve">
+    <value>Tanpa Lampiran</value>
+  </data>
+  <data name="Wonumber" xml:space="preserve">
+    <value>Nombor Arahan Kerja</value>
+  </data>
+  <data name="Worklog" xml:space="preserve">
+    <value>Log Kerja</value>
+  </data>
+  <data name="WorklogDetails" xml:space="preserve">
+    <value>Perincian Log Kerja</value>
+  </data>
+  <data name="Workorder" xml:space="preserve">
+    <value>Arahan Kerja</value>
+  </data>
+  <data name="WorkorderDetail" xml:space="preserve">
+    <value>Perincian Arahan Kerja </value>
+  </data>
+  <data name="WorkorderMap" xml:space="preserve">
+    <value>Peta Arahan Kerja</value>
+  </data>
+  <data name="WorkorderNumber" xml:space="preserve">
+    <value>Nombor Arahan Kerja :</value>
+  </data>
+  <data name="WorkorderSync" xml:space="preserve">
+    <value>Penyelarasan Arahan Kerja</value>
+  </data>
+  <data name="Workscope" xml:space="preserve">
+    <value>Skop Kerja</value>
+  </data>
+  <data name="Workscope:" xml:space="preserve">
+    <value>Skop Kerja : </value>
+  </data>
+  <data name="Worktype" xml:space="preserve">
+    <value>Jenis Kerja</value>
+  </data>
+  <data name="Worktype:" xml:space="preserve">
+    <value>Jenis Kerja : </value>
+  </data>
+  <data name="WOStatus" xml:space="preserve">
+    <value>Status Arahan Kerja</value>
+  </data>
+  <data name="WOType" xml:space="preserve">
+    <value>Jenis Arahan Kerja</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Ya</value>
+  </data>
+  <data name="YOU" xml:space="preserve">
+    <value>Anda mesti disambungkan ke internet untuk menyelesaikan tindakan ini!</value>
+  </data>
+  <data name="Zone" xml:space="preserve">
+    <value>Zon : </value>
+  </data>
+  <data name="SignByTNB" xml:space="preserve">
+    <value>Tandatangan oleh TNB?</value>
+  </data>
+  <data name="SignByContractor" xml:space="preserve">
+    <value>Tandatangan Oleh Kontraktor</value>
+  </data>
+</root>

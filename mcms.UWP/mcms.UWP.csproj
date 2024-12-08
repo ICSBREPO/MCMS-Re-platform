@@ -1,0 +1,552 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{53F79339-C09A-4A9D-A7E1-736AD39FFC6A}</ProjectGuid>
+    <TemplateGuid>{98C37F10-6541-44BE-B1E6-7EB3EB8C08F1}</TemplateGuid>
+    <OutputType>AppContainerExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>mcms.UWP</RootNamespace>
+    <AssemblyName>mcms.UWP</AssemblyName>
+    <DefaultLanguage>en-US</DefaultLanguage>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetPlatformVersion>10.0.19041.0</TargetPlatformVersion>
+    <TargetPlatformMinVersion>10.0.17134.0</TargetPlatformMinVersion>
+    <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
+    <EnableDotNetNativeCompatibleProfile>true</EnableDotNetNativeCompatibleProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <GenerateAppInstallerFile>False</GenerateAppInstallerFile>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
+    <GenerateTestArtifacts>True</GenerateTestArtifacts>
+    <AppxBundle>Always</AppxBundle>
+    <AppxBundlePlatforms>x86|x64|arm</AppxBundlePlatforms>
+    <HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+    <PackageCertificateThumbprint>E8F2B91E5F6E708AB10187DF731FF5ADB96C54EE</PackageCertificateThumbprint>
+    <AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+    <PackageCertificateKeyFile />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|ARM'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\ARM\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|ARM'">
+    <OutputPath>bin\ARM\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>ARM</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>false</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>false</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <WarningLevel>0</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE;NETFX_CORE;WINDOWS_UWP</DefineConstants>
+    <Optimize>true</Optimize>
+    <NoWarn>;2008</NoWarn>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+    <UseDotNetNativeToolchain>true</UseDotNetNativeToolchain>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <AppxManifest Include="Package.appxmanifest">
+      <SubType>Designer</SubType>
+    </AppxManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\About.png" />
+    <Content Include="Assets\add.png" />
+    <Content Include="Assets\addbtn.png" />
+    <Content Include="Assets\arrow.png" />
+    <Content Include="Assets\arrowdown.png" />
+    <Content Include="Assets\arrowup.png" />
+    <Content Include="Assets\asset.png" />
+    <Content Include="Assets\attachment 2.png" />
+    <Content Include="Assets\attachment.png" />
+    <Content Include="Assets\BackgroundTNB.jpg" />
+    <Content Include="Assets\bgLogin.png" />
+    <Content Include="Assets\btnAddSqa.png" />
+    <Content Include="Assets\btnclose.png" />
+    <Content Include="Assets\btnSave.png" />
+    <Content Include="Assets\btnsearch.png" />
+    <Content Include="Assets\calendar.png" />
+    <Content Include="Assets\cameraAlt.png" />
+    <Content Include="Assets\Card.png" />
+    <Content Include="Assets\change.png" />
+    <Content Include="Assets\ChatMessageBackground.png" />
+    <Content Include="Assets\checkCorrect.png" />
+    <Content Include="Assets\child 2.png" />
+    <Content Include="Assets\child.png" />
+    <Content Include="Assets\childwo.png" />
+    <Content Include="Assets\Close.png" />
+    <Content Include="Assets\CompleteProgress 2.png" />
+    <Content Include="Assets\CompleteProgress.png" />
+    <Content Include="Assets\complete_gray 2.png" />
+    <Content Include="Assets\complete_gray.png" />
+    <Content Include="Assets\dashboardTwo.png" />
+    <Content Include="Assets\delete.png" />
+    <Content Include="Assets\download.png" />
+    <Content Include="Assets\downloadbtn.png" />
+    <Content Include="Assets\dpDefault.png" />
+    <Content Include="Assets\Favourite.png" />
+    <Content Include="Assets\filter.png" />
+    <Content Include="Assets\FQAs_icon.png" />
+    <Content Include="Assets\gallery.png" />
+    <Content Include="Assets\google_translate.png" />
+    <Content Include="Assets\GpsProgress 2.png" />
+    <Content Include="Assets\GpsProgress.png" />
+    <Content Include="Assets\gps_gray 2.png" />
+    <Content Include="Assets\gps_gray.png" />
+    <Content Include="Assets\headerbg.png" />
+    <Content Include="Assets\HeaderIcon.png" />
+    <Content Include="Assets\HeaderTriangle.png" />
+    <Content Include="Assets\help_icon.png" />
+    <Content Include="Assets\Icon.png" />
+    <Content Include="Assets\info_outline.png" />
+    <Content Include="Assets\inprg_gray 2.png" />
+    <Content Include="Assets\inprg_gray.png" />
+    <Content Include="Assets\InvertedTriangle.png" />
+    <Content Include="Assets\loading.gif" />
+    <Content Include="Assets\localTwo.png" />
+    <Content Include="Assets\LoginBackground.png" />
+    <Content Include="Assets\logoLogin.png" />
+    <Content Include="Assets\LogoMCMS.png" />
+    <Content Include="Assets\logs.png" />
+    <Content Include="Assets\map1 2.png" />
+    <Content Include="Assets\map1.png" />
+    <Content Include="Assets\map_pin.png" />
+    <Content Include="Assets\menu_attachment.png" />
+    <Content Include="Assets\menu_checklist.png" />
+    <Content Include="Assets\menu_log.png" />
+    <Content Include="Assets\menu_permit.png" />
+    <Content Include="Assets\menu_sqa.png" />
+    <Content Include="Assets\menu_testing.png" />
+    <Content Include="Assets\menu_wodetail.png" />
+    <Content Include="Assets\noAttachImage.png" />
+    <Content Include="Assets\nochecklist.png" />
+    <Content Include="Assets\nochild.png" />
+    <Content Include="Assets\nopermit.png" />
+    <Content Include="Assets\nosqabtn.png" />
+    <Content Include="Assets\notesting.png" />
+    <Content Include="Assets\noworklog.png" />
+    <Content Include="Assets\OurTeam.png" />
+    <Content Include="Assets\parentwo.png" />
+    <Content Include="Assets\permit 2.png" />
+    <Content Include="Assets\permit.png" />
+    <Content Include="Assets\pic.png" />
+    <Content Include="Assets\Pin.png" />
+    <Content Include="Assets\PlaceHolder.png" />
+    <Content Include="Assets\PlaceHolderRectangle.png" />
+    <Content Include="Assets\privacypolicy_icon.png" />
+    <Content Include="Assets\project.png" />
+    <Content Include="Assets\ReSchedule.png" />
+    <Content Include="Assets\search.png" />
+    <Content Include="Assets\shield 2.png" />
+    <Content Include="Assets\shield.png" />
+    <Content Include="Assets\specification.png" />
+    <Content Include="Assets\SplashScreen.scale-125.png" />
+    <Content Include="Assets\SplashScreen.scale-150.png" />
+    <Content Include="Assets\sqalist.png" />
+    <Content Include="Assets\SqaProgress 2.png" />
+    <Content Include="Assets\SqaProgress.png" />
+    <Content Include="Assets\sqa_gray 2.png" />
+    <Content Include="Assets\sqa_gray.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.altform-lightunplated_targetsize-48.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-32.png" />
+    <Content Include="Assets\Square44x44Logo.scale-125.png" />
+    <Content Include="Assets\Square44x44Logo.scale-150.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-24.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-32.png" />
+    <Content Include="Assets\StatusProgress 2.png" />
+    <Content Include="Assets\StatusProgress.png" />
+    <Content Include="Assets\task 2.png" />
+    <Content Include="Assets\task.png" />
+    <Content Include="Assets\technicianphoto.png" />
+    <Content Include="Assets\termsofservice_icon.png" />
+    <Content Include="Assets\test.png" />
+    <Content Include="Assets\testform 2.png" />
+    <Content Include="Assets\testform.png" />
+    <Content Include="Assets\testing 2.png" />
+    <Content Include="Assets\testing.png" />
+    <Content Include="Assets\TestingProgress 2.png" />
+    <Content Include="Assets\TestingProgress.png" />
+    <Content Include="Assets\testing_gray 2.png" />
+    <Content Include="Assets\testing_gray.png" />
+    <Content Include="Assets\theme_icon.png" />
+    <Content Include="Assets\TimeZone.png" />
+    <Content Include="Assets\titleborder.png" />
+    <Content Include="Assets\Tittlebtn.png" />
+    <Content Include="Assets\tnblogo.png" />
+    <Content Include="Assets\Union.png" />
+    <Content Include="Assets\UploadProgress 2.png" />
+    <Content Include="Assets\UploadProgress.png" />
+    <Content Include="Assets\upload_gray 2.png" />
+    <Content Include="Assets\upload_gray.png" />
+    <Content Include="Assets\ViewMode.png" />
+    <Content Include="Assets\Visa.png" />
+    <Content Include="Assets\wodetail 2.png" />
+    <Content Include="Assets\wodetail.png" />
+    <Content Include="Assets\worklog 2.png" />
+    <Content Include="Assets\worklog.png" />
+    <Content Include="LoginBackground.png" />
+    <Content Include="Properties\Default.rd.xml" />
+    <Content Include="Assets\LargeTile.scale-100.png" />
+    <Content Include="Assets\LargeTile.scale-200.png" />
+    <Content Include="Assets\LargeTile.scale-400.png" />
+    <Content Include="Assets\SmallTile.scale-100.png" />
+    <Content Include="Assets\SmallTile.scale-200.png" />
+    <Content Include="Assets\SmallTile.scale-400.png" />
+    <Content Include="Assets\SplashScreen.scale-100.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\SplashScreen.scale-400.png" />
+    <Content Include="Assets\Square150x150Logo.scale-100.png" />
+    <Content Include="Assets\Square150x150Logo.scale-200.png" />
+    <Content Include="Assets\Square150x150Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.altform-unplated_targetsize-48.png" />
+    <Content Include="Assets\Square44x44Logo.scale-100.png" />
+    <Content Include="Assets\Square44x44Logo.scale-200.png" />
+    <Content Include="Assets\Square44x44Logo.scale-400.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-16.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-256.png" />
+    <Content Include="Assets\Square44x44Logo.targetsize-48.png" />
+    <Content Include="Assets\StoreLogo.scale-100.png" />
+    <Content Include="Assets\StoreLogo.scale-200.png" />
+    <Content Include="Assets\StoreLogo.scale-400.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-100.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-200.png" />
+    <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <Content Include="scale-100\About.png" />
+    <Content Include="scale-100\add.png" />
+    <Content Include="scale-100\addbtn.png" />
+    <Content Include="scale-100\arrow.png" />
+    <Content Include="scale-100\arrowdown.png" />
+    <Content Include="scale-100\arrowup.png" />
+    <Content Include="scale-100\asset.png" />
+    <Content Include="scale-100\attachment.png" />
+    <Content Include="scale-100\BackgroundTNB.jpg" />
+    <Content Include="scale-100\bgLogin.png" />
+    <Content Include="scale-100\btnAddSqa.png" />
+    <Content Include="scale-100\btnclose.png" />
+    <Content Include="scale-100\btnSave.png" />
+    <Content Include="scale-100\btnsearch.png" />
+    <Content Include="scale-100\calendar.png" />
+    <Content Include="scale-100\cameraAlt.png" />
+    <Content Include="scale-100\Card.png" />
+    <Content Include="scale-100\change.png" />
+    <Content Include="scale-100\ChatMessageBackground.png" />
+    <Content Include="scale-100\checkCorrect.png" />
+    <Content Include="scale-100\child.png" />
+    <Content Include="scale-100\childwo.png" />
+    <Content Include="scale-100\Close.png" />
+    <Content Include="scale-100\CompleteProgress 2.png" />
+    <Content Include="scale-100\CompleteProgress.png" />
+    <Content Include="scale-100\complete_gray.png" />
+    <Content Include="scale-100\dashboardTwo.png" />
+    <Content Include="scale-100\delete.png" />
+    <Content Include="scale-100\download.png" />
+    <Content Include="scale-100\downloadbtn.png" />
+    <Content Include="scale-100\dpDefault.png" />
+    <Content Include="scale-100\Favourite.png" />
+    <Content Include="scale-100\filter.png" />
+    <Content Include="scale-100\FQAs_icon.png" />
+    <Content Include="scale-100\gallery.png" />
+    <Content Include="scale-100\google_translate.png" />
+    <Content Include="scale-100\GpsProgress.png" />
+    <Content Include="scale-100\gps_gray.png" />
+    <Content Include="scale-100\headerbg.png" />
+    <Content Include="scale-100\HeaderIcon.png" />
+    <Content Include="scale-100\HeaderTriangle.png" />
+    <Content Include="scale-100\help_icon.png" />
+    <Content Include="scale-100\Icon.png" />
+    <Content Include="scale-100\info_outline.png" />
+    <Content Include="scale-100\inprg_gray.png" />
+    <Content Include="scale-100\InvertedTriangle.png" />
+    <Content Include="scale-100\loading.gif" />
+    <Content Include="scale-100\localTwo.png" />
+    <Content Include="scale-100\LoginBackground.png" />
+    <Content Include="scale-100\logoLogin.png" />
+    <Content Include="scale-100\LogoMCMS.png" />
+    <Content Include="scale-100\logs.png" />
+    <Content Include="scale-100\map1.png" />
+    <Content Include="scale-100\map_pin.png" />
+    <Content Include="scale-100\menu_testing.png" />
+    <Content Include="scale-100\menu_attachment.png" />
+    <Content Include="scale-100\menu_checklist.png" />
+    <Content Include="scale-100\menu_log.png" />
+    <Content Include="scale-100\menu_permit.png" />
+    <Content Include="scale-100\menu_sqa.png" />
+    <Content Include="scale-100\menu_wodetail.png" />
+    <Content Include="scale-100\noAttachImage.png" />
+    <Content Include="scale-100\nochecklist.png" />
+    <Content Include="scale-100\nochild.png" />
+    <Content Include="scale-100\nopermit.png" />
+    <Content Include="scale-100\nosqabtn.png" />
+    <Content Include="scale-100\notesting.png" />
+    <Content Include="scale-100\noworklog.png" />
+    <Content Include="scale-100\OurTeam.png" />
+    <Content Include="scale-100\parentwo.png" />
+    <Content Include="scale-100\permit.png" />
+    <Content Include="scale-100\pic.png" />
+    <Content Include="scale-100\Pin.png" />
+    <Content Include="scale-100\PlaceHolder.png" />
+    <Content Include="scale-100\PlaceHolderRectangle.png" />
+    <Content Include="scale-100\portfolio.png" />
+    <Content Include="scale-100\privacypolicy_icon.png" />
+    <Content Include="scale-100\ReSchedule.png" />
+    <Content Include="scale-100\search.png" />
+    <Content Include="scale-100\shield.png" />
+    <Content Include="scale-100\specification.png" />
+    <Content Include="scale-100\SplashScreen.png" />
+    <Content Include="scale-100\sqalist.png" />
+    <Content Include="scale-100\SqaProgress.png" />
+    <Content Include="scale-100\sqa_gray.png" />
+    <Content Include="scale-100\StatusProgress.png" />
+    <Content Include="scale-100\task.png" />
+    <Content Include="scale-100\technicianphoto.png" />
+    <Content Include="scale-100\termsofservice_icon.png" />
+    <Content Include="scale-100\test.png" />
+    <Content Include="scale-100\testform.png" />
+    <Content Include="scale-100\testing.png" />
+    <Content Include="scale-100\TestingProgress.png" />
+    <Content Include="scale-100\testing_gray.png" />
+    <Content Include="scale-100\theme_icon.png" />
+    <Content Include="scale-100\TimeZone.png" />
+    <Content Include="scale-100\titleborder.png" />
+    <Content Include="scale-100\Tittlebtn.png" />
+    <Content Include="scale-100\tnblogo.png" />
+    <Content Include="scale-100\Union.png" />
+    <Content Include="scale-100\UploadProgress.png" />
+    <Content Include="scale-100\upload_gray.png" />
+    <Content Include="scale-100\ViewMode.png" />
+    <Content Include="scale-100\Visa.png" />
+    <Content Include="scale-100\wodetail.png" />
+    <Content Include="scale-100\worklog.png" />
+    <Content Include="xamarin_logo.png" />
+    <Content Include="icon_about.png" />
+    <Content Include="icon_feed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Acr.UserDialogs">
+      <Version>7.1.0.514</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Plugin.Multilingual">
+      <Version>1.0.2</Version>
+    </PackageReference>
+    <PackageReference Include="PropertyChanged.Fody">
+      <Version>3.4.0</Version>
+    </PackageReference>
+    <PackageReference Include="RestSharp">
+      <Version>106.11.7</Version>
+    </PackageReference>
+    <PackageReference Include="SkiaSharp.Extended">
+      <Version>1.60.0</Version>
+    </PackageReference>
+    <PackageReference Include="SkiaSharp.Svg">
+      <Version>1.60.0</Version>
+    </PackageReference>
+    <PackageReference Include="SkiaSharp.Views.Forms">
+      <Version>2.80.3</Version>
+    </PackageReference>
+    <PackageReference Include="sqlite-net-pcl">
+      <Version>1.7.335</Version>
+    </PackageReference>
+    <PackageReference Include="SQLiteNetExtensions">
+      <Version>2.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.Buttons">
+      <Version>19.2.0.51</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.Core">
+      <Version>19.2.0.51</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfBadgeView">
+      <Version>19.2.0.51</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfBusyIndicator">
+      <Version>19.2.0.51</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfChart">
+      <Version>19.2.0.51</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfListView">
+      <Version>19.2.0.51</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfNavigationDrawer">
+      <Version>19.2.0.51</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfPdfViewer">
+      <Version>19.2.0.51</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfPicker">
+      <Version>19.2.0.51</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout">
+      <Version>19.2.0.51</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfProgressBar">
+      <Version>19.2.0.51</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh">
+      <Version>19.2.0.51</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfTabView">
+      <Version>19.2.0.51</Version>
+    </PackageReference>
+    <PackageReference Include="Xam.Plugin.Media">
+      <Version>5.0.1</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Build.Download">
+      <Version>0.10.0</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Controls.SignaturePad.Forms">
+      <Version>3.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading">
+      <Version>2.4.11.982</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Forms">
+      <Version>2.4.11.982</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.FFImageLoading.Transformations">
+      <Version>2.4.11.982</Version>
+    </PackageReference>
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
+    <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform" Version="6.2.13" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.2" />
+    <PackageReference Include="Xamarin.Forms.GoogleMaps">
+      <Version>3.3.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\mcms\mcms.csproj">
+      <Project>{5AC6BCB4-FCB2-4300-B755-3DB9154E913A}</Project>
+      <Name>mcms</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\EvaIcons.ttf" />
+    <None Include="Assets\info 2.textClipping" />
+    <None Include="Assets\info.textClipping" />
+    <Content Include="Assets\MaterialIcons-Regular.ttf" />
+    <Content Include="Assets\Montserrat-Bold.ttf" />
+    <Content Include="Assets\Montserrat-Medium.ttf" />
+    <Content Include="Assets\Montserrat-Regular.ttf" />
+    <Content Include="Assets\Montserrat-SemiBold.ttf" />
+    <Content Include="Assets\UIFontIcons.ttf" />
+    <None Include="mcms.UWP_TemporaryKey.pfx" />
+    <None Include="scale-100\info.textClipping" />
+    <None Include="Assets\pdf.png" />
+    <Content Include="Assets\signature.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <SDKReference Include="Microsoft.VCLibs.120, Version=14.0">
+      <Name>Microsoft Visual C++ 2013 Runtime Package for Windows Universal</Name>
+    </SDKReference>
+    <SDKReference Include="Microsoft.VCLibs.Desktop, Version=14.0">
+      <Name>Visual C++ 2015-2019 UWP Desktop Runtime for native apps</Name>
+    </SDKReference>
+    <SDKReference Include="SQLite.UWP.2015, Version=3.38.0">
+      <Name>SQLite for Universal Windows Platform</Name>
+    </SDKReference>
+    <SDKReference Include="WindowsDesktop, Version=10.0.19041.0">
+      <Name>Windows Desktop Extensions for the UWP</Name>
+    </SDKReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
+    <VisualStudioVersion>14.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+</Project>

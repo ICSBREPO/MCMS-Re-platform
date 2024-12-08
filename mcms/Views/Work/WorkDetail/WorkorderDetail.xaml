@@ -1,0 +1,254 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:maps="clr-namespace:Xamarin.Forms.GoogleMaps;assembly=Xamarin.Forms.GoogleMaps"
+             x:Class="mcms.Views.Work.WorkDetail.WorkorderDetail"
+             xmlns:i18n="clr-namespace:mcms.Helpers"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Work/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <ContentView VerticalOptions="FillAndExpand">
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <ScrollView Margin="10,0,10,0" Grid.Row="0" VerticalOptions="FillAndExpand" VerticalScrollBarVisibility="Never">
+                <StackLayout>
+                   
+
+                    <!-- Workorder Status -->
+                    <StackLayout Orientation="Horizontal" Margin="0,20,0,0">
+                        <Label Text="Status" HorizontalOptions="FillAndExpand" VerticalOptions="Center" TextColor="{DynamicResource Label}"/>
+                        <buttons:SfButton x:Name="StatusClicked" Text="{Binding workorder.status}" TextColor="{DynamicResource Background}" Command="{Binding StatusCommand}" VerticalOptions="Center" Style="{StaticResource RoundButtonStyle1}"/>
+                    </StackLayout>
+
+                    <BoxView Style="{StaticResource BoxviewStyle}" Margin="0,20,0,0"/>
+
+                    <Grid ColumnSpacing="0" Margin="0,20,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="50*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!-- Start Date/Time -->
+                        <StackLayout Grid.Column="0">
+                            <border:SfBorder BorderColor="{DynamicResource PrimaryColor}" CornerRadius="7" BorderWidth="2" Margin="0,0,0,-15">
+                                <StackLayout Padding="7">
+                                    <Label Text="{i18n:Translate Start}" Style="{StaticResource LabelSemiBold}"/>
+                                    <Grid Padding="0,0,0,5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Row="0" Grid.Column="0" Text="{StaticResource Calendar}" FontFamily="{StaticResource FontIcons}" FontSize="18" TextColor="{DynamicResource Label}" VerticalTextAlignment="Center"/>
+                                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding workorder.schedstart}" FontFamily="{StaticResource Montserrat-Regular}" FontSize="15" TextColor="{DynamicResource Label}" VerticalTextAlignment="Center"/>
+
+                                        <!--   <Label Grid.Row="1" Grid.Column="1" Text="10:00 AM" FontFamily="{StaticResource Montserrat-Regular}" FontSize="12" TextColor="{DynamicResource Label}"/> -->
+                                    </Grid>
+                                </StackLayout>
+                            </border:SfBorder>
+                        </StackLayout>
+
+                        <!-- Finish Date/Time -->
+                        <StackLayout Grid.Row="0" Grid.Column="1">
+                            <border:SfBorder BorderColor="{DynamicResource PrimaryColor}" CornerRadius="7" BorderWidth="2" Margin="15,0,0,0">
+                                <StackLayout Padding="7">
+                                    <Label Text="{i18n:Translate Finish}" Style="{StaticResource LabelSemiBold}"/>
+                                    <Grid Padding="0,0,0,5">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Label Grid.Row="0" Grid.Column="0" Text="{StaticResource Calendar}" FontFamily="{StaticResource FontIcons}" FontSize="18" TextColor="{DynamicResource Label}" VerticalTextAlignment="Center"/>
+                                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding workorder.schedfinish}" FontFamily="{StaticResource Montserrat-Regular}" FontSize="15" TextColor="{DynamicResource Label}" VerticalTextAlignment="Center"/>
+
+                                        <!--    <Label Grid.Row="1" Grid.Column="1" Text="5:00 PM" FontFamily="{StaticResource Montserrat-Regular}" FontSize="12" TextColor="{DynamicResource Label}"/> -->
+                                    </Grid>
+                                </StackLayout>
+                            </border:SfBorder>
+                        </StackLayout>
+                    </Grid>
+
+                    <!-- Workorder Field/Attribute -->
+                    <Grid ColumnSpacing="0" Margin="0,20,0,20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50*"/>
+                            <ColumnDefinition Width="50*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+
+                        <BoxView Grid.Row="0" Grid.ColumnSpan="2" Style="{StaticResource BoxviewStyle}"/>
+
+                        <StackLayout Grid.Row="1" Grid.Column="0" VerticalOptions="Center">
+                            <Label Text="{i18n:Translate Description}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Label Text="{Binding workorder.description}" Style="{StaticResource LabelDescWoDetail}"/>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="1" Grid.Column="1" VerticalOptions="Center" Margin="15,0,0,0">
+                            <Label Text="{i18n:Translate VoltageLevel}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Label Text="{Binding workorder.tnbvoltagelevel}" Style="{StaticResource LabelDescWoDetail}"/>
+                        </StackLayout>
+
+                        <BoxView Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource BoxviewStyle}"/>
+
+                        <StackLayout Grid.Row="3" Grid.Column="0" VerticalOptions="Center">
+                            <Label Text="{i18n:Translate Asset}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Label Text="{Binding woasset}" Style="{StaticResource LabelDescWoDetail}"/>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="3" Grid.Column="1" VerticalOptions="Center" Margin="15,0,0,0">
+                            <Label Text="{i18n:Translate Location:}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Label Text="{Binding workorder.location}" Style="{StaticResource LabelDescWoDetail}"/>
+                        </StackLayout>
+
+                        <BoxView Grid.Row="4" Grid.ColumnSpan="2" Style="{StaticResource BoxviewStyle}"/>
+
+                        <StackLayout Grid.Row="5" Grid.Column="0" VerticalOptions="Center">
+                            <Label Text="{i18n:Translate Businessarea}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Label Text="{Binding workorder.tnbbusninessarea}" Style="{StaticResource LabelDescWoDetail}"/>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="5" Grid.Column="1" VerticalOptions="Center" Margin="15,0,0,0">
+                            <Label Text="{i18n:Translate Zone}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Label Text="{Binding workorder.tnbzone}" Style="{StaticResource LabelDescWoDetail}"/>
+                        </StackLayout>
+
+                        <BoxView Grid.Row="6" Grid.ColumnSpan="2" Style="{StaticResource BoxviewStyle}"/>
+
+                        <StackLayout Grid.Row="7" Grid.Column="0" VerticalOptions="Center">
+                            <Label Text="{i18n:Translate State}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Label Text="{Binding workorder.tnbstate}" Style="{StaticResource LabelDescWoDetail}"/>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="7" Grid.Column="1" VerticalOptions="Center"  Margin="15,0,0,0">
+                            <Label Text="{i18n:Translate Subzone}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Label Text="{Binding workorder.tnbsubzone}" Style="{StaticResource LabelDescWoDetail}"/>
+                        </StackLayout>
+
+                        <BoxView Grid.Row="8" Grid.ColumnSpan="2" Style="{StaticResource BoxviewStyle}"/>
+
+                        <StackLayout Grid.Row="9" Grid.Column="0" VerticalOptions="Center">
+                            <Label Text="{i18n:Translate Station}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Label Text="{Binding workorder.tnbstation}" Style="{StaticResource LabelDescWoDetail}"/>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="9" Grid.Column="1" VerticalOptions="Center" Margin="15,0,0,0">
+                            <Label Text="{i18n:Translate SubStation}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Label Text="{Binding workorder.tnbflsubstationtype}" Style="{StaticResource LabelDescWoDetail}"/>
+                        </StackLayout>
+
+                        <BoxView Grid.Row="10" Grid.ColumnSpan="2" Style="{StaticResource BoxviewStyle}"/>
+
+                        <StackLayout Grid.Row="11" Grid.Column="0" VerticalOptions="Center">
+                            <Label Text="{i18n:Translate Vertical:}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Label Text="{Binding workorder.tnbvertical}" Style="{StaticResource LabelDescWoDetail}"/>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="11" Grid.Column="1" VerticalOptions="Center" Margin="15,0,0,0">
+                            <Label Text="{i18n:Translate Subvertical:}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Label Text="{Binding workorder.tnbsubvertical}" Style="{StaticResource LabelDescWoDetail}"/>
+                        </StackLayout>
+
+                        <BoxView Grid.Row="12" Grid.ColumnSpan="2" Style="{StaticResource BoxviewStyle}"/>
+
+                        <StackLayout Grid.Row="13" Grid.Column="0" VerticalOptions="Center">
+                            <Label Text="{i18n:Translate Worktype}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Label Text="{Binding workorder.worktype}" Style="{StaticResource LabelDescWoDetail}"/>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="13" Grid.Column="1" VerticalOptions="Center" Margin="15,0,0,0">
+                            <Label Text="{i18n:Translate Workscope:}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Label Text="{Binding workorder.tnbworkscope}" Style="{StaticResource LabelDescWoDetail}"/>
+                        </StackLayout>
+
+                        <BoxView Grid.Row="14" Grid.ColumnSpan="2" Style="{StaticResource BoxviewStyle}"/>
+
+                        <StackLayout Grid.Row="15" Grid.Column="0" VerticalOptions="Center">
+                            <Label Text="{i18n:Translate ProjectID}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Label Text="{Binding workorder.tnbprojectnumber}" Style="{StaticResource LabelDescWoDetail}"/>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="15" Grid.Column="1" VerticalOptions="Center" Margin="15,0,0,0">
+                            <Label Text="{i18n:Translate WBSElement}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Label Text="{Binding workorder.fctaskid}" Style="{StaticResource LabelDescWoDetail}"/>
+                        </StackLayout>
+
+                        <BoxView Grid.Row="16" Grid.ColumnSpan="2" Style="{StaticResource BoxviewStyle}"/>
+
+                        <StackLayout Grid.Row="17" Grid.Column="0" VerticalOptions="Center">
+                            <Label Text="{i18n:Translate ProjectPhase}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Label Text="{Binding workorder.tnbprojectphase}" Style="{StaticResource LabelDescWoDetail}"/>
+                        </StackLayout>
+
+                        <StackLayout Grid.Row="17" Grid.Column="1" VerticalOptions="Center"  Margin="15,0,0,0">
+                            <Label Text="{i18n:Translate StatusDate}" Style="{StaticResource LabelTitleWoDetail}"/>
+                            <Label Text="{Binding workorder.statusdate}" Style="{StaticResource LabelDescWoDetail}"/>
+                        </StackLayout>
+
+                        <BoxView Grid.Row="18" Grid.ColumnSpan="2" Style="{StaticResource BoxviewStyle}"/>
+
+                    </Grid>
+                </StackLayout>
+            </ScrollView>
+
+            <!-- Button Save Changes -->
+
+            <buttons:SfButton
+                    Margin="10"
+                    Grid.Row="0"
+                    HorizontalOptions="End"
+                    VerticalOptions="End"
+                    ShowIcon="True"
+                    FontSize="29"
+                    TextColor="{DynamicResource Background}"
+                    FontFamily="{StaticResource MaterialIcons}"
+                    Text="{StaticResource Save}"
+                    CornerRadius="50" HeightRequest="60" WidthRequest="60"
+                    Command="{Binding SaveWOCommand}"
+                    Style="{StaticResource RoundButtonStyle3}"/>
+        </Grid>
+    </ContentView>
+</ContentPage>
+
+        

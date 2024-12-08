@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+    xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
+    xmlns:i18n="clr-namespace:mcms.Helpers"
+    xmlns:controls="clr-namespace:mcms.Controls" 
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
+    x:Class="mcms.Views.Work.WorkDetail.Woklog.WorklogList">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Work/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+         <ContentView>
+              <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Row="0">
+                    <Label Text="{Binding WorklogListCount, StringFormat='Total Worklog: {0}'}" TextColor="{DynamicResource Label}" Margin="0,20,20,0" FontFamily="{StaticResource Montserrat-SemiBold}" FontSize="12" HorizontalOptions="End"/>
+
+                        <syncfusion:SfListView
+                        ItemsSource="{Binding workorder.worklog}"
+                        Grid.Row="1"
+                        ItemSize="90"
+                            HeightRequest="400"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="FillAndExpand"
+                        x:Name="listingWorklog"
+                        SelectionChangedCommand="{Binding SelectedWorklogWOCommand}"
+                        SelectionChangedCommandParameter="{x:Reference listingWorklog}"
+                            Margin="0,0,0,10">
+                        <syncfusion:SfListView.ItemTemplate>
+                            <DataTemplate>
+                                <badge:SfBadgeView HorizontalOptions="FillAndExpand" Padding="5,0,5,0" VerticalOptions="FillAndExpand">
+                                    <badge:SfBadgeView.Content>
+                                        <controls:CustomShadowFrame
+                                            x:Name="frame"
+                                            BackgroundColor="{DynamicResource Card}"
+                                            Padding="10,10,10,10"
+                                            Margin="0,4,0,0"
+                                            CornerRadius="4"
+                                            HasShadow="True"
+                                            BorderWidth="0">
+                                            <Grid VerticalOptions="CenterAndExpand">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*" />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Label Grid.Row="0" Text="{Binding createby, StringFormat='Created By: {0}'}" FontSize="13" TextColor="{DynamicResource Label}" FontAttributes="Bold"></Label>
+                                                <Label Grid.Row="1" Text="{Binding modifydate, StringFormat='Date: {0}'}" FontSize="13" TextColor="{DynamicResource Label}"></Label>
+                                            </Grid>
+                                        </controls:CustomShadowFrame>
+                                    </badge:SfBadgeView.Content>
+                                    <badge:SfBadgeView.BadgeSettings>
+                                        <badge:BadgeSetting BadgeType="Warning"  Offset="-5, -10" BadgePosition="BottomRight" BadgeIcon="{Binding badgeicon}"/>
+                                    </badge:SfBadgeView.BadgeSettings>
+                                </badge:SfBadgeView>
+                            </DataTemplate>
+                        </syncfusion:SfListView.ItemTemplate>
+                    </syncfusion:SfListView>
+                </StackLayout>
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,160">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <!-- No SQA List Image-->
+                        <Image Source="logs.png"
+                               Grid.Row="0"
+                               Margin="20"
+                                IsVisible="{Binding NoWorklog}" 
+                                VerticalOptions="Center" 
+                                HorizontalOptions="Center"/>
+                        <Label Text="{i18n:Translate NoWorklogCreated}"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="16"
+                               Grid.Row="1"
+                                TextColor="{DynamicResource PrimaryDarkenColor}"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                IsVisible="{Binding NoWorklog}"/>
+                    </Grid>
+                </StackLayout>
+
+                <!-- Create SQA Button-->
+                <buttons:SfButton
+                    Margin="15"
+                    Grid.Row="0"
+                    HorizontalOptions="End"
+                    VerticalOptions="End"
+                    ShowIcon="True"
+                    x:Name="AddSqa"
+                    FontSize="29"
+                    TextColor="{DynamicResource Background}"
+                    Text="{StaticResource Add}"
+                    CornerRadius="50" HeightRequest="60" WidthRequest="60"
+                    Command="{Binding AddWorklogCommand}"
+                    Style="{StaticResource RoundButtonStyle3}"/>
+            </Grid>
+        </ContentView>
+    </ContentPage.Content>
+</ContentPage>

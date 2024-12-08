@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms"
+             xmlns:renderers="clr-namespace:mcms.Controls"
+             xmlns:i18n="clr-namespace:mcms.Helpers" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             x:Class="mcms.Views.Work.WorkDetail.ChangeStatus"
+             BackgroundColor="{DynamicResource Background}"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Work/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="graphics:SfGradientView">
+                <Setter Property="BackgroundBrush">
+                    <Setter.Value>
+                        <graphics:SfLinearGradientBrush>
+                            <graphics:SfLinearGradientBrush.GradientStops>
+                                <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                                <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                            </graphics:SfLinearGradientBrush.GradientStops>
+                        </graphics:SfLinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+
+            <graphics:SfGradientView HorizontalOptions="FillAndExpand" HeightRequest="90"/>
+
+            <StackLayout
+                    x:Name="TitleBar"
+                    Margin="0,-78,10,0"
+                    Padding="0,8"
+                    BackgroundColor="{StaticResource Transparent}"
+                    HeightRequest="48"
+                    HorizontalOptions="FillAndExpand"
+                    Orientation="Horizontal"
+                    Spacing="0">
+
+                <Grid HorizontalOptions="FillAndExpand"
+                      IsVisible="True"
+                      ColumnSpacing="0"
+                      VerticalOptions="FillAndExpand">
+
+                    <!--  Back button command  -->
+                    <buttons:SfButton  x:Name="backButton"
+                                        CornerRadius="4"
+                                        Style="{StaticResource IconButtonStyle}"
+                                        VerticalTextAlignment="Center"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Start"
+                                        Command="{Binding BackToWOListCommand}"
+                                        Text="{StaticResource Back}"
+                                        Grid.Column="0"/>
+
+                    <!--  Workorder page Title  -->
+                    <Label Grid.ColumnSpan="3"
+                           FontFamily="{StaticResource Montserrat-SemiBold}"
+                           FontSize="20"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"
+                           Text="{i18n:Translate WorkorderDetail}"
+                           TextColor="{DynamicResource Gray-White}"
+                           VerticalOptions="Center"
+                           VerticalTextAlignment="Center" />
+                </Grid>
+            </StackLayout>
+
+            <!--  Border Radius after top nav  -->
+            <border:SfBorder
+                        Margin="0,-10"
+                        CornerRadius="10,10,0,0" 
+                        HorizontalOptions="FillAndExpand"
+                        BorderColor="{DynamicResource Background}"
+                        BorderWidth="1" 
+                        BackgroundColor="{DynamicResource Background}">
+                <Label Text="{i18n:Translate ChangeStatus}" HeightRequest="40" Margin="10" TextColor="{DynamicResource Label}" FontFamily="{DynamicResource Montserrat-Regular}" FontSize="17" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" Padding="0,10" />
+            </border:SfBorder>
+            <BoxView Style="{StaticResource BoxviewStyle}"/>
+
+            <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <!--<syncfusion:SfPicker
+                                Grid.Column="0"
+                                Grid.Row="0"
+                                VerticalOptions="FillAndExpand"
+                                HorizontalOptions="FillAndExpand"
+                                IsOpen="{Binding pickerIsOpen, Mode=TwoWay}"
+                                ShowColumnHeader="False"
+                                ShowFooter="True"
+                                CancelButtonTextColor="{DynamicResource PrimaryColor}"
+                                OKButtonTextColor="{DynamicResource PrimaryColor}"
+                                HeaderText="{i18n:Translate NewStatusHere}"
+                                HeaderTextColor="White"
+                                BackgroundColor="{DynamicResource Background}"
+                                UnSelectedItemTextColor="{DynamicResource Label}"
+                                SelectedItemTextColor="{DynamicResource PrimaryColor}"
+                                CancelButtonBackgroundColor="{DynamicResource Background}"
+                                OKButtonBackgroundColor="{DynamicResource Background}"
+                                HeaderBackgroundColor="{DynamicResource PrimaryColor}"
+                                SelectedItem="{Binding SelectedNewStatus, Mode=TwoWay}"
+                                ItemsSource="{Binding StatusType}"
+                                PickerMode="Dialog" />-->
+                <ScrollView VerticalScrollBarVisibility="Never" Grid.Row="0" Margin="10" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <Grid Margin="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="60"/>
+                            <RowDefinition Height="20"/>
+                            <RowDefinition Height="60"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="{i18n:Translate WorkorderNumber}" Grid.Row="0" Grid.Column="0" Style="{StaticResource LabelTitleWoDetail}"/>
+                        <StackLayout Grid.Row="1" Grid.Column="0">
+                            <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                           ContainerType="Outlined"
+                                                           Margin="0,0,18,0"
+                                                           OutlineCornerRadius="15">
+                                <Entry Text="{Binding workorder.wonum, Mode=TwoWay}" FontSize="14" TextColor="{StaticResource Gray-800}" FontFamily="{StaticResource Montserrat-Regular}" IsReadOnly="True" />
+                            </inputLayout:SfTextInputLayout>
+                        </StackLayout>
+
+                        <Label Text="{i18n:Translate StatusDate}" Grid.Row="0" Grid.Column="1" Style="{StaticResource LabelTitleWoDetail}"/>
+                        <StackLayout Grid.Row="1" Grid.Column="1">
+                            <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                           ContainerType="Outlined"
+                                                           Margin="0,0,18,0"
+                                                           OutlineCornerRadius="15">
+                                <Entry Text="{Binding workorder.statusdate, Mode=TwoWay}" FontSize="14" TextColor="{StaticResource Gray-800}" FontFamily="{StaticResource Montserrat-Regular}" IsReadOnly="True" />
+                            </inputLayout:SfTextInputLayout>
+                        </StackLayout>
+                        
+                        <Label Text="Status :" Grid.Row="2" Grid.Column="0" Style="{StaticResource LabelTitleWoDetail}"/>
+                        <StackLayout Grid.Row="3" Grid.Column="0">
+                            <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                           ContainerType="Outlined"
+                                                           Margin="0,0,18,0"
+                                                           OutlineCornerRadius="15">
+                                <Entry Text="{Binding workorder.status, Mode=TwoWay}" FontSize="14" TextColor="{StaticResource Gray-800}" FontFamily="{StaticResource Montserrat-Regular}" IsReadOnly="True" />
+                            </inputLayout:SfTextInputLayout>
+                        </StackLayout>
+
+                        <Label Text="{i18n:Translate StatusDescription}" Grid.Row="2" Grid.Column="1" Style="{StaticResource LabelTitleWoDetail}"/>
+                        <StackLayout Grid.Row="3" Grid.Column="1">
+                            <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                           ContainerType="Outlined"
+                                                           Margin="0,0,18,0"
+                                                           OutlineCornerRadius="15">
+                                <Entry Text="{Binding workorder.status_description, Mode=TwoWay}" FontSize="14" TextColor="{StaticResource Gray-800}" FontFamily="{StaticResource Montserrat-Regular}" IsReadOnly="True" />
+                            </inputLayout:SfTextInputLayout>
+                        </StackLayout>
+
+                        <Label Text="{i18n:Translate NewStatus}" Grid.Row="4" Grid.Column="0" Style="{StaticResource LabelTitleWoDetail}"/>
+                        <inputLayout:SfTextInputLayout Grid.Row="5"
+                                                       Grid.Column="0"
+                                                       Margin="0,0,18,0"
+                                                       ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                       ContainerType="Outlined"
+                                                       TrailingViewPosition="Inside"
+                                                       FocusedColor="{DynamicResource PrimaryColor}"
+                                                       OutlineCornerRadius="15">
+                            <Entry Text="{Binding SelectedNewStatus}" TextColor="{StaticResource Gray-800}" IsReadOnly="True" FontSize="14" FontFamily="{StaticResource Montserrat-Regular}"/>
+                            <inputLayout:SfTextInputLayout.TrailingView>
+                                <ImageButton HeightRequest="21"
+                                                     BackgroundColor="Transparent"
+                                                     Source="search.png"
+                                                     Command="{Binding NewStatusLookupCommand}"
+                                                     CommandParameter="newstatus"/>
+                            </inputLayout:SfTextInputLayout.TrailingView>
+                        </inputLayout:SfTextInputLayout>
+                        
+                        <!--<inputLayout:SfTextInputLayout
+                                Grid.Row="3"
+                                Grid.Column="1"
+                                ContainerBackgroundColor="{StaticResource Gray-White}"
+                                ContainerType="Outlined"
+                                Margin="0,0,18,0"
+                                TrailingViewPosition="Inside"
+                                FocusedColor="{DynamicResource PrimaryColor}"
+                                OutlineCornerRadius="15">
+                                <Entry Text="{Binding SelectedNewStatus, Mode=TwoWay}" TextColor="{StaticResource Gray-800}" FontSize="14" FontFamily="{StaticResource Montserrat-Regular}" x:Name="statusEntry" IsReadOnly="True"/>
+                                <inputLayout:SfTextInputLayout.TrailingView>
+                                    <ImageButton HeightRequest="21"
+                                                 Command="{Binding NewStatusCommand}"
+                                                 BackgroundColor="Transparent"
+                                                 Source="search.png"/>
+                                </inputLayout:SfTextInputLayout.TrailingView>
+                            </inputLayout:SfTextInputLayout>-->
+                    </Grid>
+                </ScrollView>
+
+                <!-- Button Save Changes -->
+                <buttons:SfButton
+                    Margin="15"
+                    Grid.Row="0"
+                    HorizontalOptions="End"
+                    VerticalOptions="End"
+                    ShowIcon="True"
+                    FontSize="29"
+                    FontFamily="{StaticResource MaterialIcons}"
+                    Text="{StaticResource Save}"
+                    CornerRadius="50"
+                    HeightRequest="60"
+                    WidthRequest="60"
+                    Command="{Binding SaveStatusCommand}"
+                    Style="{StaticResource RoundButtonStyle3}"/>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

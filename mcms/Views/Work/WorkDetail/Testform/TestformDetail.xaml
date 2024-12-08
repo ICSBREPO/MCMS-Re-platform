@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{DynamicResource Background}"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms" 
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" 
+             x:Name="testformdetail"
+             xmlns:i18n="clr-namespace:mcms.Helpers" 
+             xmlns:controls="clr-namespace:mcms.Controls" xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms" xmlns:syncfusion1="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms"
+             x:Class="mcms.Views.Work.WorkDetail.Testform.TestformDetail">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Work/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="graphics:SfGradientView">
+                <Setter Property="BackgroundBrush">
+                    <Setter.Value>
+                        <graphics:SfLinearGradientBrush>
+                            <graphics:SfLinearGradientBrush.GradientStops>
+                                <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                                <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                            </graphics:SfLinearGradientBrush.GradientStops>
+                        </graphics:SfLinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid RowSpacing="0" BackgroundColor="{DynamicResource Background}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0" x:Name="iOSSafeArea"/>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <graphics:SfGradientView Grid.RowSpan="3"/>
+            <Grid
+                x:Name="testtest"
+                Grid.Row="1"
+                Padding="16,8"
+                BackgroundColor="{StaticResource Transparent}"
+                HeightRequest="48"
+                HorizontalOptions="Fill">
+                <buttons:SfButton
+                        Text="{StaticResource Back}"
+                        TextColor="{DynamicResource Background}"
+                        Style="{StaticResource IconButtonStyle}"
+                        CornerRadius="4"
+                        Command="{Binding BackToCheckListCommand}"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
+                        Padding="0"/>
+                <Label
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        LineHeight="1.25"
+                        Text="{i18n:Translate ChecklistForm}"
+                        TextColor="{DynamicResource Background}"
+                        VerticalOptions="StartAndExpand" />
+            </Grid>
+            <border:SfBorder
+                        Grid.Row="2"
+                        CornerRadius="10,10,0,0" 
+                        HorizontalOptions="FillAndExpand"
+                        BorderColor="{DynamicResource Background}"
+                        BorderWidth="1" 
+                        BackgroundColor="{DynamicResource Background}">
+                <StackLayout>
+                    <Label Text="{Binding wochecklisttype.tnbdescription}"
+                            Style="{StaticResource LabelSemiBold}" 
+                            HorizontalOptions="CenterAndExpand" 
+                            VerticalOptions="CenterAndExpand" 
+                            Padding="0,10" />
+                    <Label Text="{Binding wochecklisttype.totalIndicator, StringFormat='Total : {0}'}" 
+                                    Margin="0,0,25,0"
+                                   VerticalOptions="CenterAndExpand"
+                                    TextColor="{DynamicResource Label}" 
+                                    FontFamily="{StaticResource Montserrat-SemiBold}" 
+                                    FontSize="14" HorizontalOptions="EndAndExpand"/>
+                </StackLayout>
+            </border:SfBorder>
+
+            <syncfusion1:SfPicker       Grid.Row="3"
+                                        IsOpen="{Binding pickerIsOpen, Mode=TwoWay}"
+                                        ShowColumnHeader="False"
+                                        ShowFooter="True"
+                                        BackgroundColor="{DynamicResource Background}"
+                                        OKButtonBackgroundColor="{DynamicResource Background}"
+                                        CancelButtonBackgroundColor="{DynamicResource Background}"
+                                        CancelButtonTextColor="{DynamicResource PrimaryColor}"
+                                        OKButtonTextColor="{DynamicResource PrimaryColor}"
+                                        HeaderText="Value Lookup"
+                                        OkButtonClicked="SfPicker_OkButtonClicked"
+                                        SelectedItemTextColor="{DynamicResource PrimaryColor}"
+                                        UnSelectedItemTextColor="{DynamicResource Label}"
+                                        HeaderBackgroundColor="{DynamicResource PrimaryColor}"
+                                        HeaderTextColor="{DynamicResource Background}"
+                                        SelectedItem="{Binding selectedvalue, Mode=TwoWay}"
+                                        ItemsSource="{Binding ListValue}"
+                                        PickerMode="Dialog" />
+            <ListView Grid.Row="3"
+                      x:Name="checklistDetail"
+                      ItemsSource="{Binding wochecklisttype.tnbwochecklist}"
+                      HorizontalOptions="FillAndExpand"
+                      VerticalOptions="FillAndExpand"
+                      SelectionMode="None"
+                      SeparatorVisibility="None"
+                      HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <controls:CustomShadowFrame 
+                                                    CornerRadius="10"
+                                                    BackgroundColor="{DynamicResource Card}"
+                                                    Padding="15,5"
+                                                    Margin="0,5"
+                                                    BorderWidth="0"
+                                                    HasShadow="True">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="150"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+
+                                    <Label Grid.Row="0" Grid.ColumnSpan="2" Margin="10" LineBreakMode="WordWrap" TextColor="{DynamicResource Label}" FontFamily="{StaticResource Montserrat-Bold}" >
+                                        <Label.Text>
+                                            <MultiBinding StringFormat="{}{0} : {1}">
+                                                <Binding Path="tnbtype" />
+                                                <Binding Path="tnbdescription" />
+                                            </MultiBinding>
+                                        </Label.Text>
+                                    </Label>
+
+                                    <BoxView Grid.Row="1" Grid.ColumnSpan="5" HeightRequest="1" Margin="0,0,0,3" HorizontalOptions="Fill" Color="{DynamicResource Label}" Opacity="0.5"/>
+
+                                    <inputLayout:SfTextInputLayout ContainerBackgroundColor="{DynamicResource Gray-White}"
+                                                            FocusedColor="{DynamicResource PrimaryColor}"
+                                                            IsHintAlwaysFloated="True"
+                                                            IsVisible="{Binding xamvisible}" HeightRequest="50" Grid.Row="2" Grid.Column="0" Margin="5"
+                                                            Hint="{i18n:Translate Value:}"
+                                                            ContainerType="Outlined"
+                                                            OutlineCornerRadius="10">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Entry Grid.Column="0" Text="{Binding tnbvalue, Mode=TwoWay}" VerticalOptions="Center" Placeholder="Enter Value" VerticalTextAlignment="Center" FontSize="13" TextColor="{StaticResource Gray-800}" FontFamily="{StaticResource Montserrat-Regular}"  />
+
+                                            <buttons:SfButton Grid.Column="1" Margin="3,0,0,0"
+                                                                    IsVisible="{Binding islookup}"
+                                                                    BackgroundColor="Transparent"
+                                                                    HeightRequest="30"
+                                                                    WidthRequest="30"
+                                                                    VerticalOptions="Center"
+                                                                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                                    Command="{Binding BindingContext.OpenClosePickerCommand, Source={x:Reference testformdetail}}"
+                                                                    CommandParameter="{Binding .}">
+                                                <buttons:SfButton.Content>
+                                                    <i18n:TintedCachedImage Source="search.png" TintColor="{DynamicResource Label}"/>
+                                                </buttons:SfButton.Content>
+                                            </buttons:SfButton>
+                                        </Grid>
+                                    </inputLayout:SfTextInputLayout>
+
+                                    <inputLayout:SfTextInputLayout ContainerBackgroundColor="{DynamicResource Gray-White}"
+                                                            FocusedColor="{DynamicResource PrimaryColor}"
+                                                            IsVisible="{Binding xamvisible}" HeightRequest="50" Grid.Row="3" Grid.Column="0" Margin="5"
+                                                            Hint="{i18n:Translate DefectDescription:}"
+                                                            ContainerType="Outlined"
+                                                            IsHintAlwaysFloated="True"
+                                                            OutlineCornerRadius="10">
+                                        <Entry Text="{Binding tnbdefectdescription}" VerticalOptions="Center" Placeholder="Type Here" VerticalTextAlignment="Center" FontSize="13" TextColor="{StaticResource Gray-800}" FontFamily="{StaticResource Montserrat-Regular}"  />
+                                    </inputLayout:SfTextInputLayout>
+
+                                    <inputLayout:SfTextInputLayout ContainerBackgroundColor="{DynamicResource Gray-White}"
+                                                            FocusedColor="{DynamicResource PrimaryColor}"
+                                                            IsVisible="{Binding xamvisible}" HeightRequest="50" Grid.Row="4" Grid.Column="0" Margin="5"
+                                                            Hint="{i18n:Translate DefectRecifiedDate:}"
+                                                            ContainerType="Outlined"
+                                                            IsHintAlwaysFloated="True"
+                                                            OutlineCornerRadius="10">
+                                        <DatePicker x:Name="startDatePicker" 
+                                                        FontSize="13"
+                                                        FontFamily="{StaticResource Montserrat-Regular}"
+                                                        Date="{Binding tnbdefectrectdate}"
+                                                        Margin="30, 0, 0, 30"/>
+                                    </inputLayout:SfTextInputLayout>
+
+                                    <inputLayout:SfTextInputLayout ContainerBackgroundColor="{DynamicResource Gray-White}"
+                                                            FocusedColor="{DynamicResource PrimaryColor}"
+                                                            IsVisible="{Binding xamvisible}" HeightRequest="50" Grid.Row="5" Grid.Column="0" Margin="5"
+                                                            Hint="{i18n:Translate Remarks}"
+                                                            ContainerType="Outlined"
+                                                            IsHintAlwaysFloated="True"
+                                                            OutlineCornerRadius="10">
+                                        <Entry Text="{Binding tnbremarks}" VerticalOptions="Center" Placeholder="{i18n:Translate TypeHere}" VerticalTextAlignment="Center" FontSize="13" TextColor="{StaticResource Gray-800}" FontFamily="{StaticResource Montserrat-Regular}"  />
+                                    </inputLayout:SfTextInputLayout>
+
+
+
+                                    <buttons:SfRadioGroup IsVisible="{Binding xamvisible}"   Grid.RowSpan="5" Grid.Row="2" Grid.Column="1"  Orientation="Vertical" BackgroundColor="{Binding alertcolor}">
+                                        <buttons:SfRadioButton HorizontalOptions="StartAndExpand"
+                                                                    StateChanged="SfRadioButton_StateChanged"
+                                                                    IsChecked="{Binding tnbyes}" 
+                                                                    CheckedColor="{DynamicResource PrimaryColor}" 
+                                                                    FontFamily="{StaticResource Montserrat-Regular}"
+                                                                    Text="{i18n:Translate Pass}"
+                                                                    Margin="0,5,0,20"
+                                                                    TextColor="{DynamicResource Label}"
+                                                                    FontSize="13"  />
+                                        <buttons:SfRadioButton HorizontalOptions="StartAndExpand"
+                                                                StateChanged="SfRadioButton_StateChanged"
+                                                                    IsChecked="{Binding tnbno}" 
+                                                                    CheckedColor="{DynamicResource PrimaryColor}"  
+                                                                    Text="{i18n:Translate Fail}"
+                                                                    Margin="0,5,0,20"
+                                                                    TextColor="{DynamicResource Label}"
+                                                                    FontFamily="{StaticResource Montserrat-Regular}"
+                                                                    FontSize="13"  />
+                                        <buttons:SfRadioButton HorizontalOptions="StartAndExpand"
+                                                                StateChanged="SfRadioButton_StateChanged"
+                                                                    IsChecked="{Binding tnbna}" 
+                                                                    CheckedColor="{DynamicResource PrimaryColor}" 
+                                                                    TextColor="{DynamicResource Label}"
+                                                                    FontFamily="{StaticResource Montserrat-Regular}"
+                                                                    Text="NA ?" 
+                                                                    Margin="0,5,0,20"
+                                                                    FontSize="13"  />
+                                        <buttons:SfRadioButton HorizontalOptions="StartAndExpand"
+                                                                StateChanged="SfRadioButton_StateChanged"
+                                                                    IsChecked="{Binding tnbpasswithcondition}" 
+                                                                    CheckedColor="{DynamicResource PrimaryColor}" 
+                                                                    TextColor="{DynamicResource Label}"
+                                                                    FontFamily="{StaticResource Montserrat-Regular}"
+                                                                    Text="{i18n:Translate PassWithCondition}"
+                                                                    Margin="0,5,0,0"
+                                                                    LineBreakMode="WordWrap"
+                                                                    FontSize="13"  />
+                                    </buttons:SfRadioGroup>
+
+
+
+                                    <StackLayout Grid.Row="6" Grid.Column="1"  Orientation="Horizontal">
+
+                                        <badge:SfBadgeView BadgeText="{Binding totalAttachment}"  Padding="5">
+                                            <badge:SfBadgeView.BadgeSettings>
+                                                <badge:BadgeSetting
+                                                                                    BadgeAlignment="Center"
+                                                                                    Stroke="{DynamicResource Background}"
+                                                                                    StrokeWidth="2"
+                                                                                    Offset="-5,5"
+                                                                                    TextPadding="2"
+                                                                                    FontSize="10"
+                                                                                    BadgeType="None"
+                                                                                    FontAttributes="Bold"
+                                                                                    BackgroundColor="{Binding Background}"
+                                                                                    CornerRadius="100"
+                                                                                    TextColor="{Binding TextColor}"/>
+                                            </badge:SfBadgeView.BadgeSettings>
+                                            <badge:SfBadgeView.Content>
+                                                <buttons:SfButton  
+                                                                                    CornerRadius="10"
+                                                                                    VerticalTextAlignment="Center"
+                                                                                    VerticalOptions="Center"
+                                                                                    HeightRequest="35"
+                                                                                    WidthRequest="35"
+                                                                                    Command="{Binding BindingContext.SelectionChecklistAttachmentCommand, Source={x:Reference testformdetail}}"
+                                                                                    CommandParameter="{Binding .}"
+                                                                                    HorizontalOptions="End"
+                                                                                    BorderWidth="1"
+                                                                                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                                                    Style="{StaticResource RoundButtonStyle}">
+                                                    <buttons:SfButton.Content>
+                                                        <i18n:TintedCachedImage HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Source="menu_attachment.png" TintColor="{DynamicResource Background}" Margin="5" />
+                                                    </buttons:SfButton.Content>
+                                                </buttons:SfButton>
+                                            </badge:SfBadgeView.Content>
+                                        </badge:SfBadgeView>
+                                    </StackLayout>
+                                </Grid>
+                            </controls:CustomShadowFrame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <!-- Save Button-->
+            <buttons:SfButton
+            Margin="15"
+            Grid.Row="3"
+            HorizontalOptions="End"
+            VerticalOptions="End"
+            ShowIcon="True"
+            x:Name="SaveBtn"
+            FontSize="29"
+            FontFamily="{StaticResource MaterialIcons}"
+            TextColor="{DynamicResource Background}"
+            Text="{StaticResource Save}"
+            CornerRadius="50" HeightRequest="60" WidthRequest="60"
+            Command="{Binding SaveChecklistCommand}"
+            Style="{StaticResource RoundButtonStyle3}"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

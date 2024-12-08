@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:controls="clr-namespace:mcms.Controls"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:i18n="clr-namespace:mcms.Helpers"
+    xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
+    x:Class="mcms.Views.Work.WorkDetail.Permit.PermitList">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Work/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ContentView>
+            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <StackLayout Grid.Row="0">
+                    <Label Text="{Binding permitcount, StringFormat='Total Permit : {0}'}" TextColor="{DynamicResource Label}" Margin="0,20,20,0" FontFamily="{StaticResource Montserrat-SemiBold}"  FontSize="12" HorizontalOptions="End"/>
+                    <syncfusion:SfListView
+                        x:Name="PermitLists"
+                        ItemsSource="{Binding PermitListData, Mode=TwoWay}"
+                        SelectionChangedCommand="{Binding SelectedPermitCommand}"
+                        SelectionChangedCommandParameter="{x:Reference PermitLists}"
+                        ItemSpacing="3"
+                        ItemSize="190"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand"
+                        IsScrollBarVisible="False">
+                        <syncfusion:SfListView.ItemTemplate>
+                            <DataTemplate>
+                                <badge:SfBadgeView HorizontalOptions="FillAndExpand" Padding="5,0,5,0" VerticalOptions="FillAndExpand">
+                                        <badge:SfBadgeView.Content>
+                                            <controls:CustomShadowFrame x:Name="frame"
+                                                CornerRadius="10"
+                                                BackgroundColor="{DynamicResource Card}"
+                                                Padding="15,5"
+                                                Margin="15,5"
+                                                HasShadow="True"
+                                                BorderWidth="0">
+                                                <StackLayout BackgroundColor="{DynamicResource Card}" VerticalOptions="CenterAndExpand">
+                                                    <Label Text="{Binding permitworknum, StringFormat='Permit: {0}'}" FontFamily="{StaticResource Montserrat-SemiBold}" FontSize="17" HorizontalTextAlignment="Start" HorizontalOptions="Start" VerticalOptions="Center" TextColor="{DynamicResource Label}" Margin="0,5,0,15"/>
+                                                    <Label Text="{Binding tnbwonum, StringFormat='Workorder Number: {0}'}" FontFamily="{StaticResource Montserrat-Medium}" FontSize="12" HorizontalTextAlignment="Start" HorizontalOptions="Start" VerticalOptions="Center" TextColor="{DynamicResource Label}"/>
+                                                    <Label Text="{Binding description, StringFormat='Description: {0}'}" FontFamily="{StaticResource Montserrat-Medium}" FontSize="12" HorizontalTextAlignment="Start" HorizontalOptions="Start" VerticalOptions="Center" TextColor="{DynamicResource Label}"/>
+                                                    <Label Text="{Binding tnbstatus, StringFormat='Status: {0}'}" FontFamily="{StaticResource Montserrat-Medium}" FontSize="12" HorizontalTextAlignment="Start" HorizontalOptions="Start" VerticalOptions="Center" TextColor="{DynamicResource Label}"/>
+                                                    <Label Text="{Binding tnbpermittype, StringFormat='Permit Type: {0}'}" FontFamily="{StaticResource Montserrat-Medium}" FontSize="12" HorizontalTextAlignment="Start" HorizontalOptions="Start" VerticalOptions="Center" TextColor="{DynamicResource Label}"/>
+                                                    <Label Text="{Binding statusdate, StringFormat='Issued Status Date: {0}'}" FontFamily="{StaticResource Montserrat-Medium}" FontSize="12" HorizontalTextAlignment="Start" HorizontalOptions="Start" VerticalOptions="Center" TextColor="{DynamicResource Label}"/>
+                                                </StackLayout>
+                                            </controls:CustomShadowFrame>
+                                        </badge:SfBadgeView.Content>
+                                        <badge:SfBadgeView.BadgeSettings>
+                                            <badge:BadgeSetting BadgeType="Warning"  Offset="0, -10" BadgePosition="BottomRight" BadgeIcon="{Binding badgeicon}"/>
+                                        </badge:SfBadgeView.BadgeSettings>
+                                </badge:SfBadgeView>
+                            </DataTemplate>
+                        </syncfusion:SfListView.ItemTemplate>
+                    </syncfusion:SfListView>
+                </StackLayout>
+
+                <StackLayout VerticalOptions="Center" HorizontalOptions="Center" Margin="0,0,0,160">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <!-- No SQA List Image-->
+                        <Image Source="notesting.png"
+                               Grid.Row="0"
+                               Margin="20"
+                                IsVisible="{Binding NoPermit}" 
+                                VerticalOptions="Center" 
+                                HorizontalOptions="Center"/>
+                        <Label Text="{i18n:Translate NoPermitCreated}"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="16"
+                               Grid.Row="1"
+                                TextColor="{DynamicResource PrimaryDarkenColor}"
+                                VerticalOptions="Center"
+                                HorizontalOptions="Center"
+                                IsVisible="{Binding NoPermit}"/>
+                    </Grid>
+                </StackLayout>
+
+                <!-- Create SQA Button-->
+                <buttons:SfButton
+                    Margin="15"
+                    Grid.Row="0"
+                    HorizontalOptions="End"
+                    VerticalOptions="End"
+                    ShowIcon="True"
+                    x:Name="AddPermit"
+                    FontSize="29"
+                    TextColor="{DynamicResource Background}"
+                    Text="{StaticResource Add}"
+                    CornerRadius="50" HeightRequest="60" WidthRequest="60"
+                    Command="{Binding AddPermitCommand}"
+                    Style="{StaticResource RoundButtonStyle3}"/>
+            </Grid>
+        </ContentView>
+    </ContentPage.Content>
+
+</ContentPage>

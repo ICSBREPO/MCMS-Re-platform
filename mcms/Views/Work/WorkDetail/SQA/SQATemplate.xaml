@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{DynamicResource Background}"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+             xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms" 
+             xmlns:navigationdrawer="clr-namespace:Syncfusion.SfNavigationDrawer.XForms;assembly=Syncfusion.SfNavigationDrawer.XForms" 
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
+             xmlns:controls="clr-namespace:mcms.Controls"
+             xmlns:i18n="clr-namespace:mcms.Helpers"
+             x:Class="mcms.Views.Work.WorkDetail.SQA.SQATemplate">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Work/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="graphics:SfGradientView">
+                <Setter Property="BackgroundBrush">
+                    <Setter.Value>
+                        <graphics:SfLinearGradientBrush>
+                            <graphics:SfLinearGradientBrush.GradientStops>
+                                <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                                <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                            </graphics:SfLinearGradientBrush.GradientStops>
+                        </graphics:SfLinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid RowSpacing="0" BackgroundColor="{DynamicResource Background}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="0" x:Name="iOSSafeArea"/>
+                    <RowDefinition Height="55"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <graphics:SfGradientView Grid.RowSpan="3"/>
+                <Grid
+                    Grid.Row="1"
+                    Padding="16,8"
+                    BackgroundColor="{StaticResource Transparent}"
+                    HeightRequest="48"
+                    HorizontalOptions="Fill">
+                    <buttons:SfButton
+                            Text="{StaticResource Back}"
+                            TextColor="{DynamicResource Background}"
+                            Style="{StaticResource IconButtonStyle}"
+                            CornerRadius="4"
+                            Command="{Binding BackPopAsyncCommand}"
+                            HorizontalOptions="Start"
+                            HorizontalTextAlignment="Start"
+                            Padding="0"/>
+                    <Label
+                            Style="{StaticResource LabelSemiBold}" 
+                            HorizontalOptions="Center"
+                            LineHeight="1.25"
+                            Text="{i18n:Translate SQAChecklist}"
+                            TextColor="{DynamicResource Background}"
+                            VerticalOptions="StartAndExpand" />
+                </Grid>
+                <border:SfBorder
+                    Grid.Row="2"
+                    CornerRadius="10,10,0,0"
+                    HorizontalOptions="FillAndExpand" 
+                    BorderWidth="0" 
+                    BorderColor="Transparent" 
+                    BackgroundColor="{DynamicResource Background}" />
+                <StackLayout VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Margin="20" Grid.Row="3">
+                    <ContentView>
+                        <syncfusion:SfListView x:Name="listView" SelectionChangedCommand="{Binding SelectedSQAListCommand}"
+                                              SelectionChangedCommandParameter="{x:Reference listView}" ItemsSource="{Binding TemplateSQAData}" ItemSpacing="1" ItemSize="55" Margin="25">
+                            <syncfusion:SfListView.LayoutManager>
+                                <syncfusion:GridLayout SpanCount="1"/>
+                            </syncfusion:SfListView.LayoutManager>
+                            <syncfusion:SfListView.ItemTemplate>
+                                <DataTemplate>
+                                    <controls:CustomShadowFrame x:Name="frame"
+                                                CornerRadius="10"
+                                                BackgroundColor="{DynamicResource Card}"
+                                                Padding="15,5"
+                                                Margin="0,5"
+                                                HasShadow="True"
+                                                BorderWidth="0">
+                                        <Grid Grid.Column="0"
+                                                RowSpacing="1"
+                                                Padding="10,0,0,0"
+                                                VerticalOptions="Start">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <Label LineBreakMode="NoWrap"
+                                                    Grid.Row="0"
+                                                    Text="{Binding description}"                                                   
+                                                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                    HorizontalTextAlignment="Center"
+                                                    VerticalTextAlignment="Center"
+                                                    TextColor="{DynamicResource Label}">
+                                                <Label.FontSize>
+                                                    <OnPlatform x:TypeArguments="x:Double">
+                                                        <OnPlatform.WinPhone>
+                                                            <OnIdiom x:TypeArguments="x:Double" Phone="20" Tablet="20" />
+                                                        </OnPlatform.WinPhone>
+                                                        <OnPlatform.Android>
+                                                            <OnIdiom x:TypeArguments="x:Double" Phone="16" Tablet="18" />
+                                                        </OnPlatform.Android>
+                                                        <OnPlatform.iOS>
+                                                            <OnIdiom x:TypeArguments="x:Double" Phone="18" Tablet="20" />
+                                                        </OnPlatform.iOS>
+                                                    </OnPlatform>
+                                                </Label.FontSize>
+                                            </Label>
+                                            <buttons:SfButton
+                                                BackgroundImage="arrow.png"
+                                                Grid.Row="0"
+                                                HeightRequest="16"
+                                                WidthRequest="10"
+                                                HorizontalOptions="End"
+                                                BackgroundColor="Transparent"
+                                                VerticalOptions="Center"/>
+
+                                        </Grid>
+
+                                    </controls:CustomShadowFrame>
+                                </DataTemplate>
+                            </syncfusion:SfListView.ItemTemplate>
+                        </syncfusion:SfListView>
+                    </ContentView>
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+
+</ContentPage>

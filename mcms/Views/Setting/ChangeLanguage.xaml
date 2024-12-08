@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms" 
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:i18n="clr-namespace:mcms.Helpers"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:local="clr-namespace:SimpleSample" xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:controls="clr-namespace:mcms.Controls"
+    NavigationPage.HasBackButton="True"
+    x:Class="mcms.Views.Setting.ChangeLanguage">
+
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="graphics:SfGradientView">
+                <Setter Property="BackgroundBrush">
+                    <Setter.Value>
+                        <graphics:SfLinearGradientBrush>
+                            <graphics:SfLinearGradientBrush.GradientStops>
+                                <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                                <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                            </graphics:SfLinearGradientBrush.GradientStops>
+                        </graphics:SfLinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowSpacing="0" BackgroundColor="{DynamicResource Background}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0" x:Name="iOSSafeArea"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <graphics:SfGradientView Grid.RowSpan="3"/>
+        <StackLayout
+            Grid.Row="1"
+            Padding="16,8"
+            BackgroundColor="{StaticResource Transparent}"
+            HeightRequest="48"
+            HorizontalOptions="Fill"
+            Orientation="Horizontal"
+            Spacing="0">
+            <buttons:SfButton
+                        Text="{StaticResource Back}"
+                        Style="{StaticResource NavigationBarButtonStyle}"
+                        CornerRadius="4"
+                Margin="0,6,0,0"
+                        Command="{Binding BackToSettingCommand}"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
+                        Padding="0"/>
+            <Label
+                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                    FontSize="20"
+                    HorizontalTextAlignment="Center"
+                    HorizontalOptions="Center"
+                    LineHeight="1.25"
+                    Text="{i18n:Translate ChangeLanguage}"
+                    TextColor="{DynamicResource Gray-White}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+        </StackLayout>
+
+        <border:SfBorder
+            Grid.Row="2"
+            CornerRadius="10,10,0,0"
+            HorizontalOptions="FillAndExpand" 
+            BorderWidth="0" 
+            BorderColor="Transparent" 
+            BackgroundColor="{DynamicResource Background}" />
+        
+        <StackLayout VerticalOptions="FillAndExpand" Grid.Row="3">
+            <border:SfBorder
+                    CornerRadius="10,10,0,0"
+                    HorizontalOptions="FillAndExpand" 
+                    BorderWidth="0" 
+                    BorderColor="Transparent" 
+                    BackgroundColor="{DynamicResource Background}" />
+                 <StackLayout VerticalOptions="FillAndExpand">
+                     <Grid Margin="15,15,15,0">
+                             <Grid.RowDefinitions>
+                                  <RowDefinition Height="20*" />
+                                  <RowDefinition Height="Auto" />
+                             </Grid.RowDefinitions>
+                             <Label
+                                    Grid.Row="0"
+                                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                                    FontSize="13"
+                                    HorizontalOptions="StartAndExpand"
+                                    Text="{i18n:Translate SelectPreferredLanguage}"
+                                    TextColor="{DynamicResource Label}"
+                                    VerticalOptions="Center"
+                                    VerticalTextAlignment="Center" />
+
+                             <buttons:SfRadioGroup x:Name="radioGroup" BindableLayout.ItemsSource="{Binding ListLanguages}" Grid.Row="1">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <buttons:SfRadioButton x:Name="radioButton" UncheckedColor="{DynamicResource Label}" TextColor="{DynamicResource Label}" CheckedColor="{DynamicResource PrimaryColor}" IsChecked="{Binding IsChecked}" Text="{Binding Item}">
+                                            <buttons:SfRadioButton.Behaviors>
+                                                <local:EventToCommandBehavior
+                                                        EventName="StateChanged"
+                                                        Command="{Binding StateChangedCommand}"
+                                                        CommandParameter="{x:Reference radioButton}"/>
+                                            </buttons:SfRadioButton.Behaviors>
+                                        </buttons:SfRadioButton>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </buttons:SfRadioGroup>
+                         </Grid>
+                </StackLayout>
+        </StackLayout>
+        <StackLayout VerticalOptions="EndAndExpand" Grid.Row="4">
+            <buttons:SfButton
+                    Margin="0,0,0,50"
+                    Command="{Binding SaveLanguage}"
+                    Text="{i18n:Translate SaveChanges}"
+                    BackgroundColor="{DynamicResource PrimaryColor}"
+                    BorderColor="{DynamicResource PrimaryColor}"
+                    BorderWidth="1"
+                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                    HeightRequest="40"
+                    HorizontalOptions="Center"
+                    Style="{StaticResource RoundButtonStyle}"
+                    TextColor="{DynamicResource Background}"
+                   WidthRequest="245" />
+        </StackLayout>
+    </Grid>
+</ContentPage>
