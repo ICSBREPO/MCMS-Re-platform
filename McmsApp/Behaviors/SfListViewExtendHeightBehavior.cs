@@ -1,11 +1,13 @@
 ﻿using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using Syncfusion.ListView.XForms;
-using Syncfusion.ListView.XForms.Control.Helpers;
-using Xamarin.Forms;
-using Xamarin.Forms.Internals;
-namespace mcms.Behaviors
+using Syncfusion.Maui.ListView;
+using Syncfusion.Maui.ListView.Helpers;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls.Internals;
+
+namespace McmsApp.Behaviors
 {
     /// <summary>
     /// This class extends the behavior of the SfListView control to achieve the event to command behavior.

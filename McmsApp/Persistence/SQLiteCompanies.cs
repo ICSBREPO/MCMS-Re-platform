@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using mcms.Models;
+using McmsApp.Models;
 using SQLite;
 
-namespace mcms.Persistence
+namespace McmsApp.Persistence
 {
     public class SQLiteCompanies : ICompanies
     {

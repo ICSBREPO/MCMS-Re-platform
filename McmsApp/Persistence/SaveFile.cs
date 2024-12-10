@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mcms.Persistence
+namespace McmsApp.Persistence
 {
     public class SaveFile : ISaveFile
     {

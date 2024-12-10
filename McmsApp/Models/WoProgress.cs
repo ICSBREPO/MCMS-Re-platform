@@ -1,10 +1,11 @@
 ﻿using System;
 using System.ComponentModel;
 using PropertyChanged;
-using Syncfusion.XForms.ProgressBar;
-using Xamarin.Forms;
+using Syncfusion.Maui.ProgressBar;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 
-namespace mcms.Models
+namespace McmsApp.Models
 {
     [AddINotifyPropertyChangedInterface]
     public class WoProgress : INotifyPropertyChanged

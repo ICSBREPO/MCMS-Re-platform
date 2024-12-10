@@ -1,19 +1,19 @@
-﻿using Acr.UserDialogs;
-using mcms.ApiServices;
-using mcms.Models;
-using mcms.Persistence;
-using mcms.Views.Login;
-using mcms.Views.Work;
+﻿using Controls.UserDialogs.Maui;
+using McmsApp.ApiServices;
+using McmsApp.Models;
+using McmsApp.Persistence;
+using McmsApp.Views.Login;
+using McmsApp.Views.Work;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Essentials;
-using Xamarin.Forms;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 
-namespace mcms.ViewModels
+namespace McmsApp.ViewModels
 {
     public class ProjectDPMSViewModel : BaseViewModel
     {

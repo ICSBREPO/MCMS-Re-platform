@@ -4,9 +4,9 @@ using System.ComponentModel;
 using PropertyChanged;
 using SQLite;
 using SQLiteNetExtensions.Attributes;
-using Syncfusion.XForms.BadgeView;
+using Syncfusion.Maui.Core;
 
-namespace mcms.Models
+namespace McmsApp.Models
 {
     [AddINotifyPropertyChangedInterface]
     public class Distinct : INotifyPropertyChanged

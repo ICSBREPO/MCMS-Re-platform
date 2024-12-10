@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using Syncfusion.Maui.Core.Hosting;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 
 namespace McmsApp
 {
@@ -9,6 +11,7 @@ namespace McmsApp
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
+                .UseSkiaSharp()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -16,7 +19,8 @@ namespace McmsApp
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
+            builder.ConfigureSyncfusionCore();
 #endif
 
             return builder.Build();

@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using mcms.Models;
-using mcms.Persistence;
-using mcms.Views.Home;
-using mcms.Views.Work.WorkDetail;
-using Syncfusion.ListView.XForms;
-using Syncfusion.XForms.TabView;
-using Xamarin.Forms;
+using McmsApp.Models;
+using McmsApp.Persistence;
+using McmsApp.Views.Home;
+using McmsApp.Views.Work.WorkDetail;
+using Syncfusion.Maui.ListView;
+using Syncfusion.Maui.TabView;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 
-namespace mcms.ViewModels
+namespace McmsApp.ViewModels
 {
     public class ChildWOViewModel : BaseViewModel
     {

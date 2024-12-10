@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using mcms.Models;
+using McmsApp.Models;
 using System.Threading.Tasks;
 
-namespace mcms.Persistence
+namespace McmsApp.Persistence
 {
     public interface ITnbwochecklist
     {

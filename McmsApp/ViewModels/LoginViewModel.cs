@@ -5,17 +5,17 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Acr.UserDialogs;
-using mcms.ApiServices;
-using mcms.AppLayout;
-using mcms.Models;
-using mcms.Persistence;
-using mcms.Views.Tabbed;
+using Controls.UserDialogs.Maui;
+using McmsApp.ApiServices;
+using McmsApp.AppLayout;
+using McmsApp.Models;
+using McmsApp.Persistence;
+using McmsApp.Views.Tabbed;
 using Plugin.Multilingual;
-using Xamarin.Essentials;
-using Xamarin.Forms;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 
-namespace mcms.ViewModels
+namespace McmsApp.ViewModels
 {
     public class LoginViewModel : BaseViewModel
     {

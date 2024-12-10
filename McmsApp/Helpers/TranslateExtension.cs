@@ -2,10 +2,11 @@
 using System.Reflection;
 using System.Resources;
 using Plugin.Multilingual;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls.Xaml;
 
-namespace mcms.Helpers
+namespace McmsApp.Helpers
 {
     [ContentProperty("Text")]
     public class TranslateExtension : IMarkupExtension

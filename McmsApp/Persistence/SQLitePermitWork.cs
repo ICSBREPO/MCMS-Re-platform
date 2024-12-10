@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using mcms.Models;
+using McmsApp.Models;
 using SQLite;
-using Xamarin.Essentials;
 
-namespace mcms.Persistence
+
+namespace McmsApp.Persistence
 {
     public class SQLitePermitWork : IPermitWork
     {

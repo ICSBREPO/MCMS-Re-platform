@@ -1,7 +1,7 @@
 ﻿using System;
 using Newtonsoft.Json.Linq;
 
-namespace mcms.Models
+namespace McmsApp.Models
 {
     public class GooglePlace
     {

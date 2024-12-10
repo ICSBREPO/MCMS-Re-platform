@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
-namespace mcms.Models
+namespace McmsApp.Models
 {
     [AddINotifyPropertyChangedInterface]
     public class Workorderspec : INotifyPropertyChanged
@@ -26,7 +26,7 @@ namespace mcms.Models
         public string href { get; set; }
         public int workorderspecid { get; set; }
         public bool pendingupload { get; set; }
-        public Syncfusion.XForms.BadgeView.BadgeIcon badgeicon { get; set; }
+        public Syncfusion.Maui.Core.BadgeIcon badgeicon { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
     }
 
@@ -57,7 +57,7 @@ namespace mcms.Models
         public DateTime? tnbmanufdate { get; set; }
         
         public bool pendingupload { get; set; }
-        public Syncfusion.XForms.BadgeView.BadgeIcon badgeicon { get; set; }
+        public Syncfusion.Maui.Core.BadgeIcon badgeicon { get; set; }
         [OneToMany(CascadeOperations = CascadeOperation.All)]
         public List<AssetSpec> assetspec { get; set; }
         [OneToOne(CascadeOperations = CascadeOperation.All)]
@@ -75,7 +75,7 @@ namespace mcms.Models
         public string description { get; set; }
         public string wonum { get; set; }
         public bool pendingupload { get; set; }
-        public Syncfusion.XForms.BadgeView.BadgeIcon badgeicon { get; set; }
+        public Syncfusion.Maui.Core.BadgeIcon badgeicon { get; set; }
         [OneToMany(CascadeOperations = CascadeOperation.All)]
         public List<LocationSpec> locationspec { get; set; }
         [OneToOne(CascadeOperations = CascadeOperation.All)]
@@ -120,7 +120,7 @@ namespace mcms.Models
         public bool pendingupload { get; set; }
         public bool islookup { get; set; }
         public string xamtype { get; set; }
-        public Syncfusion.XForms.BadgeView.BadgeIcon badgeicon { get; set; }
+        public Syncfusion.Maui.Core.BadgeIcon badgeicon { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
     }
 
@@ -153,7 +153,7 @@ namespace mcms.Models
         public bool pendingupload { get; set; }
         public bool islookup { get; set; }
         public string xamtype { get; set; }
-        public Syncfusion.XForms.BadgeView.BadgeIcon badgeicon { get; set; }
+        public Syncfusion.Maui.Core.BadgeIcon badgeicon { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
     }
 }

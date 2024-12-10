@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using mcms.Models;
+using McmsApp.Models;
 
-namespace mcms.Persistence
+namespace McmsApp.Persistence
 {
     public interface ITheme
     {

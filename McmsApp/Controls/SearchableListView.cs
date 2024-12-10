@@ -1,8 +1,9 @@
 ﻿using System;
-using Syncfusion.ListView.XForms;
-using Xamarin.Forms;
+using Syncfusion.Maui.ListView;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 
-namespace mcms.Controls
+namespace McmsApp.Controls
 {
     /// <summary>
     /// This class extends the behavior of the SfListView control to filter the ListViewItem based on text.

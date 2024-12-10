@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using mcms.Models;
+using McmsApp.Models;
 using SQLite;
 
-namespace mcms.Persistence
+namespace McmsApp.Persistence
 {
     public class SQLitePlusgaudline : IPlusgaudline
     {

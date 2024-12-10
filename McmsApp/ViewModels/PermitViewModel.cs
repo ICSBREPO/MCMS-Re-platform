@@ -6,26 +6,26 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Acr.UserDialogs;
-using mcms.ApiServices;
-using mcms.Helpers;
-using mcms.Models;
-using mcms.Persistence;
-using mcms.Views.ImagePreview;
-using mcms.Views.Login;
-using mcms.Views.PopupPages;
-using mcms.Views.Work;
-using mcms.Views.Work.WorkDetail.Permit;
+using Controls.UserDialogs.Maui;
+using McmsApp.ApiServices;
+using McmsApp.Helpers;
+using McmsApp.Models;
+using McmsApp.Persistence;
+using McmsApp.Views.ImagePreview;
+using McmsApp.Views.Login;
+using McmsApp.Views.PopupPages;
+using McmsApp.Views.Work;
+using McmsApp.Views.Work.WorkDetail.Permit;
 using Newtonsoft.Json;
 using Plugin.FilePicker;
 using Plugin.FilePicker.Abstractions;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
-using Syncfusion.ListView.XForms;
-using Xamarin.Essentials;
-using Xamarin.Forms;
+using Syncfusion.Maui.ListView;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 
-namespace mcms.ViewModels
+namespace McmsApp.ViewModels
 {
     public class PermitViewModel : BaseViewModel
     {
@@ -146,7 +146,7 @@ namespace mcms.ViewModels
                 if (check)
                 {
                     Doclinks doclinks = await maxrest.GetDoclinks(TempAttachment.doclinksid);
-                    UserDialogs.Instance.HideLoading();
+                    UserDialogs.Instance.HideHud();
                     if (doclinks == null)
                     {
                         await UserDialogs.Instance.AlertAsync("Failed to download attachment, please try again later!", "Warning!", "Ok");
@@ -191,14 +191,14 @@ namespace mcms.ViewModels
                 }
                 else
                 {
-                    UserDialogs.Instance.HideLoading();
+                    UserDialogs.Instance.HideHud();
                     await UserDialogs.Instance.AlertAsync("Failed to download attachment, please try again later!", "Warning!", "Ok");
                 }
             }
             catch (Exception e)
             {
                 await UserDialogs.Instance.AlertAsync($"Error : {e.Message}", "Warning", "OK");
-                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.HideHud();
             }
         }
 
@@ -353,7 +353,7 @@ namespace mcms.ViewModels
                 {
                     respermit = await maxrest.AddPermit(permit);
                 }
-                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.HideHud();
                 if(respermit == null)
                 {
                     permit.pendingupload = true;
@@ -441,7 +441,7 @@ namespace mcms.ViewModels
             }
             else
             {
-                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.HideHud();
                 permit.pendingupload = true;
                 Debug.WriteLine("Permit ID is : =" + permit.id);
 

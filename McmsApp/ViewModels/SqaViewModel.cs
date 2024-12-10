@@ -1,19 +1,19 @@
-﻿using Acr.UserDialogs;
-using mcms.ApiServices;
-using mcms.General;
-using mcms.Helpers;
-using mcms.Models;
-using mcms.Persistence;
-using mcms.Views.Home;
-using mcms.Views.ImagePreview;
-using mcms.Views.Login;
-using mcms.Views.Work;
-using mcms.Views.Work.WorkDetail.SQA;
+﻿using Controls.UserDialogs.Maui;
+using McmsApp.ApiServices;
+using McmsApp.General;
+using McmsApp.Helpers;
+using McmsApp.Models;
+using McmsApp.Persistence;
+using McmsApp.Views.Home;
+using McmsApp.Views.ImagePreview;
+using McmsApp.Views.Login;
+using McmsApp.Views.Work;
+using McmsApp.Views.Work.WorkDetail.SQA;
 using Plugin.FilePicker;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
-using Syncfusion.ListView.XForms;
-using Syncfusion.XForms.TabView;
+using Syncfusion.Maui.ListView;
+using Syncfusion.Maui.TabView;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,10 +22,10 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Essentials;
-using Xamarin.Forms;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 
-namespace mcms.ViewModels
+namespace McmsApp.ViewModels
 {
     public class SqaViewModel : BaseViewModel
     {
@@ -155,7 +155,7 @@ namespace mcms.ViewModels
                 if (check)
                 {
                     Doclinks doclinks = await maxrest.GetDoclinks(TempAttachment.doclinksid);
-                    UserDialogs.Instance.HideLoading();
+                    UserDialogs.Instance.HideHud();
                     if (doclinks == null)
                     {
                         await UserDialogs.Instance.AlertAsync("Failed to download attachment, please try again later!", "Warning!", "Ok");
@@ -201,14 +201,14 @@ namespace mcms.ViewModels
                 }
                 else
                 {
-                    UserDialogs.Instance.HideLoading();
+                    UserDialogs.Instance.HideHud();
                     await UserDialogs.Instance.AlertAsync("Failed to download attachment, please try again later!", "Warning!", "Ok");
                 }
             }
             catch (Exception e)
             {
                 await UserDialogs.Instance.AlertAsync($"Error : {e.Message}", "Warning", "OK");
-                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.HideHud();
             }
         }
 
@@ -361,11 +361,11 @@ namespace mcms.ViewModels
                 {
                     if (sqa.pendingupload)
                     {
-                        sqa.badgeicon = Syncfusion.XForms.BadgeView.BadgeIcon.Away;
+                        sqa.badgeicon = Syncfusion.Maui.Core.BadgeIcon.Away;
                     }
                     else
                     {
-                        sqa.badgeicon = Syncfusion.XForms.BadgeView.BadgeIcon.None;
+                        sqa.badgeicon = Syncfusion.Maui.Core.BadgeIcon.None;
                     }
 
                     sqa.plusgaudline = await sqlplusgaud.GetPlusgaudlineBySQA(sqa.id);
@@ -388,11 +388,11 @@ namespace mcms.ViewModels
             {
                 if (tnbsignature.pendingupdate)
                 {
-                    tnbsignature.badgeicon = Syncfusion.XForms.BadgeView.BadgeIcon.Away;
+                    tnbsignature.badgeicon = Syncfusion.Maui.Core.BadgeIcon.Away;
                 }
                 else
                 {
-                    tnbsignature.badgeicon = Syncfusion.XForms.BadgeView.BadgeIcon.None;
+                    tnbsignature.badgeicon = Syncfusion.Maui.Core.BadgeIcon.None;
                 }
             }
              SelectedSQA.totalSignature = SelectedSQA.tnbsignature.Count;
@@ -817,7 +817,7 @@ namespace mcms.ViewModels
                     SelectedSQA._action = "Add";
                     Plusgaudit responseAdd = await maxrest.AddSQA(SelectedSQA);
                     //Debug.WriteLine("Send data to : " + responseAdd.auditnum);
-                    UserDialogs.Instance.HideLoading();
+                    UserDialogs.Instance.HideHud();
                     if (responseAdd.Error != null)
                     {
                         await UserDialogs.Instance.AlertAsync($"{responseAdd.Error.message}", "Error", "Ok");
@@ -971,7 +971,7 @@ namespace mcms.ViewModels
                 else
                 {
 
-                    UserDialogs.Instance.HideLoading();
+                    UserDialogs.Instance.HideHud();
                     //IF CANNOT CONNECT TO INTERNET OR SERVER
                     Debug.WriteLine("value of SQA is : " + SelectedSQA.status);
                     if (!global.isNewSQA)
@@ -1047,7 +1047,7 @@ namespace mcms.ViewModels
                 {
                     //DO UPDATE ACTION
                     Plusgaudit responseUpdate = await maxrest.UpdateSQA(SelectedSQA);
-                    UserDialogs.Instance.HideLoading();
+                    UserDialogs.Instance.HideHud();
 
                     if (responseUpdate.Error != null)
                     {
@@ -1120,7 +1120,7 @@ namespace mcms.ViewModels
                 }
                 else
                 {
-                    UserDialogs.Instance.HideLoading();
+                    UserDialogs.Instance.HideHud();
                     //IF CANNOT REACH INTERNET OR SERVER
                     Debug.WriteLine("I am offline SQA Creater ELSE");
                     SelectedSQA.pendingupload = true;
@@ -1174,7 +1174,7 @@ namespace mcms.ViewModels
                 {
                     res = await maxrest.AddSignatures(SelectedSignature);
                 }
-                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.HideHud();
 
                 if (res == null)
                 {
@@ -1251,7 +1251,7 @@ namespace mcms.ViewModels
             }
             else
             {
-                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.HideHud();
                 SelectedSignature.pendingupdate = true;
                 SelectedSQA.pendingupload = true;
                 SQLitePlusgaudit plusgaudit = new SQLitePlusgaudit();
@@ -1285,7 +1285,7 @@ namespace mcms.ViewModels
             if(SelectedSignature.tnbsignatureid == 0 || SelectedSignature.tnbsignatureid == null)
             {
                 await sqlsignature.DeleteTnbsignature(SelectedSignature);
-                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.HideHud();
                 await LoadSignatureList();
                 await UserDialogs.Instance.AlertAsync("Signature Deleted", "Success", "Ok");
                 return;
@@ -1295,7 +1295,7 @@ namespace mcms.ViewModels
             {
                 SelectedSignature._action = "Delete";
                 Tnbsignature res = await maxrest.UpdateSignatures(SelectedSignature);
-                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.HideHud();
 
                 if (res == null)
                 {
@@ -1323,7 +1323,7 @@ namespace mcms.ViewModels
             }
             else
             {
-                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.HideHud();
                 await UserDialogs.Instance.AlertAsync("Please check your internet connection and try again!", "Failed!", "Ok");
             }
         }

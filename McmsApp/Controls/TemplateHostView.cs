@@ -1,9 +1,10 @@
 ﻿using System;
-using mcms.Models;
-using Xamarin.Forms;
-using Xamarin.Forms.Internals;
+using McmsApp.Models;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls.Internals;
 
-namespace mcms.Controls
+namespace McmsApp.Controls
 {
     [Preserve(AllMembers = true)]
     public class TemplateHostView : View

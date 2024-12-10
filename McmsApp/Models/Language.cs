@@ -1,12 +1,12 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Input;
-using mcms.Views.Tabbed;
-using Syncfusion.XForms.Buttons;
-using Xamarin.Essentials;
-using Xamarin.Forms;
+using McmsApp.Views.Tabbed;
+using Syncfusion.Maui.Buttons;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 
-namespace mcms.Models
+namespace McmsApp.Models
 {
     public class Language : INotifyPropertyChanged
     {

@@ -1,27 +1,27 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using mcms.Models;
-using Xamarin.Essentials;
-using Xamarin.Forms;
-using Acr.UserDialogs;
-using mcms.Views.Login;
-using mcms.Persistence;
-using mcms.ApiServices;
+using McmsApp.Models;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
+using Controls.UserDialogs.Maui;
+using McmsApp.Views.Login;
+using McmsApp.Persistence;
+using McmsApp.ApiServices;
 using System.Threading.Tasks;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
 using System.IO;
-using mcms.Views.Setting;
+using McmsApp.Views.Setting;
 using System.Collections.Generic;
-using mcms.AppLayout;
-using mcms.Views.Tabbed;
+using McmsApp.AppLayout;
+using McmsApp.Views.Tabbed;
 using System.Linq;
-using mcms.Views.Setting.ChangeProfile;
+using McmsApp.Views.Setting.ChangeProfile;
 using Plugin.Multilingual;
 using System.Diagnostics;
 
-namespace mcms.ViewModels
+namespace McmsApp.ViewModels
 {
     public class SettingViewModel : BaseViewModel
     {

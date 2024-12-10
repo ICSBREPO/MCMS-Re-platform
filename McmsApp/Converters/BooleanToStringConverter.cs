@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Globalization;
-using Xamarin.Forms;
-using Xamarin.Forms.Internals;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls.Internals;
 
-namespace mcms.Converters
+namespace McmsApp.Converters
 {
     [Preserve(AllMembers = true)]
     public class BooleanToStringConverter : IValueConverter

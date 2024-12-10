@@ -7,15 +7,15 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Acr.UserDialogs;
-using mcms.Helpers;
-using mcms.Models;
+using Controls.UserDialogs.Maui;
+using McmsApp.Helpers;
+using McmsApp.Models;
 using Newtonsoft.Json;
 using RestSharp;
 using RestSharp.Authenticators;
-using Xamarin.Essentials;
 
-namespace mcms.ApiServices
+
+namespace McmsApp.ApiServices
 {
     public class MaximoApi : IMaximoApi
     {

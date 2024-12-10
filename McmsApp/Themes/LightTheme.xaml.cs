@@ -1,7 +1,7 @@
-﻿using Xamarin.Forms.Internals;
-using Xamarin.Forms.Xaml;
+﻿using Microsoft.Maui.Controls.Internals;
+using Microsoft.Maui.Controls.Xaml;
 
-namespace mcms.Themes
+namespace McmsApp.Themes
 {
     [Preserve(AllMembers = true)]
     [XamlCompilation(XamlCompilationOptions.Compile)]

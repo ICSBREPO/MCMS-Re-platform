@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
-namespace mcms.Models
+namespace McmsApp.Models
 {
     [AddINotifyPropertyChangedInterface]
     public class Companies : INotifyPropertyChanged

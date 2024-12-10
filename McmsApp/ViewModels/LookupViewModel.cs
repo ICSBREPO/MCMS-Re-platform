@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Windows.Input;
-using mcms.Models;
-using mcms.Persistence;
-using Syncfusion.ListView.XForms;
-using Xamarin.Essentials;
-using Xamarin.Forms;
+using McmsApp.Models;
+using McmsApp.Persistence;
+using Syncfusion.Maui.ListView;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 
-namespace mcms.ViewModels
+namespace McmsApp.ViewModels
 {
     public class LookupViewModel : BaseViewModel
     {

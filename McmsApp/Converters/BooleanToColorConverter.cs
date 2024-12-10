@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Globalization;
-using Xamarin.Forms;
-using Xamarin.Forms.Internals;
-namespace mcms.Converters
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls.Internals;
+
+namespace McmsApp.Converters
 {
     /// <summary>
     /// This class have methods to convert the Boolean values to color objects. 

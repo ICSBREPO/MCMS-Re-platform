@@ -1,6 +1,8 @@
 ﻿using System;
-using Xamarin.Forms;
-namespace mcms.Controls
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
+
+namespace McmsApp.Controls
 {
     public class CustomShadowFrame : Frame
     {
