@@ -61,11 +61,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <EmbeddedResource Include="Images\NoInternet.svg" />
-	  <EmbeddedResource Include="Images\NoItem.svg" />
-	  <EmbeddedResource Include="Images\NoPhotos.svg" />
-	  <EmbeddedResource Include="Images\NoTasks.svg" />
-	  <EmbeddedResource Include="Images\SomethingWentWrong.svg" />
+	  <EmbeddedResource Include="Images\nointernet.svg" />
+	  <EmbeddedResource Include="Images\noitem.svg" />
+	  <EmbeddedResource Include="Images\nophotos.svg" />
+	  <EmbeddedResource Include="Images\notasks.svg" />
+	  <EmbeddedResource Include="Images\somethingwentwrong.svg" />
 	  <EmbeddedResource Include="Themes\LightTheme.xaml">
 	    <SubType>Designer</SubType>
 	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>

@@ -237,11 +237,11 @@ namespace McmsApp.ViewModels
                 {
                     if (ptw.pendingupload)
                     {
-                        ptw.badgeicon = Syncfusion.XForms.BadgeView.BadgeIcon.Away;
+                        ptw.badgeicon = Syncfusion.Maui.Core.BadgeIcon.Away;
                     }
                     else
                     {
-                        ptw.badgeicon = Syncfusion.XForms.BadgeView.BadgeIcon.None;
+                        ptw.badgeicon = Syncfusion.Maui.Core.BadgeIcon.None;
                     }
                     ptw.doclinks = await sqldocs.GetDoclinksFilter(ptw.id, "PLUSGPERMITWORK");
                     Debug.WriteLine("No of attachment in List : " + ptw.doclinks.Count());
