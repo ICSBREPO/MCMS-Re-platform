@@ -17,13 +17,18 @@ using McmsApp.Views.PopupPages;
 using McmsApp.Views.Work;
 using McmsApp.Views.Work.WorkDetail.Permit;
 using Newtonsoft.Json;
-using Plugin.FilePicker;
-using Plugin.FilePicker.Abstractions;
-using Plugin.Media;
-using Plugin.Media.Abstractions;
+//using Plugin.FilePicker;
+//using Plugin.FilePicker.Abstractions;
+//using Plugin.Media;
+//using Plugin.Media.Abstractions;
 using Syncfusion.Maui.ListView;
 using Microsoft.Maui;
 using Microsoft.Maui.Controls;
+using Microsoft.Maui.Media;
+using Microsoft.Maui.Storage;
+
+
+
 
 namespace McmsApp.ViewModels
 {
@@ -496,49 +501,94 @@ namespace McmsApp.ViewModels
                     // Do Something when 'Take Photo' Button is pressed
                     try
                     {
-                        var status = await Permissions.RequestAsync<Permissions.Camera>();
-                        await CrossMedia.Current.Initialize();
+                        //var status = await Permissions.RequestAsync<Permissions.Camera>();
+                        
+                        var cameraStatus = await Permissions.RequestAsync<Permissions.Camera>();
+                        var storageStatus = await Permissions.RequestAsync<Permissions.StorageWrite>();
 
-                        if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+                        if (cameraStatus != PermissionStatus.Granted || storageStatus != PermissionStatus.Granted)
                         {
-                            await UserDialogs.Instance.AlertAsync(":(", "Camera Not Available", "Ok");
+                            await Application.Current.MainPage.DisplayAlert("Permission Denied", "Camera and storage access are required.", "Ok");
                             return;
                         }
 
-                        string filename = "permit" + DateTimeOffset.Now.ToUnixTimeSeconds();
 
-                        var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+                        //await CrossMedia.Current.Initialize();
+
+                        //if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+                        //{
+                        //    await UserDialogs.Instance.AlertAsync(":(", "Camera Not Available", "Ok");
+                        //    return;
+                        //}
+
+                        var photo = await MediaPicker.CapturePhotoAsync(new MediaPickerOptions
                         {
-                            AllowCropping = false,
-                            Directory = "MCMS",
-                            Name = filename,
-                            PhotoSize = PhotoSize.MaxWidthHeight,
-                            CompressionQuality = 92,
-                            SaveToAlbum = true
+                            Title = "Capture a photo"
                         });
 
-                        if (file == null)
+                        if (photo == null)
                             return;
-                        byte[] b = File.ReadAllBytes(file.Path);
-                        String Base64File = Convert.ToBase64String(b);
+
+                        string filename = "permit" + DateTimeOffset.Now.ToUnixTimeSeconds();
+
+                        byte[] fileBytes;
+                        using (var stream = await photo.OpenReadAsync())
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            await stream.CopyToAsync(memoryStream);
+                            fileBytes = memoryStream.ToArray();
+                        }
+                        string base64File = Convert.ToBase64String(fileBytes);
+
+
+                        //var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+                        //{
+                        //    AllowCropping = false,
+                        //    Directory = "MCMS",
+                        //    Name = filename,
+                        //    PhotoSize = PhotoSize.MaxWidthHeight,
+                        //    CompressionQuality = 92,
+                        //    SaveToAlbum = true
+                        //});
+
+                        //if (file == null)
+                        //    return;
+                        //byte[] b = File.ReadAllBytes(file.Path);
+                        //String Base64File = Convert.ToBase64String(b);
 
                         isImage = true;
                         isPdf = false;
 
+                        //TempAttachment = new Doclinks
+                        //{
+                        //    fileName = filename + ".jpg",
+                        //    title = filename,
+                        //    ownertable = "PLUSGPERMITWORK",
+                        //    documentdata = Base64File,
+                        //    previewdoc = Base64File,
+                        //    urlname = filename + ".jpg",
+                        //    urltype = "FILE",
+                        //    _action = "Add",
+                        //    doctype = "Attachments",
+                        //    modified = DateTime.Now.ToLocalTime(),
+                        //    createdate = DateTime.Now.ToLocalTime(),
+                        //};
+
                         TempAttachment = new Doclinks
                         {
-                            fileName = filename + ".jpg",
-                            title = filename,
+                            fileName = filename,
+                            title = Path.GetFileNameWithoutExtension(filename),
                             ownertable = "PLUSGPERMITWORK",
-                            documentdata = Base64File,
-                            previewdoc = Base64File,
+                            documentdata = base64File,
+                            previewdoc = base64File,
                             urlname = filename + ".jpg",
                             urltype = "FILE",
                             _action = "Add",
                             doctype = "Attachments",
-                            modified = DateTime.Now.ToLocalTime(),
-                            createdate = DateTime.Now.ToLocalTime(),
+                            modified = DateTime.Now,
+                            createdate = DateTime.Now,
                         };
+
                         await Navigation.PushModalAsync(new AddAttachmentPermit(this));
                     }
                     catch (Exception e)
@@ -549,111 +599,260 @@ namespace McmsApp.ViewModels
 
                     break;
 
-                case "Take Photo From Gallery":
+                //case "Take Photo From Gallery":
 
-                    // Do Something when 'Choose From Photo' Button is pressed
+                //    // Do Something when 'Choose From Photo' Button is pressed
+                //    try
+                //    {
+                //        await CrossMedia.Current.Initialize();
+                //        if (!CrossMedia.Current.IsPickPhotoSupported)
+                //        {
+                //            await UserDialogs.Instance.AlertAsync("No Gallery Detected");
+                //            return;
+                //        }
+                //        else
+                //        {
+                //            var file = await CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+                //            {
+                //                PhotoSize = PhotoSize.MaxWidthHeight,
+
+                //            });
+                //            if (file == null)
+                //                return;
+                //            string filename = "permit" + DateTimeOffset.Now.ToUnixTimeSeconds();
+                //            byte[] b = File.ReadAllBytes(file.Path);
+                //            String Base64File = Convert.ToBase64String(b);
+
+                //            isImage = true;
+                //            isPdf = false;
+
+                //            TempAttachment = new Doclinks
+                //            {
+                //                fileName = filename + ".jpg",
+                //                title = filename,
+                //                ownertable = "PLUSGPERMITWORK",
+                //                documentdata = Base64File,
+                //                previewdoc = Base64File,
+                //                urlname = filename + ".jpg",
+                //                urltype = "FILE",
+                //                doctype = "Attachments",
+                //                _action = "Add",
+                //                createdate = DateTime.Now.ToLocalTime(),
+                //                modified = DateTime.Now.ToLocalTime(),
+                //            };
+                //            await Navigation.PushModalAsync(new AddAttachmentPermit(this));
+                //        }
+                //    }
+                //    catch (Exception e)
+                //    {
+                //        Console.WriteLine(e.Message);
+                //        await UserDialogs.Instance.AlertAsync("Please Check Permission to Pick From Galery, Close App And Open Again", "Alert!", "Ok");
+                //    }
+                //    break;
+
+                case "Take Photo From Gallery":
                     try
                     {
-                        await CrossMedia.Current.Initialize();
-                        if (!CrossMedia.Current.IsPickPhotoSupported)
+                        // Request storage permissions
+                        var storageStatus = await Permissions.RequestAsync<Permissions.StorageRead>();
+
+                        if (storageStatus != PermissionStatus.Granted)
                         {
-                            await UserDialogs.Instance.AlertAsync("No Gallery Detected");
+                            await Application.Current.MainPage.DisplayAlert("Permission Denied", "Storage access is required.", "Ok");
                             return;
                         }
-                        else
+
+                        // Pick photo using MediaPicker
+                        var photo = await MediaPicker.PickPhotoAsync(new MediaPickerOptions
                         {
-                            var file = await CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
-                            {
-                                PhotoSize = PhotoSize.MaxWidthHeight,
+                            Title = "Pick a photo"
+                        });
 
-                            });
-                            if (file == null)
-                                return;
-                            string filename = "permit" + DateTimeOffset.Now.ToUnixTimeSeconds();
-                            byte[] b = File.ReadAllBytes(file.Path);
-                            String Base64File = Convert.ToBase64String(b);
+                        if (photo == null)
+                            return;
 
-                            isImage = true;
-                            isPdf = false;
+                        // Define filename
+                        string filename = "permit" + DateTimeOffset.Now.ToUnixTimeSeconds() + ".jpg";
 
-                            TempAttachment = new Doclinks
-                            {
-                                fileName = filename + ".jpg",
-                                title = filename,
-                                ownertable = "PLUSGPERMITWORK",
-                                documentdata = Base64File,
-                                previewdoc = Base64File,
-                                urlname = filename + ".jpg",
-                                urltype = "FILE",
-                                doctype = "Attachments",
-                                _action = "Add",
-                                createdate = DateTime.Now.ToLocalTime(),
-                                modified = DateTime.Now.ToLocalTime(),
-                            };
-                            await Navigation.PushModalAsync(new AddAttachmentPermit(this));
+                        // Read file bytes
+                        byte[] fileBytes;
+                        using (var stream = await photo.OpenReadAsync())
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            await stream.CopyToAsync(memoryStream);
+                            fileBytes = memoryStream.ToArray();
                         }
+
+                        // Convert to Base64
+                        string base64File = Convert.ToBase64String(fileBytes);
+
+                        // Prepare attachment object
+                        isImage = true;
+                        isPdf = false;
+
+                        TempAttachment = new Doclinks
+                        {
+                            fileName = filename,
+                            title = Path.GetFileNameWithoutExtension(filename),
+                            ownertable = "PLUSGPERMITWORK",
+                            documentdata = base64File,
+                            previewdoc = base64File,
+                            urlname = filename,
+                            urltype = "FILE",
+                            _action = "Add",
+                            doctype = "Attachments",
+                            modified = DateTime.Now,
+                            createdate = DateTime.Now,
+                        };
+
+                        // Navigate to the attachment page
+                        await Application.Current.MainPage.Navigation.PushModalAsync(new AddAttachmentPermit(this));
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
-                        await UserDialogs.Instance.AlertAsync("Please Check Permission to Pick From Galery, Close App And Open Again", "Alert!", "Ok");
+                        await Application.Current.MainPage.DisplayAlert("Error", "Please check permission to pick from gallery, close app and try again.", "Ok");
                     }
                     break;
 
+
+                //case "Take PDF":
+                //    // Do Something when 'Choose From File' Button is pressed
+                //    var customFileType = new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
+                //    {
+                //        { DevicePlatform.iOS, new[] { "com.adobe.pdf" } }, // or general UTType values
+                //        { DevicePlatform.Android, new[] { "application/pdf" } },
+                //        { DevicePlatform.UWP, new[] { ".pdf" } },
+                //        { DevicePlatform.Tizen, new[] { "*/*" } },
+                //        { DevicePlatform.macOS, new[] { "pdf" } }, // or general UTType values
+                //    });
+
+                //    var pickResult = await FilePicker.PickAsync(new PickOptions
+                //    {
+                //        FileTypes = customFileType,
+                //        PickerTitle = "Pick a file"
+                //    });
+
+                //    if (pickResult != null)
+                //    {
+                //        string ext = Path.GetExtension(pickResult.FullPath);
+                //        string filename = "permit" + DateTimeOffset.Now.ToUnixTimeSeconds();
+
+                //        m_pdfDocumentStream = await pickResult.OpenReadAsync();
+                //        var bytes = new Byte[(int)m_pdfDocumentStream.Length];
+
+                //        m_pdfDocumentStream.Seek(0, SeekOrigin.Begin);
+                //        m_pdfDocumentStream.Read(bytes, 0, (int)m_pdfDocumentStream.Length);
+
+                //        isImage = false;
+                //        isPdf = true;
+
+
+                //        TempAttachment = new Doclinks
+                //        {
+                //            fileName = filename + ".pdf",
+                //            title = filename,
+                //            ownertable = "PLUSGPERMITWORK",
+                //            documentdata = Convert.ToBase64String(bytes),
+                //            previewdoc = Base64Files.pdfimage,
+                //            urlname = filename + ".pdf",
+                //            urltype = "FILE",
+                //            doctype = "Attachments",
+                //            _action = "Add",
+                //            createdate = DateTime.Now.ToLocalTime(),
+                //            modified = DateTime.Now.ToLocalTime(),
+                //        };
+                //        if (ext.ToLower() == ".pdf")
+                //        {
+                //            TempAttachment.previewdoc = Base64Files.pdfimage;
+                //        }
+                //        await Navigation.PushModalAsync(new AddAttachmentPermit(this));
+
+                //    }
+                //    break;
+
                 case "Take PDF":
-                    // Do Something when 'Choose From File' Button is pressed
-                    var customFileType = new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
+                    try
                     {
-                        { DevicePlatform.iOS, new[] { "com.adobe.pdf" } }, // or general UTType values
-                        { DevicePlatform.Android, new[] { "application/pdf" } },
-                        { DevicePlatform.UWP, new[] { ".pdf" } },
-                        { DevicePlatform.Tizen, new[] { "*/*" } },
-                        { DevicePlatform.macOS, new[] { "pdf" } }, // or general UTType values
-                    });
+                        // Request storage permissions
+                        var storageStatus = await Permissions.RequestAsync<Permissions.StorageRead>();
 
-                    var pickResult = await FilePicker.PickAsync(new PickOptions
-                    {
-                        FileTypes = customFileType,
-                        PickerTitle = "Pick a file"
-                    });
+                        if (storageStatus != PermissionStatus.Granted)
+                        {
+                            await Application.Current.MainPage.DisplayAlert("Permission Denied", "Storage access is required.", "Ok");
+                            return;
+                        }
 
-                    if (pickResult != null)
-                    {
-                        string ext = Path.GetExtension(pickResult.FullPath);
-                        string filename = "permit" + DateTimeOffset.Now.ToUnixTimeSeconds();
+                        // Define custom file type for PDF
+                        var customFileType = new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
+        {
+            { DevicePlatform.iOS, new[] { "com.adobe.pdf" } },
+            { DevicePlatform.Android, new[] { "application/pdf" } },
+            { DevicePlatform.WinUI, new[] { ".pdf" } },
+            { DevicePlatform.Tizen, new[] { "*/*" } },
+            { DevicePlatform.macOS, new[] { "pdf" } },
+        });
 
-                        m_pdfDocumentStream = await pickResult.OpenReadAsync();
-                        var bytes = new Byte[(int)m_pdfDocumentStream.Length];
+                        // Pick a PDF file
+                        var pickResult = await FilePicker.PickAsync(new PickOptions
+                        {
+                            FileTypes = customFileType,
+                            PickerTitle = "Pick a PDF file"
+                        });
 
-                        m_pdfDocumentStream.Seek(0, SeekOrigin.Begin);
-                        m_pdfDocumentStream.Read(bytes, 0, (int)m_pdfDocumentStream.Length);
+                        if (pickResult == null)
+                            return;
 
+                        // Define filename
+                        string filename = "permit" + DateTimeOffset.Now.ToUnixTimeSeconds() + ".pdf";
+
+                        // Read file bytes
+                        byte[] fileBytes;
+                        using (var stream = await pickResult.OpenReadAsync())
+                        using (var memoryStream = new MemoryStream())
+                        {
+                            await stream.CopyToAsync(memoryStream);
+                            fileBytes = memoryStream.ToArray();
+                        }
+
+                        // Convert to Base64
+                        string base64File = Convert.ToBase64String(fileBytes);
+
+                        // Prepare attachment object
                         isImage = false;
                         isPdf = true;
 
-
                         TempAttachment = new Doclinks
                         {
-                            fileName = filename + ".pdf",
-                            title = filename,
+                            fileName = filename,
+                            title = Path.GetFileNameWithoutExtension(filename),
                             ownertable = "PLUSGPERMITWORK",
-                            documentdata = Convert.ToBase64String(bytes),
+                            documentdata = base64File,
                             previewdoc = Base64Files.pdfimage,
-                            urlname = filename + ".pdf",
+                            urlname = filename,
                             urltype = "FILE",
-                            doctype = "Attachments",
                             _action = "Add",
-                            createdate = DateTime.Now.ToLocalTime(),
-                            modified = DateTime.Now.ToLocalTime(),
+                            doctype = "Attachments",
+                            modified = DateTime.Now,
+                            createdate = DateTime.Now,
                         };
-                        if (ext.ToLower() == ".pdf")
+
+                        // Set preview document for PDFs
+                        if (Path.GetExtension(pickResult.FullPath).ToLower() == ".pdf")
                         {
                             TempAttachment.previewdoc = Base64Files.pdfimage;
                         }
-                        await Navigation.PushModalAsync(new AddAttachmentPermit(this));
 
+                        // Navigate to the attachment page
+                        await Application.Current.MainPage.Navigation.PushModalAsync(new AddAttachmentPermit(this));
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        await Application.Current.MainPage.DisplayAlert("Error", "Please check permission to pick a PDF, close app and try again.", "Ok");
                     }
                     break;
+
             }
         }
 
