@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using PropertyChanged;
 
-namespace mcms.ViewModels
+namespace McmsApp.ViewModels
 {
     [AddINotifyPropertyChangedInterface]
     public class BaseViewModel : INotifyPropertyChanged

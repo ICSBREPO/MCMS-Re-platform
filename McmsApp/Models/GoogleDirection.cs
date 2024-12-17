@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 
-namespace mcms.Models
+namespace McmsApp.Models
 {
     public class GeocodedWaypoint
     {

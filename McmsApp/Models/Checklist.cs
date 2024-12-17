@@ -6,7 +6,7 @@ using PropertyChanged;
 using SQLite;
 using SQLiteNetExtensions.Attributes;
 
-namespace mcms.Models
+namespace McmsApp.Models
 {
     [AddINotifyPropertyChangedInterface]
     public class Tnbwochecklist : INotifyPropertyChanged
@@ -54,7 +54,7 @@ namespace mcms.Models
         public int totalAttachment { get; set; }
         public int totalSignature { get; set; }
         public bool pendingupdate { get; set; }
-        public Syncfusion.XForms.BadgeView.BadgeIcon badgeicon { get; set; }
+        public Syncfusion.Maui.Core.BadgeIcon badgeicon { get; set; }
         [OneToOne(CascadeOperations = CascadeOperation.All)]
         public ErrorResponse Error { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -77,7 +77,7 @@ namespace mcms.Models
         public int tnbsequence { get; set; }
         public int totalIndicator { get; set; }
         public bool pendingupdate { get; set; }
-        public Syncfusion.XForms.BadgeView.BadgeIcon badgeicon { get; set; }
+        public Syncfusion.Maui.Core.BadgeIcon badgeicon { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
     }
     [AddINotifyPropertyChangedInterface]

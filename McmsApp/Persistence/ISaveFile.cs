@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace mcms.Persistence
+namespace McmsApp.Persistence
 {
     public interface ISaveFile
     {

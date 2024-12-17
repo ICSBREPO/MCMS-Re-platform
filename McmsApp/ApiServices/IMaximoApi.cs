@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using mcms.Models;
-using Xamarin.Forms;
+using McmsApp.Models;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 
-namespace mcms.ApiServices
+namespace McmsApp.ApiServices
 {
     public interface IMaximoApi
     {

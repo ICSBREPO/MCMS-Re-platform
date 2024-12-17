@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
 
-namespace mcms.Models
+namespace McmsApp.Models
 {
     public class Tnbchecklistvalue : INotifyPropertyChanged
     {

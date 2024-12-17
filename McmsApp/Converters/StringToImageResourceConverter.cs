@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Globalization;
 using System.Reflection;
-using Xamarin.Forms;
-using Xamarin.Forms.Internals;
-namespace mcms.Converters
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
+using Microsoft.Maui.Controls.Internals;
+
+namespace McmsApp.Converters
 {
     [Preserve(AllMembers = true)]
     public class StringToImageResourceConverter : IValueConverter

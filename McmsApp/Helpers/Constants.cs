@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
 
-namespace mcms.Helpers
+
+namespace McmsApp.Helpers
 {
     public class RestApi
     {

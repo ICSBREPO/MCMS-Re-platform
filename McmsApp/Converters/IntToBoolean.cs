@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Text;
-using Xamarin.Forms;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 
-namespace mcms.Converters
+namespace McmsApp.Converters
 {
     internal class IntToBoolean : IValueConverter
     {

@@ -1,4 +1,4 @@
-﻿using mcms.Models;
+﻿using McmsApp.Models;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace mcms.Persistence
+namespace McmsApp.Persistence
 {
     public class SQLiteTnbwochecklistsignature : ITnbwochecklistsignature
     {

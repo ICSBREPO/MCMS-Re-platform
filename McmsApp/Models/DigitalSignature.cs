@@ -5,7 +5,7 @@ using PropertyChanged;
 using SQLite;
 using SQLiteNetExtensions.Attributes;
 
-namespace mcms.Models
+namespace McmsApp.Models
 {
     [AddINotifyPropertyChangedInterface]
     public class Tnbwochecklistsignature : INotifyPropertyChanged

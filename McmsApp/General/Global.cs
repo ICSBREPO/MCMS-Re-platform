@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace mcms.General
+namespace McmsApp.General
 {
     class Global
     {

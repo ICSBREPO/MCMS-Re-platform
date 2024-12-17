@@ -3,9 +3,9 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using PropertyChanged;
-using Xamarin.Forms.Internals;
+using Microsoft.Maui.Controls.Internals;
 
-namespace mcms.Models
+namespace McmsApp.Models
 {
     [Preserve(AllMembers = true)]
 

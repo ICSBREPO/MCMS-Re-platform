@@ -2,10 +2,12 @@
 using System.IO;
 using System.Reflection;
 using SkiaSharp;
-using SkiaSharp.Views.Forms;
-using Xamarin.Forms;
+using SkiaSharp.Views.Maui;
+using SkiaSharp.Views.Maui.Controls;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 
-namespace mcms.Controls
+namespace McmsApp.Controls
 {
     public class SVGImage : ContentView
     {
@@ -18,7 +20,7 @@ namespace mcms.Controls
         public SVGImage()
         {
             this.Padding = new Thickness(0);
-            this.BackgroundColor = Color.Transparent;
+            this.BackgroundColor = Colors.Transparent;
             this.Content = this.canvasView;
             this.canvasView.PaintSurface += this.CanvasView_PaintSurface;
         }

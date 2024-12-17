@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace mcms.Resx {
+namespace McmsApp.Resx {
     using System;
     using System.Reflection;
     

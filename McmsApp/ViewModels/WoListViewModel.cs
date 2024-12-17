@@ -6,22 +6,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Acr.UserDialogs;
-using mcms.ApiServices;
-using mcms.Models;
-using mcms.Persistence;
-using mcms.Themes;
-using mcms.Views.Login;
-using mcms.Views.PopupPages;
-using mcms.Views.Work;
-using mcms.Views.Work.WorkDetail;
+using Controls.UserDialogs.Maui;
+using McmsApp.ApiServices;
+using McmsApp.Models;
+using McmsApp.Persistence;
+using McmsApp.Themes;
+using McmsApp.Views.Login;
+using McmsApp.Views.PopupPages;
+using McmsApp.Views.Work;
+using McmsApp.Views.Work.WorkDetail;
 using Newtonsoft.Json;
-using Syncfusion.ListView.XForms;
-using Syncfusion.XForms.TabView;
-using Xamarin.Essentials;
-using Xamarin.Forms;
+using Syncfusion.Maui.ListView;
+using Syncfusion.Maui.TabView;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 
-namespace mcms.ViewModels
+namespace McmsApp.ViewModels
 {
     public class WoListViewModel : BaseViewModel
     {

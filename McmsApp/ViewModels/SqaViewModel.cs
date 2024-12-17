@@ -1,19 +1,19 @@
-﻿using Acr.UserDialogs;
-using mcms.ApiServices;
-using mcms.General;
-using mcms.Helpers;
-using mcms.Models;
-using mcms.Persistence;
-using mcms.Views.Home;
-using mcms.Views.ImagePreview;
-using mcms.Views.Login;
-using mcms.Views.Work;
-using mcms.Views.Work.WorkDetail.SQA;
-using Plugin.FilePicker;
-using Plugin.Media;
-using Plugin.Media.Abstractions;
-using Syncfusion.ListView.XForms;
-using Syncfusion.XForms.TabView;
+﻿using Controls.UserDialogs.Maui;
+using McmsApp.ApiServices;
+using McmsApp.General;
+using McmsApp.Helpers;
+using McmsApp.Models;
+using McmsApp.Persistence;
+using McmsApp.Views.Home;
+using McmsApp.Views.ImagePreview;
+using McmsApp.Views.Login;
+using McmsApp.Views.Work;
+using McmsApp.Views.Work.WorkDetail.SQA;
+//using Plugin.FilePicker;
+//using Plugin.Media;
+//using Plugin.Media.Abstractions;
+using Syncfusion.Maui.ListView;
+using Syncfusion.Maui.TabView;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -22,10 +22,13 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Xamarin.Essentials;
-using Xamarin.Forms;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
+//using Xamarin.Google.Crypto.Tink.Prf;
+using Microsoft.Maui.Storage;
+using Microsoft.Maui.Media;
 
-namespace mcms.ViewModels
+namespace McmsApp.ViewModels
 {
     public class SqaViewModel : BaseViewModel
     {
@@ -155,7 +158,7 @@ namespace mcms.ViewModels
                 if (check)
                 {
                     Doclinks doclinks = await maxrest.GetDoclinks(TempAttachment.doclinksid);
-                    UserDialogs.Instance.HideLoading();
+                    UserDialogs.Instance.HideHud();
                     if (doclinks == null)
                     {
                         await UserDialogs.Instance.AlertAsync("Failed to download attachment, please try again later!", "Warning!", "Ok");
@@ -201,14 +204,14 @@ namespace mcms.ViewModels
                 }
                 else
                 {
-                    UserDialogs.Instance.HideLoading();
+                    UserDialogs.Instance.HideHud();
                     await UserDialogs.Instance.AlertAsync("Failed to download attachment, please try again later!", "Warning!", "Ok");
                 }
             }
             catch (Exception e)
             {
                 await UserDialogs.Instance.AlertAsync($"Error : {e.Message}", "Warning", "OK");
-                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.HideHud();
             }
         }
 
@@ -361,11 +364,11 @@ namespace mcms.ViewModels
                 {
                     if (sqa.pendingupload)
                     {
-                        sqa.badgeicon = Syncfusion.XForms.BadgeView.BadgeIcon.Away;
+                        sqa.badgeicon = Syncfusion.Maui.Core.BadgeIcon.Away;
                     }
                     else
                     {
-                        sqa.badgeicon = Syncfusion.XForms.BadgeView.BadgeIcon.None;
+                        sqa.badgeicon = Syncfusion.Maui.Core.BadgeIcon.None;
                     }
 
                     sqa.plusgaudline = await sqlplusgaud.GetPlusgaudlineBySQA(sqa.id);
@@ -388,11 +391,11 @@ namespace mcms.ViewModels
             {
                 if (tnbsignature.pendingupdate)
                 {
-                    tnbsignature.badgeicon = Syncfusion.XForms.BadgeView.BadgeIcon.Away;
+                    tnbsignature.badgeicon = Syncfusion.Maui.Core.BadgeIcon.Away;
                 }
                 else
                 {
-                    tnbsignature.badgeicon = Syncfusion.XForms.BadgeView.BadgeIcon.None;
+                    tnbsignature.badgeicon = Syncfusion.Maui.Core.BadgeIcon.None;
                 }
             }
              SelectedSQA.totalSignature = SelectedSQA.tnbsignature.Count;
@@ -542,55 +545,126 @@ namespace mcms.ViewModels
             await Navigation.PopModalAsync();
         }
 
-        private async Task takePictureFromCamera()
+        //private async Task takePictureFromCamera()
+        //{
+        //    try
+        //    {
+        //        var status = await Permissions.RequestAsync<Permissions.Camera>();
+        //        await CrossMedia.Current.Initialize();
+
+        //        if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+        //        {
+        //            await UserDialogs.Instance.AlertAsync(":(", "Camera Not Available", "Ok");
+        //            return;
+        //        }
+
+        //        string filename = "filesqa" + DateTimeOffset.Now.ToUnixTimeSeconds();
+
+        //        var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+        //        {
+
+        //            Directory = "MCMS",
+        //            Name = filename,
+        //            PhotoSize = PhotoSize.MaxWidthHeight,
+        //            CompressionQuality = 92,
+        //            AllowCropping = false
+        //        });
+
+        //        if (file == null)
+        //            return;
+        //        byte[] b = File.ReadAllBytes(file.Path);
+        //        String Base64File = Convert.ToBase64String(b);
+
+        //        var folderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        //        var filePath = Path.Combine(folderPath, filename + ".jpg");
+        //        File.WriteAllBytes(filePath, b);
+
+        //        isImage = true;
+        //        isPdf = false;
+
+        //        TempAttachment = new Doclinks
+        //        {
+        //            fileName = filename + ".jpg",
+        //            title = filename,
+        //            ownertable = "PLUSGAUDIT",
+        //            documentdata = Base64File,
+        //            previewdoc = Base64File,
+        //            urlname = filename + ".jpg",
+        //            urltype = "FILE",
+        //            doctype = "Attachments",
+        //            modified = DateTime.Now.ToLocalTime(),
+        //        };
+        //        await Navigation.PushModalAsync(new AddAttachments(this));
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Console.WriteLine(e.Message);
+        //        await UserDialogs.Instance.AlertAsync("Please Check Camera Permission, Close App And Open Again", "Alert!", "Ok");
+        //    }
+        //}
+
+        private async Task TakePictureFromCamera()
         {
             try
             {
+                
                 var status = await Permissions.RequestAsync<Permissions.Camera>();
-                await CrossMedia.Current.Initialize();
+                if (status != PermissionStatus.Granted)
+                {
+                    await UserDialogs.Instance.AlertAsync("Camera permission denied", "Permission Error", "Ok");
+                    return;
+                }
 
-                if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
+               
+                if (!MediaPicker.IsCaptureSupported)
                 {
                     await UserDialogs.Instance.AlertAsync(":(", "Camera Not Available", "Ok");
                     return;
                 }
 
+                //  filename Name
                 string filename = "filesqa" + DateTimeOffset.Now.ToUnixTimeSeconds();
 
-                var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+               
+                var fileResult = await MediaPicker.CapturePhotoAsync(new MediaPickerOptions
                 {
-                    
-                    Directory = "MCMS",
-                    Name = filename,
-                    PhotoSize = PhotoSize.MaxWidthHeight,
-                    CompressionQuality = 92,
-                    AllowCropping = false
+
+                    //Need to check later for the sizing and quality of the photo as default MAUI libaray do not support : check the using SkiaSharp;
+                    //PhotoSize = PhotoSize.Medium, // You can adjust the photo size
+                    //CompressionQuality = 92
                 });
 
-                if (file == null)
+                if (fileResult == null)
                     return;
-                byte[] b = File.ReadAllBytes(file.Path);
-                String Base64File = Convert.ToBase64String(b);
 
-                var folderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+                
+                byte[] b = await File.ReadAllBytesAsync(fileResult.FullPath);
+                string base64File = Convert.ToBase64String(b);
+
+                
+                var folderPath = FileSystem.AppDataDirectory;
                 var filePath = Path.Combine(folderPath, filename + ".jpg");
-                File.WriteAllBytes(filePath, b);
+                await File.WriteAllBytesAsync(filePath, b);
 
+                
                 isImage = true;
                 isPdf = false;
 
+                
                 TempAttachment = new Doclinks
                 {
                     fileName = filename + ".jpg",
                     title = filename,
                     ownertable = "PLUSGAUDIT",
-                    documentdata = Base64File,
-                    previewdoc = Base64File,
+                    documentdata = base64File,
+                    previewdoc = base64File,
                     urlname = filename + ".jpg",
                     urltype = "FILE",
                     doctype = "Attachments",
                     modified = DateTime.Now.ToLocalTime(),
                 };
+
+                // Navigate to the AddAttachments page
                 await Navigation.PushModalAsync(new AddAttachments(this));
             }
             catch (Exception e)
@@ -600,120 +674,243 @@ namespace mcms.ViewModels
             }
         }
 
-        private async Task takePictureFromDevices()
+        //private async Task takePictureFromDevices()
+        //{
+        //    try
+        //    {
+        //        await CrossMedia.Current.Initialize();
+        //        if (!CrossMedia.Current.IsPickPhotoSupported)
+        //        {
+        //            await UserDialogs.Instance.AlertAsync("No Gallery Detected");
+        //            return;
+        //        }
+        //        else
+        //        {
+        //            var file = await CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
+        //            {
+        //                PhotoSize = PhotoSize.MaxWidthHeight,
+
+        //            });
+
+        //            if (file == null)
+        //            {
+        //                return;
+        //            }
+        //            string filename = "filesqa" + +DateTimeOffset.Now.ToUnixTimeSeconds();
+        //            byte[] b = File.ReadAllBytes(file.Path);
+        //            String Base64File = Convert.ToBase64String(b);
+        //            var folderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        //            var filePath = Path.Combine(folderPath, filename + ".jpg");
+        //            File.WriteAllBytes(filePath, b);
+
+        //            isImage = true;
+        //            isPdf = false;
+
+        //            TempAttachment = new Doclinks
+        //            {
+        //                fileName = filename + ".jpg",
+        //                title = filename,
+        //                ownertable = "PLUSGAUDIT",
+        //                previewdoc = Base64File,
+        //                documentdata = Base64File,
+        //                urlname = filename + ".jpg",
+        //                urltype = "FILE",
+        //                doctype = "Attachments",
+        //                modified = DateTime.Now.ToLocalTime(),
+        //            };
+        //            await Navigation.PushModalAsync(new AddAttachments(this));
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        await UserDialogs.Instance.AlertAsync("Please Check Permission to Pick From Galery, Close App And Open Again", "Alert!", "Ok");
+        //    }
+
+        //}
+        private async Task TakePictureFromDevices()
         {
             try
             {
-                await CrossMedia.Current.Initialize();
-                if (!CrossMedia.Current.IsPickPhotoSupported)
+               
+                var status = await Permissions.RequestAsync<Permissions.Photos>();
+                if (status != PermissionStatus.Granted)
                 {
-                    await UserDialogs.Instance.AlertAsync("No Gallery Detected");
+                    await UserDialogs.Instance.AlertAsync("Gallery permission denied", "Permission Error", "Ok");
                     return;
                 }
-                else
+
+                
+                var fileResult = await MediaPicker.PickPhotoAsync();
+
+                if (fileResult == null)
                 {
-                    var file = await CrossMedia.Current.PickPhotoAsync(new Plugin.Media.Abstractions.PickMediaOptions
-                    {
-                        PhotoSize = PhotoSize.MaxWidthHeight,
-
-                    });
-
-                    if (file == null)
-                    {
-                        return;
-                    }
-                    string filename = "filesqa" + +DateTimeOffset.Now.ToUnixTimeSeconds();
-                    byte[] b = File.ReadAllBytes(file.Path);
-                    String Base64File = Convert.ToBase64String(b);
-                    var folderPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-                    var filePath = Path.Combine(folderPath, filename + ".jpg");
-                    File.WriteAllBytes(filePath, b);
-
-                    isImage = true;
-                    isPdf = false;
-
-                    TempAttachment = new Doclinks
-                    {
-                        fileName = filename + ".jpg",
-                        title = filename,
-                        ownertable = "PLUSGAUDIT",
-                        previewdoc = Base64File,
-                        documentdata = Base64File,
-                        urlname = filename + ".jpg",
-                        urltype = "FILE",
-                        doctype = "Attachments",
-                        modified = DateTime.Now.ToLocalTime(),
-                    };
-                    await Navigation.PushModalAsync(new AddAttachments(this));
+                    await UserDialogs.Instance.AlertAsync("No photo selected", "Error", "Ok");
+                    return;
                 }
+
+                
+                string filename = "filesqa" + DateTimeOffset.Now.ToUnixTimeSeconds();
+
+               
+                byte[] b = await File.ReadAllBytesAsync(fileResult.FullPath);
+                string base64File = Convert.ToBase64String(b);
+
+                
+                var folderPath = FileSystem.AppDataDirectory;
+                var filePath = Path.Combine(folderPath, filename + ".jpg");
+                await File.WriteAllBytesAsync(filePath, b);
+
+               
+                isImage = true;
+                isPdf = false;
+
+                // Create Doclinks object for the attachment
+                TempAttachment = new Doclinks
+                {
+                    fileName = filename + ".jpg",
+                    title = filename,
+                    ownertable = "PLUSGAUDIT",
+                    previewdoc = base64File,
+                    documentdata = base64File,
+                    urlname = filename + ".jpg",
+                    urltype = "FILE",
+                    doctype = "Attachments",
+                    modified = DateTime.Now.ToLocalTime(),
+                };
+
+               
+                await Navigation.PushModalAsync(new AddAttachments(this));
             }
             catch (Exception)
             {
-                await UserDialogs.Instance.AlertAsync("Please Check Permission to Pick From Galery, Close App And Open Again", "Alert!", "Ok");
+                await UserDialogs.Instance.AlertAsync("Please Check Permission to Pick From Gallery, Close App And Open Again", "Alert!", "Ok");
             }
-
         }
+        //private async Task takeFileFromFolder()
+        //{
+        //    try
+        //    {
+                
+        //        var customFileType = new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
+        //        {
+        //            { DevicePlatform.iOS, new[] { "com.adobe.pdf" } }, // or general UTType values
+        //            { DevicePlatform.Android, new[] { "application/pdf" } },
+        //            { DevicePlatform.UWP, new[] { ".pdf" } },
+        //            { DevicePlatform.Tizen, new[] { "*/*" } },
+        //            { DevicePlatform.macOS, new[] { "pdf" } }, // or general UTType values
+        //        });
 
-        private async Task takeFileFromFolder()
+        //        var pickResult = await FilePicker.PickAsync(new PickOptions
+        //        {
+        //            FileTypes = customFileType,
+        //            PickerTitle = "Pick a pdf"
+        //        });
+
+        //        if (pickResult != null)
+        //        {
+        //            string filename = "filesqa" + DateTimeOffset.Now.ToUnixTimeSeconds();
+
+        //            isImage = false;
+        //            isPdf = true;
+        //            System.Diagnostics.Debug.WriteLine(pickResult.FullPath);
+        //            m_pdfDocumentStream = await pickResult.OpenReadAsync();
+        //            var bytes = new Byte[(int)m_pdfDocumentStream.Length];
+
+        //            m_pdfDocumentStream.Seek(0, SeekOrigin.Begin);
+        //            m_pdfDocumentStream.Read(bytes, 0, (int)m_pdfDocumentStream.Length);
+        //            TempAttachment = new Doclinks
+        //            {
+        //                fileName = filename+".pdf",
+        //                title = filename + ".pdf",
+        //                ownertable = "PLUSGAUDIT",
+        //                previewdoc = Base64Files.pdfimage,
+        //                documentdata = Convert.ToBase64String(bytes),
+        //                urltype = "FILE",
+        //                doctype = "Attachments",
+        //                modified = DateTime.Now.ToLocalTime(),
+        //                createdate = DateTime.Now.ToLocalTime(),
+        //            };
+
+        //            await Navigation.PushModalAsync(new AddAttachments(this));
+
+        //        }
+        //        else
+        //        {
+        //            await UserDialogs.Instance.AlertAsync("Opps! Looks like something wrong with your file", "Alert!", "Ok");
+        //        }
+        //    }
+        //    catch (Exception g)
+        //    {
+        //        Console.WriteLine("===ERROR: " + g.Message + "===");
+        //    }
+        //}
+
+        
+
+
+private async Task TakeFileFromFolder()
+    {
+        try
         {
-            try
+            // Define custom file types (e.g., PDF files) based on the platform
+            var customFileType = new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
+        {
+            { DevicePlatform.iOS, new[] { "com.adobe.pdf" } },
+            { DevicePlatform.Android, new[] { "application/pdf" } },
+            { DevicePlatform.UWP, new[] { ".pdf" } },
+            { DevicePlatform.Tizen, new[] { "*/*" } },
+            { DevicePlatform.macOS, new[] { "pdf" } },
+        });
+
+           
+            var pickResult = await FilePicker.PickAsync(new PickOptions
             {
-                // Do Something when 'Choose From File' Button is pressed
-                var customFileType = new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
+                FileTypes = customFileType,
+                PickerTitle = "Pick a PDF"
+            });
+
+            
+            if (pickResult != null)
+            {
+                string filename = "filesqa" + DateTimeOffset.Now.ToUnixTimeSeconds();
+                isImage = false;
+                isPdf = true;
+
+                
+                using var fileStream = await pickResult.OpenReadAsync();
+                var bytes = new byte[fileStream.Length];
+                await fileStream.ReadAsync(bytes, 0, (int)fileStream.Length);
+
+                
+                TempAttachment = new Doclinks
                 {
-                    { DevicePlatform.iOS, new[] { "com.adobe.pdf" } }, // or general UTType values
-                    { DevicePlatform.Android, new[] { "application/pdf" } },
-                    { DevicePlatform.UWP, new[] { ".pdf" } },
-                    { DevicePlatform.Tizen, new[] { "*/*" } },
-                    { DevicePlatform.macOS, new[] { "pdf" } }, // or general UTType values
-                });
+                    fileName = filename + ".pdf",
+                    title = filename + ".pdf",
+                    ownertable = "PLUSGAUDIT",
+                    previewdoc = Base64Files.pdfimage, 
+                    documentdata = Convert.ToBase64String(bytes),
+                    urltype = "FILE",
+                    doctype = "Attachments",
+                    modified = DateTime.Now.ToLocalTime(),
+                    createdate = DateTime.Now.ToLocalTime(),
+                };
 
-                var pickResult = await FilePicker.PickAsync(new PickOptions
-                {
-                    FileTypes = customFileType,
-                    PickerTitle = "Pick a pdf"
-                });
-
-                if (pickResult != null)
-                {
-                    string filename = "filesqa" + DateTimeOffset.Now.ToUnixTimeSeconds();
-
-                    isImage = false;
-                    isPdf = true;
-                    System.Diagnostics.Debug.WriteLine(pickResult.FullPath);
-                    m_pdfDocumentStream = await pickResult.OpenReadAsync();
-                    var bytes = new Byte[(int)m_pdfDocumentStream.Length];
-
-                    m_pdfDocumentStream.Seek(0, SeekOrigin.Begin);
-                    m_pdfDocumentStream.Read(bytes, 0, (int)m_pdfDocumentStream.Length);
-                    TempAttachment = new Doclinks
-                    {
-                        fileName = filename+".pdf",
-                        title = filename + ".pdf",
-                        ownertable = "PLUSGAUDIT",
-                        previewdoc = Base64Files.pdfimage,
-                        documentdata = Convert.ToBase64String(bytes),
-                        urltype = "FILE",
-                        doctype = "Attachments",
-                        modified = DateTime.Now.ToLocalTime(),
-                        createdate = DateTime.Now.ToLocalTime(),
-                    };
-
-                    await Navigation.PushModalAsync(new AddAttachments(this));
-
-                }
-                else
-                {
-                    await UserDialogs.Instance.AlertAsync("Opps! Looks like something wrong with your file", "Alert!", "Ok");
-                }
+               
+                await Navigation.PushModalAsync(new AddAttachments(this));
             }
-            catch (Exception g)
+            else
             {
-                Console.WriteLine("===ERROR: " + g.Message + "===");
+                await UserDialogs.Instance.AlertAsync("Oops! Looks like something went wrong with your file.", "Alert!", "Ok");
             }
         }
+        catch (Exception g)
+        {
+            Console.WriteLine("===ERROR: " + g.Message + "===");
+            await UserDialogs.Instance.AlertAsync("An error occurred. Please try again.", "Error", "Ok");
+        }
+    }
 
-        private async Task SaveAttachment()
+    private async Task SaveAttachment()
         {
             
             //global.isRefreshWorkDetail = true;
@@ -817,7 +1014,7 @@ namespace mcms.ViewModels
                     SelectedSQA._action = "Add";
                     Plusgaudit responseAdd = await maxrest.AddSQA(SelectedSQA);
                     //Debug.WriteLine("Send data to : " + responseAdd.auditnum);
-                    UserDialogs.Instance.HideLoading();
+                    UserDialogs.Instance.HideHud();
                     if (responseAdd.Error != null)
                     {
                         await UserDialogs.Instance.AlertAsync($"{responseAdd.Error.message}", "Error", "Ok");
@@ -971,7 +1168,7 @@ namespace mcms.ViewModels
                 else
                 {
 
-                    UserDialogs.Instance.HideLoading();
+                    UserDialogs.Instance.HideHud();
                     //IF CANNOT CONNECT TO INTERNET OR SERVER
                     Debug.WriteLine("value of SQA is : " + SelectedSQA.status);
                     if (!global.isNewSQA)
@@ -1047,7 +1244,7 @@ namespace mcms.ViewModels
                 {
                     //DO UPDATE ACTION
                     Plusgaudit responseUpdate = await maxrest.UpdateSQA(SelectedSQA);
-                    UserDialogs.Instance.HideLoading();
+                    UserDialogs.Instance.HideHud();
 
                     if (responseUpdate.Error != null)
                     {
@@ -1120,7 +1317,7 @@ namespace mcms.ViewModels
                 }
                 else
                 {
-                    UserDialogs.Instance.HideLoading();
+                    UserDialogs.Instance.HideHud();
                     //IF CANNOT REACH INTERNET OR SERVER
                     Debug.WriteLine("I am offline SQA Creater ELSE");
                     SelectedSQA.pendingupload = true;
@@ -1174,7 +1371,7 @@ namespace mcms.ViewModels
                 {
                     res = await maxrest.AddSignatures(SelectedSignature);
                 }
-                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.HideHud();
 
                 if (res == null)
                 {
@@ -1251,7 +1448,7 @@ namespace mcms.ViewModels
             }
             else
             {
-                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.HideHud();
                 SelectedSignature.pendingupdate = true;
                 SelectedSQA.pendingupload = true;
                 SQLitePlusgaudit plusgaudit = new SQLitePlusgaudit();
@@ -1285,7 +1482,7 @@ namespace mcms.ViewModels
             if(SelectedSignature.tnbsignatureid == 0 || SelectedSignature.tnbsignatureid == null)
             {
                 await sqlsignature.DeleteTnbsignature(SelectedSignature);
-                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.HideHud();
                 await LoadSignatureList();
                 await UserDialogs.Instance.AlertAsync("Signature Deleted", "Success", "Ok");
                 return;
@@ -1295,7 +1492,7 @@ namespace mcms.ViewModels
             {
                 SelectedSignature._action = "Delete";
                 Tnbsignature res = await maxrest.UpdateSignatures(SelectedSignature);
-                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.HideHud();
 
                 if (res == null)
                 {
@@ -1323,7 +1520,7 @@ namespace mcms.ViewModels
             }
             else
             {
-                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.HideHud();
                 await UserDialogs.Instance.AlertAsync("Please check your internet connection and try again!", "Failed!", "Ok");
             }
         }

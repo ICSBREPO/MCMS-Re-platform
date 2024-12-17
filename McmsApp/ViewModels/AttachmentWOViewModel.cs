@@ -7,22 +7,22 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Acr.UserDialogs;
-using mcms.ApiServices;
-using mcms.General;
-using mcms.Helpers;
-using mcms.Models;
-using mcms.Persistence;
-using mcms.Views.ImagePreview;
-using mcms.Views.Login;
-using mcms.Views.Work.WorkDetail.Attachment;
+using Controls.UserDialogs.Maui;
+using McmsApp.ApiServices;
+using McmsApp.General;
+using McmsApp.Helpers;
+using McmsApp.Models;
+using McmsApp.Persistence;
+using McmsApp.Views.ImagePreview;
+using McmsApp.Views.Login;
+using McmsApp.Views.Work.WorkDetail.Attachment;
 using Plugin.Media;
 using Plugin.Media.Abstractions;
-using Syncfusion.ListView.XForms;
-using Xamarin.Essentials;
-using Xamarin.Forms;
+using Syncfusion.Maui.ListView;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 
-namespace mcms.ViewModels
+namespace McmsApp.ViewModels
 {
     public class AttachmentWOViewModel : BaseViewModel
     {
@@ -162,7 +162,7 @@ namespace mcms.ViewModels
                 if (check)
                 {
                     Doclinks doclinks = await maxrest.GetDoclinks(selectedDoclink.doclinksid);
-                    UserDialogs.Instance.HideLoading();
+                    UserDialogs.Instance.HideHud();
                     if (doclinks == null)
                     {
                         await UserDialogs.Instance.AlertAsync("Failed to download attachment, please try again later!", "Warning!", "Ok");
@@ -203,14 +203,14 @@ namespace mcms.ViewModels
                 }
                 else
                 {
-                    UserDialogs.Instance.HideLoading();
+                    UserDialogs.Instance.HideHud();
                     await UserDialogs.Instance.AlertAsync("Failed to download attachment, please try again later!", "Warning!", "Ok");
                 }
             }
             catch(Exception e)
             {
                 await UserDialogs.Instance.AlertAsync($"Error : {e.Message}", "Warning", "OK");
-                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.HideHud();
             }
         }
 
@@ -268,11 +268,11 @@ namespace mcms.ViewModels
                 {
                     if (doc.pendingupload)
                     {
-                        doc.badgeicon = Syncfusion.XForms.BadgeView.BadgeIcon.Away;
+                        doc.badgeicon = Syncfusion.Maui.Core.BadgeIcon.Away;
                     }
                     else
                     {
-                        doc.badgeicon = Syncfusion.XForms.BadgeView.BadgeIcon.None;
+                        doc.badgeicon = Syncfusion.Maui.Core.BadgeIcon.None;
                     }
                     if (doc.documentdata == null)
                     {
@@ -295,7 +295,7 @@ namespace mcms.ViewModels
                 
 
             }
-            UserDialogs.Instance.HideLoading();
+            UserDialogs.Instance.HideHud();
         }
 
         private void backPage()
@@ -584,7 +584,7 @@ namespace mcms.ViewModels
             UserDialogs.Instance.ShowLoading("Deleting Attachment...");
             if (selectedDoclink.docinfoid == 0 || selectedDoclink.docinfoid == null)
             {
-                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.HideHud();
                 selectedDoclink.pendingupload = false;
                 await sqldoc.DeleteDoclinks(selectedDoclink);
             }
@@ -598,7 +598,7 @@ namespace mcms.ViewModels
                 workorder.doclinks.Add(selectedDoclink);
 
                 Workorder delDoclink = await maxrest.UpdateWO(workorder, "workorderid");
-                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.HideHud();
                 if (delDoclink == null)
                 {
                     selectedDoclink.isdelete = true;
@@ -670,7 +670,7 @@ namespace mcms.ViewModels
                         updatewo.doclinks.Add(selectedDoclink);
                         updatewo.workorderid = workorder.workorderid;
                         Workorder uploadDoclink = await maxrest.UpdateWO(updatewo, "doclinks");
-                        UserDialogs.Instance.HideLoading();
+                        UserDialogs.Instance.HideHud();
                         if (uploadDoclink == null)
                         {
                             selectedDoclink.pendingupload = true;
@@ -708,7 +708,7 @@ namespace mcms.ViewModels
                     }
                     else
                     {
-                        UserDialogs.Instance.HideLoading();
+                        UserDialogs.Instance.HideHud();
                         selectedDoclink.pendingupload = true;
                         await sqldoc.AddDoclinks(selectedDoclink);
                         await UserDialogs.Instance.AlertAsync("Attachment Successfully Added but Pending upload to Maximo", "Success!", "Ok");
@@ -732,7 +732,7 @@ namespace mcms.ViewModels
             }
             catch(Exception e)
             {
-                UserDialogs.Instance.HideLoading();
+                UserDialogs.Instance.HideHud();
                 await UserDialogs.Instance.AlertAsync($"{e.Message}, Please Try Again", "Error!", "Ok");
             }
             

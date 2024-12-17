@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using mcms.Models;
-using Xamarin.Forms;
+using McmsApp.Models;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 
-namespace mcms.ViewModels
+namespace McmsApp.ViewModels
 {
     public class NotificationViewModel : BaseViewModel
     {

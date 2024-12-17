@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using SQLite;
 
-namespace mcms.Models
+namespace McmsApp.Models
 {
     public class Theme
     {

@@ -2,19 +2,19 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Acr.UserDialogs;
-using mcms.ApiServices;
-using mcms.Models;
-using mcms.Persistence;
-using mcms.Views.Login;
-using mcms.Views.Work.WorkDetail;
-using Xamarin.Essentials;
-using Xamarin.Forms;
-using mcms.General;
-using mcms.Views.Work;
+using Controls.UserDialogs.Maui;
+using McmsApp.ApiServices;
+using McmsApp.Models;
+using McmsApp.Persistence;
+using McmsApp.Views.Login;
+using McmsApp.Views.Work.WorkDetail;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
+using McmsApp.General;
+using McmsApp.Views.Work;
 using System.Diagnostics;
 
-namespace mcms.ViewModels
+namespace McmsApp.ViewModels
 {
     public class WoDetailViewModel : BaseViewModel
     {

@@ -5,25 +5,26 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using mcms.ApiServices;
-using mcms.General;
-using mcms.Models;
-using mcms.Persistence;
-using mcms.Views.Home;
-using mcms.Views.Work.WorkDetail;
-using mcms.Views.Work.WorkDetail.Attachment;
-using mcms.Views.Work.WorkDetail.ChildWork;
-using mcms.Views.Work.WorkDetail.Permit;
-using mcms.Views.Work.WorkDetail.SQA;
-using mcms.Views.Work.WorkDetail.Testform;
-using mcms.Views.Work.WorkDetail.Testing;
-using mcms.Views.Work.WorkDetail.Woklog;
-using mcms.Views.Work.WorkDetail.Workorderspec;
-using Syncfusion.XForms.ProgressBar;
-using Syncfusion.XForms.TabView;
-using Xamarin.Forms;
+using McmsApp.ApiServices;
+using McmsApp.General;
+using McmsApp.Models;
+using McmsApp.Persistence;
+using McmsApp.Views.Home;
+using McmsApp.Views.Work.WorkDetail;
+using McmsApp.Views.Work.WorkDetail.Attachment;
+using McmsApp.Views.Work.WorkDetail.ChildWork;
+using McmsApp.Views.Work.WorkDetail.Permit;
+using McmsApp.Views.Work.WorkDetail.SQA;
+using McmsApp.Views.Work.WorkDetail.Testform;
+using McmsApp.Views.Work.WorkDetail.Testing;
+using McmsApp.Views.Work.WorkDetail.Woklog;
+using McmsApp.Views.Work.WorkDetail.Workorderspec;
+using Syncfusion.Maui.ProgressBar;
+using Syncfusion.Maui.TabView;
+using Microsoft.Maui;
+using Microsoft.Maui.Controls;
 
-namespace mcms.ViewModels
+namespace McmsApp.ViewModels
 {
     public class TemplateWODetailViewModel : BaseViewModel
     {

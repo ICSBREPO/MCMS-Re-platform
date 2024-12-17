@@ -1,5 +1,5 @@
 ﻿using System;
-namespace mcms.Models
+namespace McmsApp.Models
 {
     public class FaqsModel
     {

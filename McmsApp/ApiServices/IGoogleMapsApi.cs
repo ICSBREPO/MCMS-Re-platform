@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
-using mcms.Models;
+using McmsApp.Models;
 
-namespace mcms.ApiServices
+namespace McmsApp.ApiServices
 {
     public interface IGoogleMapsApi
     {
