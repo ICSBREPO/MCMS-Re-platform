@@ -1,8 +1,4 @@
 ﻿using McmsApp.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace McmsApp.Persistence
 {
@@ -15,8 +11,8 @@ namespace McmsApp.Persistence
         Task UpdateTnbsignature(Tnbsignature d);
         Task ResetTnbsignature();
         Task<List<Tnbsignature>> GetTnbsignatureByGroup(int id, string ownertable);
-     /*   Task<Tnbsignature> GetTnbsignaturefromPlusgaudit(int plusgauditid);*/
+        /*   Task<Tnbsignature> GetTnbsignaturefromPlusgaudit(int plusgauditid);*/
         /*Task<Tnbsignature> GetTnbwochecklistsignatureFromPlusgaudit(int plusgauditid);*/
-        Task<List<Tnbsignature>> GetTnbsignaturefromPlusgauditList(int plusgauditid,bool isref);
+        Task<List<Tnbsignature>> GetTnbsignaturefromPlusgauditList(int plusgauditid, bool isref);
     }
 }

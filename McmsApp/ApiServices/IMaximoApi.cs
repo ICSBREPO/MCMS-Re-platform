@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using McmsApp.Models;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
+﻿using McmsApp.Models;
 
 namespace McmsApp.ApiServices
 {
@@ -15,7 +10,7 @@ namespace McmsApp.ApiServices
         Task<UserProfile> whoAmI();
         //Get OS
         Task<ResPerson> GetPersons();
-        Task<RespDownloadWorkorder> GetWorkorder(string wonum,bool isattachment);
+        Task<RespDownloadWorkorder> GetWorkorder(string wonum, bool isattachment);
         Task<RespDownloadWorkorder> GetParentWorkorder(string parents, bool isattachment);
         Task<RespDownloadWorkorder> GetWorkorderQuery(string select, string where);
         Task<ResSQA> GetTemplateSQA();
@@ -32,7 +27,7 @@ namespace McmsApp.ApiServices
         Task<Plusgaudit> UpdateSQA(Plusgaudit body);
         Task<PermitWork> AddPermit(PermitWork body);
         Task<PermitWork> UpdatePermit(PermitWork body);
-        Task<Workorder> UpdateWO(Workorder body,string select);
+        Task<Workorder> UpdateWO(Workorder body, string select);
         Task<Asset> UpdateAsset(Asset body);
         Task<Locations> UpdateLocation(Locations body);
         Task<List<Lbslocation>> Updatelbslocation(Lbslocation body);

@@ -1,8 +1,4 @@
-﻿using System;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
-
-namespace SimpleSample
+﻿namespace SimpleSample
 {
     public class BehaviorBase<T> : Behavior<T> where T : BindableObject
     {

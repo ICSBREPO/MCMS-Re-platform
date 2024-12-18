@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using McmsApp.Models;
 using McmsApp.Persistence;
 using McmsApp.Views.Home;
 using McmsApp.Views.Work.WorkDetail;
 using Syncfusion.Maui.ListView;
 using Syncfusion.Maui.TabView;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
 
 namespace McmsApp.ViewModels
 {

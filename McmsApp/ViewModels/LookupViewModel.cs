@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Windows.Input;
 using McmsApp.Models;
 using McmsApp.Persistence;
 using Syncfusion.Maui.ListView;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
 
 namespace McmsApp.ViewModels
 {

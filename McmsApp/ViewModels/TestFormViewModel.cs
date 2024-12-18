@@ -7,15 +7,9 @@ using McmsApp.Views.Work;
 using McmsApp.Views.Work.WorkDetail.Attachment;
 using McmsApp.Views.Work.WorkDetail.Testform;
 using Syncfusion.Maui.ListView;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
 
 namespace McmsApp.ViewModels
 {

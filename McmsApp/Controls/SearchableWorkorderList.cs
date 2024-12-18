@@ -1,5 +1,4 @@
-﻿using System;
-namespace McmsApp.Controls
+﻿namespace McmsApp.Controls
 {
     /// <summary>
     /// This class extends the behavior of the SearchableListView control to filter the ListViewItem based on text.

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace McmsApp.General
+﻿namespace McmsApp.General
 {
     class Global
     {
         private static readonly Global instance = new Global();
-        
+
         static Global()
         {
 

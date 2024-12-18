@@ -1,9 +1,6 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using PropertyChanged;
 using Syncfusion.Maui.ProgressBar;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
 
 namespace McmsApp.Models
 {

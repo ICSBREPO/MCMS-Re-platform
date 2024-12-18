@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Controls.UserDialogs.Maui;
 using McmsApp.ApiServices;
 using McmsApp.Models;
 using McmsApp.Persistence;
 using McmsApp.Views.Login;
 using McmsApp.Views.Work.WorkDetail;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
 using McmsApp.General;
 using McmsApp.Views.Work;
 using System.Diagnostics;

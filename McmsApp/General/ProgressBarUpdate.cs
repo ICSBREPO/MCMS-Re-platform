@@ -2,15 +2,8 @@
 using McmsApp.Models;
 using McmsApp.Persistence;
 using Syncfusion.Maui.ProgressBar;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
 
 namespace McmsApp.General
 {

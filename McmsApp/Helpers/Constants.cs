@@ -1,8 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-
-
-namespace McmsApp.Helpers
+﻿namespace McmsApp.Helpers
 {
     public class RestApi
     {

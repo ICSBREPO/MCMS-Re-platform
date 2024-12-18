@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using McmsApp.Models;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
 
 namespace McmsApp.ViewModels
 {

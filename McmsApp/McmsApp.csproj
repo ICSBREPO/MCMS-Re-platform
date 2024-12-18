@@ -57,19 +57,11 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Remove="Themes\LightTheme.xaml" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <EmbeddedResource Include="Images\nointernet.svg" />
 	  <EmbeddedResource Include="Images\noitem.svg" />
 	  <EmbeddedResource Include="Images\nophotos.svg" />
 	  <EmbeddedResource Include="Images\notasks.svg" />
 	  <EmbeddedResource Include="Images\somethingwentwrong.svg" />
-	  <EmbeddedResource Include="Themes\LightTheme.xaml">
-	    <SubType>Designer</SubType>
-	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-	  </EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -122,6 +114,13 @@
 	    <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
 	    <Generator>ResXFileCodeGenerator</Generator>
 	  </EmbeddedResource>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Themes\LightTheme.xaml">
+	    <SubType>Designer</SubType>
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

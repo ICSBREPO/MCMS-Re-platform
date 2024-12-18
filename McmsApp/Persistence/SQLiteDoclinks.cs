@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
-using System.Threading.Tasks;
-using McmsApp.Models;
+﻿using McmsApp.Models;
 using SQLite;
 
 

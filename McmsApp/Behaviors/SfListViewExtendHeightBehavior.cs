@@ -1,10 +1,6 @@
-﻿using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 using Syncfusion.Maui.ListView;
 using Syncfusion.Maui.ListView.Helpers;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Internals;
 
 namespace McmsApp.Behaviors

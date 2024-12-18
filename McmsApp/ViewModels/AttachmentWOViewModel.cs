@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using System.Windows.Input;
 using Controls.UserDialogs.Maui;
 using McmsApp.ApiServices;
@@ -16,11 +9,8 @@ using McmsApp.Persistence;
 using McmsApp.Views.ImagePreview;
 using McmsApp.Views.Login;
 using McmsApp.Views.Work.WorkDetail.Attachment;
-using Plugin.Media;
-using Plugin.Media.Abstractions;
+using Microsoft.Maui.Media;
 using Syncfusion.Maui.ListView;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
 
 namespace McmsApp.ViewModels
 {

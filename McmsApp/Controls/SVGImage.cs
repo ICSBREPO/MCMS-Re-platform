@@ -1,11 +1,7 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
+﻿using System.Reflection;
 using SkiaSharp;
 using SkiaSharp.Views.Maui;
 using SkiaSharp.Views.Maui.Controls;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
 
 namespace McmsApp.Controls
 {

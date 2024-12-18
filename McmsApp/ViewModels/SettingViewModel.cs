@@ -1,24 +1,16 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using McmsApp.Models;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
 using Controls.UserDialogs.Maui;
 using McmsApp.Views.Login;
 using McmsApp.Persistence;
 using McmsApp.ApiServices;
-using System.Threading.Tasks;
-using Plugin.Media;
-using Plugin.Media.Abstractions;
-using System.IO;
+using Microsoft.Maui.Media;
 using McmsApp.Views.Setting;
-using System.Collections.Generic;
 using McmsApp.AppLayout;
 using McmsApp.Views.Tabbed;
-using System.Linq;
 using McmsApp.Views.Setting.ChangeProfile;
-using Plugin.Multilingual;
+using System.Globalization;
 using System.Diagnostics;
 
 namespace McmsApp.ViewModels

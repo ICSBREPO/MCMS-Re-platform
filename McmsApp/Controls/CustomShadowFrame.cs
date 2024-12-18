@@ -1,8 +1,4 @@
-﻿using System;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
-
-namespace McmsApp.Controls
+﻿namespace McmsApp.Controls
 {
     public class CustomShadowFrame : Frame
     {

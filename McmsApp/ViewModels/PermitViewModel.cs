@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Controls.UserDialogs.Maui;
 using McmsApp.ApiServices;
@@ -17,13 +12,7 @@ using McmsApp.Views.PopupPages;
 using McmsApp.Views.Work;
 using McmsApp.Views.Work.WorkDetail.Permit;
 using Newtonsoft.Json;
-//using Plugin.FilePicker;
-//using Plugin.FilePicker.Abstractions;
-//using Plugin.Media;
-//using Plugin.Media.Abstractions;
 using Syncfusion.Maui.ListView;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
 using Microsoft.Maui.Media;
 using Microsoft.Maui.Storage;
 

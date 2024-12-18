@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using McmsApp.ApiServices;
 using McmsApp.General;
@@ -21,8 +17,6 @@ using McmsApp.Views.Work.WorkDetail.Woklog;
 using McmsApp.Views.Work.WorkDetail.Workorderspec;
 using Syncfusion.Maui.ProgressBar;
 using Syncfusion.Maui.TabView;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
 
 namespace McmsApp.ViewModels
 {

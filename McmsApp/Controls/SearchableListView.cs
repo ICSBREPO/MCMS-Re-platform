@@ -1,7 +1,4 @@
-﻿using System;
-using Syncfusion.Maui.ListView;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
+﻿using Syncfusion.Maui.ListView;
 
 namespace McmsApp.Controls
 {

@@ -1,25 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using Controls.UserDialogs.Maui;
 using McmsApp.ApiServices;
 using McmsApp.Models;
 using McmsApp.Persistence;
-using McmsApp.Themes;
 using McmsApp.Views.Login;
-using McmsApp.Views.PopupPages;
 using McmsApp.Views.Work;
 using McmsApp.Views.Work.WorkDetail;
 using Newtonsoft.Json;
 using Syncfusion.Maui.ListView;
 using Syncfusion.Maui.TabView;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
 
 namespace McmsApp.ViewModels
 {

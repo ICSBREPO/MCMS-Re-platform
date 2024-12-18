@@ -1,7 +1,4 @@
-﻿using System;
-using McmsApp.Models;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
+﻿using McmsApp.Models;
 using Microsoft.Maui.Controls.Internals;
 
 namespace McmsApp.Controls

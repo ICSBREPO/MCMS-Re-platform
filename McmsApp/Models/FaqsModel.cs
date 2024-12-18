@@ -1,5 +1,4 @@
-﻿using System;
-namespace McmsApp.Models
+﻿namespace McmsApp.Models
 {
     public class FaqsModel
     {

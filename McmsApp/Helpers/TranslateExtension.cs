@@ -1,10 +1,6 @@
-﻿using System;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Resources;
-using Plugin.Multilingual;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
-using Microsoft.Maui.Controls.Xaml;
+using System.Globalization;
 
 namespace McmsApp.Helpers
 {

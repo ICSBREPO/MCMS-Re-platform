@@ -1,8 +1,4 @@
 ﻿using McmsApp.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace McmsApp.Persistence
 {
@@ -15,6 +11,6 @@ namespace McmsApp.Persistence
         Task UpdateTnbwochecklistsignature(Tnbwochecklistsignature d);
         Task ResetTnbwochecklistsignature();
         Task<List<Tnbwochecklistsignature>> GetTnbwochecklistsignatureByGroup(int id);
-      
+
     }
 }

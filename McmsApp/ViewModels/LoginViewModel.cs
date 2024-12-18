@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Controls.UserDialogs.Maui;
 using McmsApp.ApiServices;
@@ -11,9 +6,7 @@ using McmsApp.AppLayout;
 using McmsApp.Models;
 using McmsApp.Persistence;
 using McmsApp.Views.Tabbed;
-using Plugin.Multilingual;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
+using System.Globalization;
 
 namespace McmsApp.ViewModels
 {

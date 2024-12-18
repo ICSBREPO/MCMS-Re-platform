@@ -1,10 +1,7 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Windows.Input;
 using McmsApp.Views.Tabbed;
 using Syncfusion.Maui.Buttons;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
 
 namespace McmsApp.Models
 {

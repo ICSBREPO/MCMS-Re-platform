@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Controls.UserDialogs.Maui;
 using McmsApp.ApiServices;
@@ -11,8 +7,6 @@ using McmsApp.Persistence;
 using McmsApp.Views.Home;
 using McmsApp.Views.Work.WorkDetail;
 using Syncfusion.Maui.ListView;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
 using McmsApp.Views.Login;
 using McmsApp.Views.Work;
 using Syncfusion.Maui.TabView;

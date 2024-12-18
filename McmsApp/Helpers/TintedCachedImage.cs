@@ -1,8 +1,4 @@
-﻿using System;
-using Microsoft.Maui;
-using Microsoft.Maui.Controls;
-
-namespace McmsApp.Helpers
+﻿namespace McmsApp.Helpers
 {
     public class TintedCachedImage : Image
     {
