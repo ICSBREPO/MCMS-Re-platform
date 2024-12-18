@@ -1,0 +1,866 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:chart="clr-namespace:Syncfusion.SfChart.XForms;assembly=Syncfusion.SfChart.XForms"
+    xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+    xmlns:control="clr-namespace:mcms.Controls"
+    xmlns:syncfusion="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms"
+    xmlns:views="clr-namespace:mcms.Views.Home"
+    xmlns:shimmer="clr-namespace:Syncfusion.XForms.Shimmer;assembly=Syncfusion.Core.XForms"
+    x:Name="homepageview"
+    BackgroundColor="{DynamicResource Background}"
+    x:Class="mcms.Views.Home.HomePage"
+    xmlns:i18n="clr-namespace:mcms.Helpers">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView BackgroundColor="{DynamicResource Background}">
+        <StackLayout BackgroundColor="{DynamicResource Background}">
+            <!--  Header   -->
+            <Image Margin="0,-20"  
+                   HorizontalOptions="FillAndExpand"
+                   Source="headerbg.png"/>
+
+            <border:SfBorder 
+                    HeightRequest="13" 
+                    Margin="0,5,0,0" 
+                    CornerRadius="10,10,0,0" 
+                    HorizontalOptions="FillAndExpand" 
+                    BorderWidth="0" 
+                    BorderColor="Transparent" 
+                    BackgroundColor="{DynamicResource Background}" />
+
+            <border:SfBorder
+                    Margin="24,-55,0,16"
+                    BackgroundColor="{DynamicResource Background}"
+                    BorderColor="{DynamicResource Background}"
+                    BorderWidth="2"
+                    CornerRadius="10"
+                    HeightRequest="80"
+                    HasShadow="True"
+                    HorizontalOptions="StartAndExpand"
+                    WidthRequest="80">
+                <!--  Profile image  -->
+                <Image
+                        x:Name="picture"
+                        Aspect="AspectFill"
+                        BackgroundColor="{DynamicResource Gray-200}"                        
+                        HeightRequest="80"                        
+                        Source="{Binding UserBinding.picture}"
+                        WidthRequest="80" />
+            </border:SfBorder>
+
+            <Grid 
+                    Margin="16,0,0,24" 
+                    RowSpacing="0"                     
+                    ColumnSpacing="0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <!--  Profile name  -->
+                <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Margin="0,0,0,2"
+                        Text="{Binding UserBinding.userName}"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
+                        Style="{StaticResource HeaderLabelStyle}"/>
+
+
+
+                <!--Download data button-->
+
+                <buttons:SfButton
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        VerticalOptions="End"
+                        HorizontalOptions="End"
+                        HeightRequest="50"
+                        Command="{Binding DownloadMasterDataCommand}"
+                        Margin="24,0,15,0"
+                        ShowIcon="True"
+                        Text="{i18n:Translate DownloadMaster}"
+                        ImageSource="download.png"
+                        Style="{StaticResource SfGradientButtonStyle}" />
+
+                <StackLayout
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Spacing="5"
+                        HorizontalOptions="StartAndExpand"
+                        Margin="0">
+
+                    <!--Designation label-->
+                    <Label 
+                            Text="{Binding UserBinding.displayname}"                            
+                            Style="{StaticResource ContentLabelStyle}" />
+
+
+                    <!--State and country label-->
+                    <Label
+                            Style="{StaticResource ContentLabelStyle}">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding UserBinding.city}"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+
+                </StackLayout>
+
+                <!--Follow button-->
+                <!--
+                    <buttons:SfButton
+                        Grid.RowSpan="2"
+                        Grid.Column="1"
+                        VerticalOptions="End"
+                        Command="{Binding FollowCommand}"
+                        Margin="24,0,0,0"
+                        Style="{StaticResource SfGradientButtonStyle}"
+                        Text="Check - In" />
+                    -->
+            </Grid>
+
+            <!--  Frame to have rounded corners  -->
+            <control:CustomShadowFrame
+                                Margin="15"
+                                Padding="20"
+                                BackgroundColor="{DynamicResource Card}"
+                                BorderColor="{DynamicResource Card}"
+                                CornerRadius="10"
+                                HeightRequest="100"
+                                WidthRequest="230">
+                <shimmer:SfShimmer HorizontalOptions="FillAndExpand"
+                           IsActive="{Binding IsRefreshing}">
+                    <shimmer:SfShimmer.CustomView>
+                        <Grid
+                            RowSpacing="0"
+                            ColumnSpacing="0"
+                            HorizontalOptions="FillAndExpand" >
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="10"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <shimmer:ShimmerView Grid.Column="0"
+                                         Grid.Row="0"
+                                         Margin="10"
+                                         CornerRadius="10"
+                                         HorizontalOptions="FillAndExpand" />
+                            <shimmer:ShimmerView Grid.Column="1"
+                                         Grid.Row="0"
+                                         Margin="10"
+                                         CornerRadius="10"
+                                         HorizontalOptions="FillAndExpand" />
+                            <shimmer:ShimmerView Grid.Column="2"
+                                         Grid.Row="0"
+                                         Margin="10"
+                                         CornerRadius="10"
+                                         HorizontalOptions="FillAndExpand" />
+
+                            <shimmer:ShimmerView Grid.Column="0"
+                                         Grid.Row="1"
+                                         Margin="10,0,10,0"
+                                         CornerRadius="10"
+                                         HorizontalOptions="FillAndExpand" />
+                            <shimmer:ShimmerView Grid.Column="1"
+                                         Grid.Row="1"
+                                         Margin="10,0,10,0"
+                                         CornerRadius="10"
+                                         HorizontalOptions="FillAndExpand" />
+                            <shimmer:ShimmerView Grid.Column="2"
+                                         Grid.Row="1"
+                                         Margin="10,0,10,0"
+                                         CornerRadius="10"
+                                         HorizontalOptions="FillAndExpand" />
+                        </Grid>
+                    </shimmer:SfShimmer.CustomView>
+                    <shimmer:SfShimmer.Content>
+                        <Grid
+                            RowSpacing="0"
+                            ColumnSpacing="0"
+                            HorizontalOptions="FillAndExpand"
+                            Margin="16,0,16,32" >
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <!--Total WO label-->
+                            <Label 
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                FontSize="50"
+                                FontFamily="{StaticResource Montserrat-Bold}"
+                                Text="{Binding wocount, StringFormat='{0}'}"
+                                Style="{StaticResource WOCountLabelStyle}"/>
+
+                            <!--Total WO title label-->
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Text="{i18n:Translate TotalWorkorder}"
+                                Style="{StaticResource WOTitleLabelStyle}"/>
+
+                            <BoxView
+                                Grid.RowSpan="2"
+                                Grid.Column="1"
+                                HeightRequest="80"
+                                Style="{StaticResource BoxViewStyle}"/>
+
+                            <!--Approve count label-->
+                            <Label 
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                FontSize="50"
+                                FontFamily="{StaticResource Montserrat-Bold}"
+                                Text="{Binding apprcount, StringFormat='{0}'}"
+                                Style="{StaticResource WOCountLabelStyle}"/>
+
+                            <!--Approve title label-->
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                Text="{i18n:Translate ApprovedWorkorder}"
+                                Style="{StaticResource WOTitleLabelStyle}"/>
+
+                            <BoxView
+                                Grid.RowSpan="2"
+                                Grid.Column="3"
+                                HeightRequest="80"
+                                Style="{StaticResource BoxViewStyle}"/>
+
+                            <!--In - Progress count label-->
+                            <Label 
+                                Grid.Row="0"
+                                Grid.Column="4"
+                                FontSize="50"
+                                FontFamily="{StaticResource Montserrat-Bold}"
+                                HorizontalOptions="Center"
+                                Text="{Binding inprgcount, StringFormat='{0}'}"
+                                Style="{StaticResource WOCountLabelStyle}"/>
+
+                            <!--In - Progress title label-->
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="4"
+                                Text="{i18n:Translate InprogressWorkorder}"
+                                Style="{StaticResource WOTitleLabelStyle}"/>
+
+                        </Grid>
+                    </shimmer:SfShimmer.Content>
+                </shimmer:SfShimmer>
+
+            </control:CustomShadowFrame>
+            <StackLayout>
+                <BoxView HeightRequest="1" BackgroundColor="{DynamicResource Label}" Margin="20"  />
+            </StackLayout>
+
+            <StackLayout
+                    Margin="16,25,16,0"
+                    Orientation="Horizontal"
+                    Spacing="0">
+
+                <!--{Binding [NewestWorkorders].Value, Source={x:Static multiLang:StringLoader.Instance}}-->
+
+                <!--x:Static local:AppResources.NewestWorkorders}-->
+                <Label
+                        Margin="0,5,0,0"
+                        FontFamily="{StaticResource Montserrat-Bold}"
+                        FontSize="16"
+                        HorizontalOptions="StartAndExpand"
+                        LineHeight="{OnPlatform Android=1.25,Default=-1}"
+                        Text="{i18n:Translate NewestWorkorders}"
+                        TextColor="{DynamicResource Label}"
+                        VerticalOptions="Center" />
+
+                <buttons:SfButton
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="{DynamicResource Background}"
+                        CornerRadius="4"
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontSize="13"
+                        HorizontalOptions="End"
+                        Text="{i18n:Translate ViewAll}"
+                        Clicked="SfButton_Clicked"
+                        TextColor="{DynamicResource HyperLink}" />
+
+            </StackLayout>
+            <!--  List Newest Workorder  -->
+            <shimmer:SfShimmer  VerticalOptions="Fill" Type="Article"
+                           IsActive="{Binding IsRefreshing}">
+                <shimmer:SfShimmer.CustomView>
+                    <listView:SfListView
+                            x:Name="WONEWDUMMY"
+                            Margin="8,0,8,32"
+                            Padding="0"
+                            AutoFitMode="Height"
+                            ColumnSpacing="0"
+                            FocusBorderColor="Transparent"
+                            HeightRequest="190"
+                            HorizontalOptions="FillAndExpand"
+                            IsScrollBarVisible="False"
+                            IsStickyHeader="True"
+                            ItemsSource="{Binding WOListDummy}"
+                            Orientation="Horizontal"
+                            RowSpacing="0"
+                            SelectionBackgroundColor="Transparent">
+
+                        <listView:SfListView.ItemTemplate>
+
+                            <DataTemplate>
+
+                                <!--  Frame to have rounded corners  -->
+                                <control:CustomShadowFrame
+                                        Margin="8"
+                                        Padding="0"
+                                        BackgroundColor="White"
+                                        BorderColor="White"
+                                        CornerRadius="10"
+                                        HasShadow="true"
+                                        HeightRequest="190"
+                                        WidthRequest="230">
+
+                                    <Grid
+                                        RowSpacing="0"
+                                        ColumnSpacing="0"
+                                        HorizontalOptions="FillAndExpand" >
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="20*"/>
+                                            <RowDefinition Height="40*"/>
+                                            <RowDefinition Height="20*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <shimmer:ShimmerView Grid.Column="0"
+                                                     Grid.Row="0"
+                                                     Margin="5"
+                                                     CornerRadius="10"
+                                                     WidthRequest="60"
+                                                     HorizontalOptions="CenterAndExpand" />
+                                        <shimmer:ShimmerView Grid.Column="0"
+                                                     Grid.Row="1"
+                                                     Margin="5"
+                                                     CornerRadius="10"
+                                                     HorizontalOptions="FillAndExpand" />
+                                        <shimmer:ShimmerView Grid.Column="0"
+                                                     Grid.Row="2"
+                                                     Margin="5"
+                                                     CornerRadius="10"
+                                                     HorizontalOptions="FillAndExpand" />
+
+                                    </Grid>
+
+                                </control:CustomShadowFrame>
+                            </DataTemplate>
+                        </listView:SfListView.ItemTemplate>
+                    </listView:SfListView>
+                </shimmer:SfShimmer.CustomView>
+                <shimmer:SfShimmer.Content>
+                    <listView:SfListView
+                            x:Name="WONEW"
+                            SelectionChangedCommand="{Binding SelectedWOCommand}"
+                            SelectionChangedCommandParameter="{x:Reference WONEW}"
+                            Margin="8,0,8,32"
+                            Padding="0"
+                            AutoFitMode="Height"
+                            ColumnSpacing="0"
+                            FocusBorderColor="Transparent"
+                            HeightRequest="190"
+                            HorizontalOptions="FillAndExpand"
+                            IsScrollBarVisible="False"
+                            IsStickyHeader="True"
+                            ItemsSource="{Binding WOListData}"
+                            Orientation="Horizontal"
+                            RowSpacing="0"
+                            SelectionBackgroundColor="Transparent">
+
+                        <listView:SfListView.ItemTemplate>
+
+                            <DataTemplate>
+
+                                <!--  Frame to have rounded corners  -->
+                                <control:CustomShadowFrame
+                                        Margin="8"
+                                        Padding="0"
+                                        BackgroundColor="{DynamicResource Card}"
+                                        BorderColor="{DynamicResource Card}"
+                                        CornerRadius="10"
+                                        HasShadow="true"
+                                        HeightRequest="190"
+                                        WidthRequest="230">
+
+                                    <StackLayout
+                                            Margin="0"
+                                            Padding="0"
+                                            HorizontalOptions="FillAndExpand"
+                                            Spacing="0">
+
+                                        <!-- Favourite Button-->
+                                        <buttons:SfButton 
+                                                x:Name="favouriteButton" 
+                                                HorizontalOptions="End"
+                                                VerticalOptions="Start"
+                                                Margin="0,2,2,0"
+                                                Command="{Binding BindingContext.AddFavouriteCommand, Source={x:Reference homepageview}}"
+                                                Text="{Binding isFav,  Converter={x:StaticResource BoolToStringConverter}, ConverterParameter=1}"
+                                                CommandParameter="{Binding .}"
+                                                BackgroundColor="{DynamicResource Transparent}"
+                                                FontFamily="{StaticResource FontIcons}"
+                                                FontSize="20"
+                                                TextColor="Red"
+                                                BorderColor="Transparent">
+                                        </buttons:SfButton>
+
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="25"/>
+                                                <RowDefinition Height="40"/>
+                                                <RowDefinition Height="50"/>
+                                            </Grid.RowDefinitions>
+
+                                            <!--  WO Number  -->
+                                            <Label
+                                                Margin="10,5,0,-10"
+                                                FontFamily="{StaticResource Montserrat-Bold}"
+                                                FontSize="18"
+                                                HorizontalOptions="Start"
+                                                LineHeight="{OnPlatform Android=1.25,Default=-1}"
+                                                Text="{Binding wonum}"
+                                                TextColor="{DynamicResource Label}" />
+
+                                            <!--  WO Description  -->
+                                            <Label
+                                                Margin="10,0"
+                                                Grid.Row="1"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2"
+                                                FontFamily="{StaticResource Montserrat-Medium}"
+                                                FontSize="12"
+                                                HorizontalOptions="StartAndExpand"
+                                                Text="{Binding description, StringFormat='WO Description : Work Order {0}'}"
+                                                TextColor="{DynamicResource Label}"
+                                                LineHeight="{OnPlatform Android=1.5, Default=-1}"
+                                                LineBreakMode="TailTruncation"
+                                                MaxLines="2"/>
+
+                                            <!-- Status -->
+                                            <border:SfBorder Grid.Row="2"
+                                                            Grid.Column="0"
+                                                            Margin="10,0"
+                                                            BorderColor="Transparent"
+                                                            CornerRadius="12"
+                                                            HasShadow="False"
+                                                            HorizontalOptions="Start"
+                                                            VerticalOptions="Center">
+
+                                                <border:SfBorder.Content>
+                                                    <Grid>
+                                                        <BoxView BackgroundColor="{Binding status, Converter={x:StaticResource StringToColorConverter}, ConverterParameter=0}" Opacity="0.07"/>
+
+                                                        <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                                FontSize="12"
+                                                                HorizontalOptions="CenterAndExpand"
+                                                                Text="{Binding status}"
+                                                                TextColor="{Binding status, Converter={x:StaticResource StringToColorConverter}, ConverterParameter=0}"
+                                                                VerticalOptions="Center"
+                                                               Padding="10,0"/>
+                                                    </Grid>
+                                                </border:SfBorder.Content>
+                                            </border:SfBorder>
+
+                                            <buttons:SfButton Grid.Row="2"
+                                                              Grid.Column="1"
+                                                              Margin="0,0,5,5"
+                                                              TextColor="{DynamicResource Label}"
+                                                              IsEnabled="False"
+                                                              CornerRadius="4"
+                                                              FontSize="20" 
+                                                              BackgroundColor="{DynamicResource Card}"
+                                                              BorderColor="{DynamicResource Card}"
+                                                              FontFamily="{StaticResource FontIcons}"
+                                                              Text="{StaticResource ArrowRight}"
+                                                              HorizontalOptions="End">
+                                            </buttons:SfButton>
+
+                                        </Grid>
+
+                                    </StackLayout>
+                                </control:CustomShadowFrame>
+                            </DataTemplate>
+                        </listView:SfListView.ItemTemplate>
+
+                    </listView:SfListView>
+
+                </shimmer:SfShimmer.Content>
+            </shimmer:SfShimmer>
+
+            <StackLayout
+                    Margin="16,25,16,0"
+                    Orientation="Horizontal"
+                    Spacing="0">
+
+                <Label
+                        Margin="0,5,0,0"
+                        FontFamily="{StaticResource Montserrat-Bold}"
+                        FontSize="16"
+                        HorizontalOptions="StartAndExpand"
+                        LineHeight="{OnPlatform Android=1.25,
+                                                Default=-1}"
+                        Text="{i18n:Translate ChildWorkorders}"
+                        TextColor="{DynamicResource Label}"
+                        VerticalOptions="Center" />
+
+                <buttons:SfButton
+                        Margin="0"
+                        Padding="0"
+                        BackgroundColor="{DynamicResource Background}"
+                        CornerRadius="4"
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontSize="13"
+                        HorizontalOptions="End"
+                        Text="{i18n:Translate ViewAll}"
+                        Clicked="SfButton_Clicked"
+                        TextColor="{DynamicResource HyperLink}" />
+
+            </StackLayout>
+
+            <!--  Child Workorder Workorders  -->
+            <shimmer:SfShimmer  VerticalOptions="Fill"
+                           IsActive="{Binding IsRefreshing}">
+                <shimmer:SfShimmer.CustomView>
+                    <listView:SfListView
+                            Margin="8,0,8,32"
+                            Padding="0"
+                            AutoFitMode="Height"
+                            ColumnSpacing="0"
+                            FocusBorderColor="Transparent"
+                            HeightRequest="190"
+                            HorizontalOptions="FillAndExpand"
+                            IsScrollBarVisible="False"
+                            IsStickyHeader="True"
+                            ItemsSource="{Binding WOListDummy}"
+                            Orientation="Horizontal"
+                            RowSpacing="0"
+                            SelectionBackgroundColor="Transparent">
+
+                        <listView:SfListView.ItemTemplate>
+
+                            <DataTemplate>
+
+                                <!--  Frame to have rounded corners  -->
+                                <control:CustomShadowFrame
+                                        Margin="8"
+                                        Padding="0"
+                                        BackgroundColor="White"
+                                        BorderColor="White"
+                                        CornerRadius="10"
+                                        HasShadow="true"
+                                        HeightRequest="190"
+                                        WidthRequest="230">
+
+                                    <Grid
+                                        RowSpacing="0"
+                                        ColumnSpacing="0"
+                                        HorizontalOptions="FillAndExpand" >
+
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="20*"/>
+                                            <RowDefinition Height="40*"/>
+                                            <RowDefinition Height="20*"/>
+                                        </Grid.RowDefinitions>
+
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <shimmer:ShimmerView Grid.Column="0"
+                                                     Grid.Row="0"
+                                                     Margin="5"
+                                                     CornerRadius="10"
+                                                     WidthRequest="60"
+                                                     HorizontalOptions="CenterAndExpand" />
+                                        <shimmer:ShimmerView Grid.Column="0"
+                                                     Grid.Row="1"
+                                                     Margin="5"
+                                                     CornerRadius="10"
+                                                     HorizontalOptions="FillAndExpand" />
+                                        <shimmer:ShimmerView Grid.Column="0"
+                                                     Grid.Row="2"
+                                                     Margin="5"
+                                                     CornerRadius="10"
+                                                     HorizontalOptions="FillAndExpand" />
+
+                                    </Grid>
+
+                                </control:CustomShadowFrame>
+                            </DataTemplate>
+                        </listView:SfListView.ItemTemplate>
+                    </listView:SfListView>
+                </shimmer:SfShimmer.CustomView>
+                <shimmer:SfShimmer.Content>
+                    <listView:SfListView
+                            x:Name="WOCHILD"
+                            Margin="8,0,8,32"
+                            Padding="0"
+                            AutoFitMode="Height"
+                            ColumnSpacing="0"
+                            SelectionChangedCommand="{Binding SelectedWOCommand}"
+                            SelectionChangedCommandParameter="{x:Reference WOCHILD}"
+                            FocusBorderColor="Transparent"
+                            HeightRequest="190"
+                            HorizontalOptions="FillAndExpand"
+                            IsScrollBarVisible="False"
+                            IsStickyHeader="True"
+                            ItemsSource="{Binding WOListDataChild}"
+                            Orientation="Horizontal"
+                            RowSpacing="0"
+                            SelectionBackgroundColor="Transparent">
+
+                        <listView:SfListView.ItemTemplate>
+
+                            <DataTemplate>
+
+                                <!--  Frame to have rounded corners  -->
+                                <control:CustomShadowFrame
+                                        Margin="10"
+                                        Padding="0"
+                                        BackgroundColor="{DynamicResource Card}"
+                                        BorderColor="{DynamicResource Card}"
+                                        CornerRadius="10"
+                                        HasShadow="true"
+                                        HeightRequest="190"
+                                        WidthRequest="230">
+
+                                    <StackLayout
+                                            Margin="0"
+                                            Padding="0"
+                                            HorizontalOptions="FillAndExpand"
+                                            Spacing="0"
+                                            VerticalOptions="FillAndExpand">
+
+                                        <!-- Favourite Button-->
+                                        <buttons:SfButton 
+                                                x:Name="favouriteButton" 
+                                                HorizontalOptions="End"
+                                                VerticalOptions="Start"
+                                                Margin="0,2,2,0"
+                                                BackgroundColor="{DynamicResource Transparent}"
+                                                BorderColor="Transparent"
+                                                FontSize="20"
+                                                TextColor="Red"
+                                                FontFamily="{StaticResource FontIcons}"
+                                                Command="{Binding BindingContext.AddFavouriteCommand, Source={x:Reference homepageview}}"
+                                                Text="{Binding isFav,  Converter={x:StaticResource BoolToStringConverter}, ConverterParameter=1}"
+                                                CommandParameter="{Binding .}"/>
+
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="25"/>
+                                                <RowDefinition Height="40"/>
+                                                <RowDefinition Height="50"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition />
+                                            </Grid.ColumnDefinitions>
+
+                                            <!--  WO Number  -->
+                                            <Label
+                                                Margin="10,5,0,-10"
+                                                FontFamily="{StaticResource Montserrat-Bold}"
+                                                FontSize="18"
+                                                HorizontalOptions="Start"
+                                                LineHeight="{OnPlatform Android=1.25,Default=-1}"
+                                                Text="{Binding wonum}"
+                                                TextColor="{DynamicResource Label}" />
+
+                                            <!--  WO Description  -->
+                                            <Label
+                                                Margin="10,0"
+                                                Grid.Row="1"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="2"
+                                                FontFamily="{StaticResource Montserrat-Medium}"
+                                                FontSize="12"
+                                                HorizontalOptions="StartAndExpand"
+                                                Text="{Binding description, StringFormat='WO Description : Work Order {0}'}"
+                                                TextColor="{DynamicResource Label}"
+                                                LineHeight="{OnPlatform Android=1.5, Default=-1}"
+                                                LineBreakMode="TailTruncation"
+                                                MaxLines="2"/>
+
+                                            <!-- Status -->
+                                            <border:SfBorder Grid.Row="2"
+                                                            Grid.Column="0"
+                                                             Margin="10,0"
+                                                             BorderColor="Transparent"
+                                                            CornerRadius="12"
+                                                            HasShadow="False"
+                                                            HorizontalOptions="Start"
+                                                            VerticalOptions="Center">
+
+                                                <border:SfBorder.Content>
+                                                    <Grid>
+                                                        <BoxView BackgroundColor="{Binding status, Converter={x:StaticResource StringToColorConverter}, ConverterParameter=0}" Opacity="0.07" />
+
+                                                        <Label FontFamily="{StaticResource Montserrat-SemiBold}"
+                                                                FontSize="12"
+                                                                HorizontalOptions="CenterAndExpand"
+                                                                Text="{Binding status}"
+                                                                TextColor="{Binding status, Converter={x:StaticResource StringToColorConverter}, ConverterParameter=0}"
+                                                                VerticalOptions="Center"
+                                                               Padding="10,0"/>
+                                                    </Grid>
+                                                </border:SfBorder.Content>
+                                            </border:SfBorder>
+
+                                            <buttons:SfButton Grid.Row="2"
+                                                              Grid.Column="1"
+                                                              Margin="0,0,5,5"
+                                                              TextColor="{DynamicResource Label}"
+                                                              CornerRadius="4"
+                                                              IsEnabled="False"
+                                                              BackgroundColor="{DynamicResource Card}"
+                                                              BorderColor="{DynamicResource Card}"
+                                                              FontSize="20" 
+                                                              FontFamily="{StaticResource FontIcons}"
+                                                              Text="{StaticResource ArrowRight}"
+                                                              HorizontalOptions="End">
+                                            </buttons:SfButton>
+
+                                        </Grid>
+
+
+
+                                    </StackLayout>
+                                </control:CustomShadowFrame>
+                            </DataTemplate>
+                        </listView:SfListView.ItemTemplate>
+
+                    </listView:SfListView>
+                </shimmer:SfShimmer.Content>
+            </shimmer:SfShimmer>
+
+            <StackLayout HorizontalOptions="End" Orientation="Horizontal" Margin="10">
+
+                <buttons:SfButton
+                    Text="{i18n:Translate ViewBy}"
+                    BackgroundColor="Transparent"
+                    BorderColor="Transparent"
+                    Command="{Binding FilterViewCommand}"
+                    TextColor="{DynamicResource HyperLink}"
+                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                    FontSize="13"
+                    />
+                <Label Text="{Binding SelectedCharts}" TextColor="{DynamicResource Label}" FontSize="13" FontAttributes="Bold" VerticalTextAlignment="Center" FontFamily="{StaticResource Montserrat-SemiBold}" />
+
+            </StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <syncfusion:SfPicker Grid.Row="0"
+                        IsOpen="{Binding pickerIsOpen, Mode=TwoWay}"
+                        ShowColumnHeader="False"
+                        ShowFooter="True"
+                        CancelButtonTextColor="{DynamicResource PrimaryColor}"
+                        OKButtonTextColor="{DynamicResource PrimaryColor}"
+                        OKButtonBackgroundColor="{DynamicResource Background}"
+                        CancelButtonBackgroundColor="{DynamicResource Background}"
+                        HeaderText="{i18n:Translate TypeChart}"
+                        HeaderTextColor="{DynamicResource Background}"
+                        BackgroundColor="{DynamicResource Background}"
+                        UnSelectedItemTextColor="{DynamicResource Label}"
+                        SelectedItemTextColor="{DynamicResource PrimaryColor}"
+                        HeaderBackgroundColor="{DynamicResource PrimaryColor}"
+                        SelectionChanged="SfPicker_SelectionChanged"
+                        SelectedItem="{Binding SelectedCharts, Mode=TwoWay}"
+                        ItemsSource="{Binding TypeCharts}"
+                        PickerMode="Dialog" />
+                <control:CustomShadowFrame
+                    Grid.Row="0"
+                    Margin="15"
+                    Padding="20"
+                    BackgroundColor="{DynamicResource Card}"
+                    BorderColor="{DynamicResource Card}"
+                    CornerRadius="10"
+                    HeightRequest="400">
+                    <shimmer:SfShimmer  VerticalOptions="Fill" Type="Shopping"
+                           IsActive="{Binding IsRefreshing}">
+                        <shimmer:SfShimmer.Content>
+                            <chart:SfChart HeightRequest="400" BackgroundColor="Transparent">
+                                <chart:SfChart.Title>
+                                    <chart:ChartTitle TextColor="{DynamicResource Label}" BorderColor="Transparent" BackgroundColor="Transparent" Text="{Binding SelectedCharts, StringFormat='Workorder By {0}'}"/>
+                                </chart:SfChart.Title>
+                                <chart:SfChart.PrimaryAxis>
+                                    <chart:CategoryAxis ShowMajorGridLines="False">
+                                        <chart:CategoryAxis.Title>
+                                            <chart:ChartAxisTitle TextColor="{DynamicResource Label}" Text="{Binding SelectedCharts}"></chart:ChartAxisTitle>
+                                        </chart:CategoryAxis.Title>
+                                    </chart:CategoryAxis>
+                                </chart:SfChart.PrimaryAxis>
+
+                                <chart:SfChart.SecondaryAxis>
+                                    <chart:NumericalAxis ShowMinorGridLines="False" ShowMajorGridLines="False">
+                                        <chart:NumericalAxis.Title>
+                                            <chart:ChartAxisTitle TextColor="{DynamicResource Label}" Text="{i18n:Translate Total}"></chart:ChartAxisTitle>
+                                        </chart:NumericalAxis.Title>
+                                    </chart:NumericalAxis>
+                                </chart:SfChart.SecondaryAxis>
+                                <chart:SfChart.Series>
+                                    <chart:ColumnSeries ItemsSource="{Binding WOCharts, Mode=TwoWay}"
+                                                    Label="{Binding SelectedCharts, StringFormat='WO {0}'}" 
+                                                    XBindingPath="Name" 
+                                                    YBindingPath="Count">
+                                        <chart:ColumnSeries.ColorModel>
+
+                                            <chart:ChartColorModel Palette="Metro"/>
+
+                                        </chart:ColumnSeries.ColorModel>
+
+                                    </chart:ColumnSeries>
+                                </chart:SfChart.Series>
+                            </chart:SfChart>
+                        </shimmer:SfShimmer.Content>
+                    </shimmer:SfShimmer>
+                </control:CustomShadowFrame>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+
+
+</ContentPage>

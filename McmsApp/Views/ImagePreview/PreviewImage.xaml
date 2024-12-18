@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:i18n="clr-namespace:mcms.Helpers"
+    x:Class="mcms.Views.ImagePreview.PreviewImage">
+
+     <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Work/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="graphics:SfGradientView">
+                <Setter Property="BackgroundBrush">
+                    <Setter.Value>
+                        <graphics:SfLinearGradientBrush>
+                            <graphics:SfLinearGradientBrush.GradientStops>
+                                <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                                <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                            </graphics:SfLinearGradientBrush.GradientStops>
+                        </graphics:SfLinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowSpacing="0" BackgroundColor="{DynamicResource Background}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0" x:Name="iOSSafeArea"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+        <graphics:SfGradientView Grid.RowSpan="3"/>
+        <StackLayout
+            Grid.Row="1"
+            Padding="16,8"
+            BackgroundColor="{StaticResource Transparent}"
+            HeightRequest="48"
+            HorizontalOptions="Fill"
+            Orientation="Horizontal"
+            Spacing="0">
+            <buttons:SfButton
+                        Text="{StaticResource Back}"
+                        Style="{StaticResource NavigationBarButtonStyle}"
+                        CornerRadius="4"
+                        Margin="0,6,0,0"
+                        Command="{Binding BackPage}"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
+                        Padding="0"/>
+            <Label
+                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                    FontSize="20"
+                    HorizontalTextAlignment="Center"
+                    HorizontalOptions="Center"
+                    LineHeight="1.25"
+                    Text="{i18n:Translate PreviewImage}"
+                    TextColor="{DynamicResource Gray-White}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+
+        </StackLayout>
+
+        <border:SfBorder
+            Grid.Row="2"
+            CornerRadius="10,10,0,0"
+            HorizontalOptions="FillAndExpand" 
+            BorderWidth="0" 
+            BorderColor="Transparent" 
+            BackgroundColor="{DynamicResource Background}" />
+
+         <StackLayout Grid.Row="3" VerticalOptions="CenterAndExpand">
+                <Image Source="{Binding Base64Image, Converter={StaticResource Base64ToImageConverter}}" HeightRequest="1000"/>
+         </StackLayout>
+    </Grid>
+
+</ContentPage>

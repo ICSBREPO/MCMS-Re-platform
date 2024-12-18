@@ -1,0 +1,239 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="{DynamicResource Background}"
+             xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" 
+             xmlns:navigationdrawer="clr-namespace:Syncfusion.SfNavigationDrawer.XForms;assembly=Syncfusion.SfNavigationDrawer.XForms" 
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:renderers="clr-namespace:mcms.Renderers"  
+             xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+             xmlns:i18n="clr-namespace:mcms.Helpers"
+             x:Class="mcms.Views.Work.WorkDetail.SQA.SQADetail">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Work/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="graphics:SfGradientView">
+                <Setter Property="BackgroundBrush">
+                    <Setter.Value>
+                        <graphics:SfLinearGradientBrush>
+                            <graphics:SfLinearGradientBrush.GradientStops>
+                                <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                                <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                            </graphics:SfLinearGradientBrush.GradientStops>
+                        </graphics:SfLinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="120" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackLayout Grid.Row="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <graphics:SfGradientView HorizontalOptions="FillAndExpand" HeightRequest="90"/>
+                    <StackLayout
+                                x:Name="TitleBar"
+                                Margin="0,-75,10,0"
+                                Padding="0,8"
+                                BackgroundColor="{StaticResource Transparent}"
+                                HeightRequest="48"
+                                HorizontalOptions="FillAndExpand"
+                                Orientation="Horizontal"
+                                Spacing="0">
+                        <Grid
+                                    HorizontalOptions="FillAndExpand"
+                                    IsVisible="True"
+                                    ColumnSpacing="0"
+                                    VerticalOptions="FillAndExpand">
+
+                            <!--  Back button command  -->
+                            <buttons:SfButton  x:Name="backButton"
+                                                    CornerRadius="4"
+                                                    Style="{StaticResource IconButtonStyle}"
+                                                    VerticalTextAlignment="Center"
+                                                    VerticalOptions="Center"
+                                                    HorizontalOptions="Start"
+                                                    Command="{Binding BackToWOListCommand}"
+                                                    Text="{StaticResource Back}"
+                                                    Grid.Column="0"/>
+
+                            <!--  SQA Form Page Title  -->
+                            <Label
+                                        Grid.ColumnSpan="3"
+                                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                                        FontSize="20"
+                                        HorizontalOptions="Center"
+                                        HorizontalTextAlignment="Center"
+                                        Text="{i18n:Translate SQAChecklist}"
+                                        TextColor="{DynamicResource Gray-White}"
+                                        VerticalOptions="Center"
+                                        VerticalTextAlignment="Center" />
+
+                        </Grid>
+                    </StackLayout>
+                    <!--  Border Radius after top nav  -->
+                    <border:SfBorder
+                                Margin="0,-10"
+                                CornerRadius="10,10,0,0" 
+                                HorizontalOptions="FillAndExpand"
+                                BorderColor="{DynamicResource Background}"
+                                BorderWidth="1" 
+                                BackgroundColor="{DynamicResource Background}">
+                        <Label Text="{i18n:Translate SQAFormPage}" 
+                               HeightRequest="50" 
+                               Margin="5" 
+                               Style="{StaticResource LabelSemiBold}" 
+                               HorizontalOptions="CenterAndExpand" 
+                               VerticalOptions="CenterAndExpand" 
+                               Padding="0,10" />
+                    </border:SfBorder>
+                    <BoxView Style="{StaticResource BoxviewStyle}"/>
+                </StackLayout>
+
+                <ScrollView VerticalScrollBarVisibility="Never" Grid.Row="1" Margin="20" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                    <StackLayout>
+                        <ContentView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                            <StackLayout HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand">
+                                <Grid Margin="5,20,5,20" HorizontalOptions="Center">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="titleborder.png" Grid.RowSpan="2"
+                                                HorizontalOptions="Start"/>
+                                    <Label Text="{i18n:Translate SafetyFormQualityAssurance}" FontFamily="{StaticResource Montserrat-Bold}" TextColor="{DynamicResource Label}" FontSize="16" Grid.Row="0"/>
+                                    <Label Text="{i18n:Translate UnsecuredBehaviorScoring}" FontFamily="{StaticResource Montserrat-Bold}" TextColor="{DynamicResource Label}" FontSize="13" Grid.Row="1"/>
+                                </Grid>
+                                <StackLayout Margin="10">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="5"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="5"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="5"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="5"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="5"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="5"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="5"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="5"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="5"/>
+                                            <RowDefinition Height="25"/>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition Height="5"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label Text="{i18n:Translate AuditNo}" Grid.Row="0" Grid.Column="0" Style="{StaticResource LabelSqaTitle}"/>
+                                        <Label Text="{Binding SelectedSQA.auditnum, Mode=TwoWay}" Grid.Row="1" Grid.Column="0" Style="{StaticResource LabelDetailSqa}"/>
+                                        <Label Text="{i18n:Translate Description}" Grid.Row="0" Grid.Column="1" Style="{StaticResource LabelSqaTitle}"/>
+                                        <Label Text="{Binding SelectedSQA.description, Mode=TwoWay}" Grid.Row="1" Grid.Column="1" Style="{StaticResource LabelDetailSqa}"/>
+
+                                        <BoxView Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource BoxviewStyle}"/>
+
+                                        <Label Text="{i18n:Translate ContractorName}" Grid.Row="3" Grid.Column="0" Style="{StaticResource LabelSqaTitle}"/>
+                                        <Label Text="{Binding SelectedSQA.tnbcontractor, Mode=TwoWay}" Grid.Row="4" Grid.Column="0" Style="{StaticResource LabelDetailSqa}"/>
+                                        <Label Text="{i18n:Translate Wonumber}" Grid.Row="3" Grid.Column="1" Style="{StaticResource LabelSqaTitle}"/>
+                                        <Label Text="{Binding SelectedSQA.wonum, Mode=TwoWay}" Grid.Row="4" Grid.Column="1" Style="{StaticResource LabelDetailSqa}"/>
+
+                                        <BoxView Grid.Row="5" Grid.ColumnSpan="2" Style="{StaticResource BoxviewStyle}"/>
+
+                                        <Label Text="{i18n:Translate Location}" Grid.Row="6" Grid.Column="0" Style="{StaticResource LabelSqaTitle}"/>
+                                        <Label Text="{Binding SelectedSQA.location, Mode=TwoWay}" Grid.Row="7" Grid.Column="0" Style="{StaticResource LabelDetailSqa}"/>
+                                        <Label Text="Status" Grid.Row="6" Grid.Column="1" Style="{StaticResource LabelSqaTitle}"/>
+                                        <Label Text="{Binding SelectedSQA.status, Mode=TwoWay}" Grid.Row="7" Grid.Column="1" Style="{StaticResource LabelDetailSqa}"/>
+
+                                        <BoxView Grid.Row="8" Grid.ColumnSpan="2" Style="{StaticResource BoxviewStyle}"/>
+
+                                        <Label Text="{i18n:Translate Team}" Grid.Row="9" Grid.Column="0" Style="{StaticResource LabelSqaTitle}"/>
+                                        <Label Text="{Binding SelectedSQA.tnbteam, Mode=TwoWay}" Grid.Row="10" Grid.Column="0" Style="{StaticResource LabelDetailSqa}"/>
+                                        <Label Text="{i18n:Translate Scopeofwork}" Grid.Row="9" Grid.Column="1" Style="{StaticResource LabelSqaTitle}"/>
+                                        <Label Text="{Binding SelectedSQA.tnbscope, Mode=TwoWay}" Grid.Row="10" Grid.Column="1" Style="{StaticResource LabelDetailSqa}"/>
+
+                                        <BoxView Grid.Row="11" Grid.ColumnSpan="2" Style="{StaticResource BoxviewStyle}"/>
+
+                                        <Label Text="{i18n:Translate VendorName}" Grid.Row="12" Grid.Column="0" Style="{StaticResource LabelSqaTitle}"/>
+                                        <Label Text="{Binding SelectedSQA.company, Mode=TwoWay}" Grid.Row="13" Grid.Column="0" Style="{StaticResource LabelDetailSqa}"/>
+                                        <Label Text="{i18n:Translate Receivedby}" Grid.Row="12" Grid.Column="1" Style="{StaticResource LabelSqaTitle}"/>
+                                        <Label Text="{Binding SelectedSQA.tnbreceivedby, Mode=TwoWay}" Grid.Row="13" Grid.Column="1" Style="{StaticResource LabelDetailSqa}"/>
+
+                                        <BoxView Grid.Row="14" Grid.ColumnSpan="2" Style="{StaticResource BoxviewStyle}"/>
+
+                                        <Label Text="{i18n:Translate StaffIcPhone}" Grid.Row="15" Grid.Column="0" Style="{StaticResource LabelSqaTitle}"/>
+                                        <Label Text="{Binding SelectedSQA.tnbstaff, Mode=TwoWay}" Grid.Row="16" Grid.Column="0" Style="{StaticResource LabelDetailSqa}"/>
+                                        <Label Text="{i18n:Translate ImName}" Grid.Row="15" Grid.Column="1" Style="{StaticResource LabelSqaTitle}"/>
+                                        <Label Text="{Binding SelectedSQA.tnbimname, Mode=TwoWay}" Grid.Row="16" Grid.Column="1" Style="{StaticResource LabelDetailSqa}"/>
+
+                                        <BoxView Grid.Row="17" Grid.ColumnSpan="2" Style="{StaticResource BoxviewStyle}"/>
+
+                                        <Label Text="{i18n:Translate ImStaffIcPhone}" Grid.Row="18" Grid.Column="0" Style="{StaticResource LabelSqaTitle}"/>
+                                        <Label Text="{Binding SelectedSQA.tnbimstaff, Mode=TwoWay}" Grid.Row="19" Grid.Column="0" Style="{StaticResource LabelDetailSqa}"/>
+                                        <Label Text="{i18n:Translate Remarks}" Grid.Row="18" Grid.Column="1" Style="{StaticResource LabelSqaTitle}"/>
+                                        <Label Text="{Binding SelectedSQA.remarks, Mode=TwoWay}" Grid.Row="19" Grid.Column="1" Style="{StaticResource LabelDetailSqa}"/>
+
+                                        <BoxView Grid.Row="20" Grid.ColumnSpan="2" Style="{StaticResource BoxviewStyle}"/>
+
+
+                                        <Label Text="{i18n:Translate Createdby}" Grid.Row="21" Grid.Column="0" Style="{StaticResource LabelSqaTitle}"/>
+                                        <Label Text="{Binding SelectedSQA.createdby, Mode=TwoWay}" Grid.Row="22" Grid.Column="0" Style="{StaticResource LabelDetailSqa}"/>
+                                        <Label Text="{i18n:Translate Createddate}" Grid.Row="21" Grid.Column="1" Style="{StaticResource LabelSqaTitle}"/>
+                                        <Label Text="{Binding SelectedSQA.createdbydate, Mode=TwoWay}" Grid.Row="22" Grid.Column="1" Style="{StaticResource LabelDetailSqa}"/>
+
+                                        <BoxView Grid.Row="23" Grid.ColumnSpan="2" Style="{StaticResource BoxviewStyle}"/>
+
+
+                                        <Label Text="{i18n:Translate Approvedby}" Grid.Row="24" Grid.Column="0" Style="{StaticResource LabelSqaTitle}"/>
+                                        <Label Text="{Binding SelectedSQA.approvedby, Mode=TwoWay}" Grid.Row="25" Grid.Column="0" Style="{StaticResource LabelDetailSqa}"/>
+                                        <Label Text="{i18n:Translate Approveddate}" Grid.Row="24" Grid.Column="1" Style="{StaticResource LabelSqaTitle}"/>
+                                        <Label Text="{Binding SelectedSQA.approvedbydate, Mode=TwoWay}" Grid.Row="25" Grid.Column="1" Style="{StaticResource LabelDetailSqa}"/>
+
+                                        <BoxView Grid.Row="26" Grid.ColumnSpan="2" Style="{StaticResource BoxviewStyle}"/>
+                                    </Grid>
+                                </StackLayout>
+                            </StackLayout>
+                        </ContentView>
+                        <!-- Create SQA Button-->
+                        <buttons:SfButton ShowIcon="True"
+                                                  Text="{i18n:Translate Close}"
+                                                  WidthRequest="200"
+                                                  FontSize="16"
+                                                  Command="{Binding BackToSqaListCommand}"
+                                                  Style="{StaticResource RoundButtonStyle3}"
+                                                  x:Name="btnClose"/>
+                    </StackLayout>
+                </ScrollView>
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

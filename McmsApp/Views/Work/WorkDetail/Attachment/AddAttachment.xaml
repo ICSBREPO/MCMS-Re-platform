@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:syncfusion="clr-namespace:Syncfusion.SfPicker.XForms;assembly=Syncfusion.SfPicker.XForms"
+    x:Class="mcms.Views.Work.WorkDetail.Attachment.AddAttachment"
+    BackgroundColor="{DynamicResource Background}"
+    xmlns:i18n="clr-namespace:mcms.Helpers" xmlns:syncfusion1="clr-namespace:Syncfusion.SfPdfViewer.XForms;assembly=Syncfusion.SfPdfViewer.XForms"
+    NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Work/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="graphics:SfGradientView">
+                <Setter Property="BackgroundBrush">
+                    <Setter.Value>
+                        <graphics:SfLinearGradientBrush>
+                            <graphics:SfLinearGradientBrush.GradientStops>
+                                <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                                <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                            </graphics:SfLinearGradientBrush.GradientStops>
+                        </graphics:SfLinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid RowSpacing="0" BackgroundColor="{DynamicResource Background}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0" x:Name="iOSSafeArea"/>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <graphics:SfGradientView Grid.RowSpan="3"/>
+            <Grid
+                Grid.Row="1"
+                Padding="16,8"
+                BackgroundColor="{StaticResource Transparent}"
+                HeightRequest="48"
+                HorizontalOptions="Fill">
+                <buttons:SfButton
+                        Text="{StaticResource Back}"
+                        TextColor="{DynamicResource Background}"
+                        Style="{StaticResource IconButtonStyle}"
+                        CornerRadius="4"
+                        Command="{Binding BackToListAttachment}"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
+                        Padding="0"/>
+                <Label
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        LineHeight="1.25"
+                        Text="{i18n:Translate Attachment}"
+                        TextColor="{DynamicResource Background}"
+                        VerticalOptions="StartAndExpand" />
+            </Grid>
+            <border:SfBorder
+                        Grid.Row="2"
+                        CornerRadius="10,10,0,0" 
+                        HorizontalOptions="FillAndExpand"
+                        BorderColor="{DynamicResource Background}"
+                        BorderWidth="1" 
+                        BackgroundColor="{DynamicResource Background}">
+                <Label Text="{Binding subtitle}"
+                            Style="{StaticResource LabelSemiBold}" 
+                            HorizontalOptions="CenterAndExpand" 
+                            VerticalOptions="CenterAndExpand" 
+                            Padding="0,10" />
+            </border:SfBorder>
+
+            <ScrollView Grid.Row="3" VerticalScrollBarVisibility="Never" Padding="0,0,0,50">
+                <StackLayout Margin="50,10,50,10">
+                    <StackLayout VerticalOptions="Center" x:Name="containerForm">
+                        <border:SfBorder
+                            IsVisible="{Binding isNoDownload}"
+                            BorderColor="Transparent"
+                            BackgroundColor="LightGray"
+                            Opacity="0.5"
+                            HeightRequest="200"
+                            WidthRequest="200"
+                            HorizontalOptions="Center" 
+                            VerticalOptions="Center"
+                            BorderWidth="3">
+                            <StackLayout HorizontalOptions="Center"  VerticalOptions="Center">
+                                <buttons:SfButton
+                                Text="{StaticResource Download}"
+                                TextColor="{DynamicResource Background}"
+                                Style="{StaticResource IconButtonStyle}"
+                                CornerRadius="4"
+                                Command="{Binding DownloadDocumentData}"
+                                HorizontalOptions="Center"
+                                FontFamily="{StaticResource EvaIcons}"
+                                VerticalOptions="End"
+                                HeightRequest="70"
+                                WidthRequest="70"
+                                FontSize="50"
+                                HorizontalTextAlignment="Center"
+                                Padding="0"/>
+                                <Label HorizontalTextAlignment="Center" VerticalTextAlignment="Start"
+                                      Text="{i18n:Translate ClicktoDownload}"
+                                      TextColor="{DynamicResource Background}"
+                                      Style="{DynamicResource LabelSemiBold}"
+                                      FontSize="10"  />
+                           </StackLayout>
+                            
+                        </border:SfBorder>
+                        <StackLayout Margin="0,10,0,10">
+                            <syncfusion1:SfPdfViewer x:Name="pdfViewer" InputFileStream="{Binding selectedDoclink.documentdata, Converter={StaticResource Base64ToImageConverter}}" IsVisible="{Binding isPdf}" HeightRequest="400"/>
+                            <Image Source="{Binding selectedDoclink.previewdoc, Converter={StaticResource Base64ToImageConverter}}" HeightRequest="200" IsVisible="{Binding isImage}"/>
+
+                                    <!--Download data button-->
+                                    <StackLayout Margin="0,20,0,20" IsVisible="{Binding isDownload}" HorizontalOptions="EndAndExpand">
+                                        <buttons:SfButton
+                                            VerticalOptions="Start"
+                                            HorizontalOptions="Start"
+                                            HeightRequest="50"
+                                            WidthRequest="250"
+                                            ShowIcon="True"
+                                            Text="Save to Device"
+                                            ImageSource="download.png"
+                                            ImageAlignment="Right"
+                                            Command="{Binding DownloadAttachment}"
+                                            TextColor="{DynamicResource Background}"
+                                            Style="{StaticResource RoundButtonStyle}"/>
+                                    </StackLayout>
+
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="StartAndExpand">
+                            <Label Text="{i18n:Translate AttachmentName}" FontSize="13" Style="{DynamicResource LabelSemiBold}" BackgroundColor="Transparent"></Label>
+                            <inputLayout:SfTextInputLayout
+                                ContainerBackgroundColor="White"
+                                ErrorColor="Red"
+                                ContainerType="Outlined"
+                                ErrorText="{Binding ErrorAttachmentNameEntryMessage}"
+                                HasError="{Binding isErrorAttachmentNameEntry}"
+                                FocusedColor="{DynamicResource PrimaryColor}">
+                                <Entry Text="{Binding selectedDoclink.document}" IsEnabled="{Binding isAdd}" Placeholder="{i18n:Translate Title}" x:Name="attachmentNameEntry"/>
+                            </inputLayout:SfTextInputLayout>
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="StartAndExpand">
+                            <Label Text="{i18n:Translate Description}" FontSize="13" Style="{DynamicResource LabelSemiBold}" BackgroundColor="Transparent"></Label>
+                            <inputLayout:SfTextInputLayout
+                                ContainerBackgroundColor="White"
+                                ErrorColor="Red"
+                                ErrorText="{Binding ErrorAttachmentDescriptionEntryMessage}"
+                                HasError="{Binding isErrorAttachmentDescriptionEntry}"
+                                FocusedColor="{DynamicResource PrimaryColor}"
+                                ContainerType="Outlined">
+                                <Editor Text="{Binding selectedDoclink.description}" IsEnabled="{Binding isAdd}" Placeholder="{i18n:Translate PleaseEnterDescription}" HeightRequest="130"></Editor>
+                            </inputLayout:SfTextInputLayout>
+                        </StackLayout>
+                        <StackLayout HorizontalOptions="StartAndExpand">
+                            <Label Text="{Binding selectedDoclink.createdate, StringFormat='Date: {0}'}" FontSize="13" Style="{DynamicResource LabelSemiBold}" BackgroundColor="Transparent"></Label>
+                        </StackLayout>
+                        <Grid Margin="0,20,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <buttons:SfButton
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                IsVisible="{Binding isAdd}"
+                                VerticalOptions="Center"
+                                BackgroundColor="{DynamicResource PrimaryColor}"
+                                BorderColor="{DynamicResource PrimaryColor}"
+                                BorderWidth="1"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                HeightRequest="40"
+                                HorizontalOptions="Center"
+                                Style="{StaticResource RoundButtonStyle}"
+                                Text="{i18n:Translate Upload}"
+                                TextColor="{DynamicResource Background}"
+                                Command="{Binding SaveAttachmentCommand}"
+                                x:Name="buttonRight">
+                            </buttons:SfButton>
+                            <buttons:SfButton
+                                Grid.Row="0"
+                                Grid.Column="2"
+                                IsVisible="{Binding isDelete}"
+                                VerticalOptions="Center"
+                                BackgroundColor="{DynamicResource PrimaryColor}"
+                                BorderColor="{DynamicResource PrimaryColor}"
+                                BorderWidth="1"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                HeightRequest="40"
+                                HorizontalOptions="Center"
+                                Style="{StaticResource RoundButtonStyle}"
+                                Text="{i18n:Translate Delete}"
+                                TextColor="{DynamicResource Background}"
+                                Command="{Binding DeleteAttachmentCommand}">
+                            </buttons:SfButton>
+                            <buttons:SfButton
+                                Grid.Row="0"
+                                Grid.Column="1"
+                                IsVisible="{Binding isAdd}"
+                                VerticalOptions="Center"
+                                BackgroundColor="{DynamicResource PrimaryColor}"
+                                BorderColor="{DynamicResource PrimaryColor}"
+                                BorderWidth="1"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                HeightRequest="40"
+                                HorizontalOptions="Center"
+                                Style="{StaticResource RoundButtonStyle}"
+                                Text="{i18n:Translate Retake}"
+                                TextColor="{DynamicResource Background}"
+                                Command="{Binding OptionTakePicture}"
+                                CommandParameter="retake"
+                                x:Name="buttonLeft">
+                            </buttons:SfButton>
+                        </Grid>
+	                </StackLayout>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

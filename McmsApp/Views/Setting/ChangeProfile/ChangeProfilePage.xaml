@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:i18n="clr-namespace:mcms.Helpers"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    x:Class="mcms.Views.Setting.ChangeProfile.ChangeProfilePage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="graphics:SfGradientView">
+                <Setter Property="BackgroundBrush">
+                    <Setter.Value>
+                        <graphics:SfLinearGradientBrush>
+                            <graphics:SfLinearGradientBrush.GradientStops>
+                                <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                                <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                            </graphics:SfLinearGradientBrush.GradientStops>
+                        </graphics:SfLinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid RowSpacing="0" BackgroundColor="{DynamicResource Background}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0" x:Name="iOSSafeArea"/>
+            <RowDefinition Height="55"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <graphics:SfGradientView Grid.RowSpan="3"/>
+        <StackLayout
+            Grid.Row="1"
+            Padding="16,8"
+            BackgroundColor="{StaticResource Transparent}"
+            HeightRequest="48"
+            HorizontalOptions="Fill"
+            Orientation="Horizontal"
+            Spacing="0">
+            <buttons:SfButton
+                        Text="{StaticResource Back}"
+                        Style="{StaticResource NavigationBarButtonStyle}"
+                        CornerRadius="4"
+                        Margin="0,6,0,0"
+                        Command="{Binding BackToSettingCommand}"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
+                        Padding="0"/>
+            <Label
+                    FontFamily="{StaticResource Montserrat-SemiBold}"
+                    FontSize="20"
+                    HorizontalTextAlignment="Center"
+                    HorizontalOptions="Center"
+                    LineHeight="1.25"
+                    Text="{i18n:Translate ChangeProfilePicture}"
+                    TextColor="{DynamicResource Gray-White}"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+        </StackLayout>
+
+        <border:SfBorder
+            Grid.Row="2"
+            CornerRadius="10,10,0,0"
+            HorizontalOptions="FillAndExpand" 
+            BorderWidth="0" 
+            BorderColor="Transparent" 
+            BackgroundColor="{DynamicResource Background}" />
+
+         <StackLayout Grid.Row="3" VerticalOptions="FillAndExpand">
+                <ffimageloading:CachedImage
+                    Margin="20"
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Aspect="AspectFit"
+                    WidthRequest="40"
+                    HeightRequest="40"
+                    MinimumHeightRequest="25"
+                    Source="{Binding UserBinding.picture}">
+                    <ffimageloading:CachedImage.Transformations>
+                        <fftransformations:CircleTransformation BorderHexColor="#d9d9d9">
+                            <fftransformations:CircleTransformation.BorderSize>
+                                <OnPlatform x:TypeArguments="x:Double">
+                                    <On Platform="iOS" Value="20" />
+                                    <On Platform="Android" Value="10" />
+                                </OnPlatform>
+                            </fftransformations:CircleTransformation.BorderSize>
+                        </fftransformations:CircleTransformation>
+                    </ffimageloading:CachedImage.Transformations>
+                </ffimageloading:CachedImage>
+         </StackLayout>
+
+        <StackLayout VerticalOptions="EndAndExpand" Grid.Row="4" Margin="0,0,0,25">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="33*"/>
+                     <ColumnDefinition Width="33*"/>
+                     <ColumnDefinition Width="33*"/>
+                </Grid.ColumnDefinitions>
+                <buttons:SfButton
+                    BackgroundColor="Transparent"
+                    Style="{StaticResource IconButtonStyle}"
+                    VerticalTextAlignment="Center"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Command="{Binding TakePictureFromCameraCommand}"
+                    Text="{StaticResource Camera}"
+                    Grid.Column="0" Grid.Row="0"/>
+                <buttons:SfButton
+                    BackgroundColor="Transparent"
+                    Style="{StaticResource IconButtonStyle}"
+                    VerticalTextAlignment="Center"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Command="{Binding TakePictureFromGaleryCommand}"
+                    Text="{StaticResource Galery}"
+                    Grid.Column="1" Grid.Row="0"/>
+                <buttons:SfButton
+                    BackgroundColor="Transparent"
+                    Style="{StaticResource IconButtonStyle}"
+                    VerticalTextAlignment="Center"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    Command="{Binding DeletePictureCommand}"
+                    Text="{StaticResource Delete}"
+                    Grid.Column="2" Grid.Row="0"/>
+            </Grid>
+        </StackLayout>
+    </Grid>
+</ContentPage>

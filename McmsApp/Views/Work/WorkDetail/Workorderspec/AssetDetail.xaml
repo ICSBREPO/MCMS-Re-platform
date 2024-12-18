@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms" 
+    xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" 
+    xmlns:i18n="clr-namespace:mcms.Helpers"
+    xmlns:controls="clr-namespace:mcms.Controls" 
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    x:Class="mcms.Views.Work.WorkDetail.Workorderspec.AssetDetail">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Work/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ContentView>
+            <ScrollView VerticalScrollBarVisibility="Never">
+                <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Grid.Row="0">
+                        <Grid Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="60"/>
+                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="60"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label  Text="Asset Num" Grid.Row="0" Grid.Column="0" Style="{StaticResource LabelSqaTitle}"/>
+                            <StackLayout Grid.Row="1" Grid.Column="0">
+                                <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                                        ContainerType="Outlined"
+                                                           FocusedColor="{DynamicResource PrimaryColor}"
+                                                                       Margin="0,0,18,0"
+                                                                   OutlineCornerRadius="15">
+                                    <Entry Text="{Binding workorder.asset[0].assetnum}" FontSize="14" TextColor="{StaticResource Gray-800}" FontFamily="{StaticResource Montserrat-Regular}" IsEnabled="False" />
+                                </inputLayout:SfTextInputLayout>
+                            </StackLayout>
+
+                            <Label Text="{i18n:Translate Description}" Grid.Row="0" Grid.Column="1" Style="{StaticResource LabelSqaTitle}"/>
+                            <StackLayout Grid.Row="1" Grid.Column="1">
+                                <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                                        ContainerType="Outlined"
+                                                           FocusedColor="{DynamicResource PrimaryColor}"
+                                                                       Margin="0,0,18,0"
+                                                                   OutlineCornerRadius="15">
+                                    <Entry Text="{Binding workorder.asset[0].description}" FontSize="14" TextColor="{StaticResource Gray-800}" FontFamily="{StaticResource Montserrat-Regular}" IsEnabled="False" />
+                                </inputLayout:SfTextInputLayout>
+                            </StackLayout>
+
+                            <Label Text="{i18n:Translate Brand}" Grid.Row="2" Grid.Column="0" Style="{StaticResource LabelSqaTitle}"/>
+                            <StackLayout Grid.Row="3" Grid.Column="0">
+                                <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                                        ContainerType="Outlined"
+                                                           FocusedColor="{DynamicResource PrimaryColor}"
+                                                                       Margin="0,0,18,0"
+                                                           TrailingViewPosition="Inside"
+                                                                   OutlineCornerRadius="15">
+                                    <Entry Text="{Binding workorder.asset[0].tnbbrand}" FontSize="14" TextColor="{StaticResource Gray-800}" FontFamily="{StaticResource Montserrat-Regular}" IsEnabled="False" />
+                                    <inputLayout:SfTextInputLayout.TrailingView>
+                                        <ImageButton 
+                                                            HeightRequest="21"
+                                                            Command="{Binding DataLookupCommand}"
+                                                            CommandParameter="brand"
+                                                            BackgroundColor="Transparent"
+                                                             Source="search.png"/>
+                                    </inputLayout:SfTextInputLayout.TrailingView>
+                                </inputLayout:SfTextInputLayout>
+                            </StackLayout>
+
+                            <Label Text="Model Num"  Grid.Row="2" Grid.Column="1" Style="{StaticResource LabelSqaTitle}"/>
+                            <StackLayout Grid.Row="3" Grid.Column="1">
+                                <inputLayout:SfTextInputLayout 
+                                                    ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                    ContainerType="Outlined"
+                                                    Margin="0,0,18,0"
+                                                    TrailingViewPosition="Inside"
+                                                    FocusedColor="{DynamicResource PrimaryColor}"
+                                                    OutlineCornerRadius="15">
+                                    <Entry Text="{Binding workorder.asset[0].tnbmodelnum}" TextColor="{StaticResource Gray-800}" FontSize="14" FontFamily="{StaticResource Montserrat-Regular}" IsEnabled="False"/>
+                                    <inputLayout:SfTextInputLayout.TrailingView>
+                                        <ImageButton 
+                                                            HeightRequest="21"
+                                                            Command="{Binding DataLookupCommand}"
+                                                            CommandParameter="modelnum"
+                                                            BackgroundColor="Transparent"
+                                                             Source="search.png"/>
+                                    </inputLayout:SfTextInputLayout.TrailingView>
+                                </inputLayout:SfTextInputLayout>
+                            </StackLayout>
+
+
+                            <Label Text="Serial Num" Grid.Row="4" Grid.Column="0" Style="{StaticResource LabelSqaTitle}"/>
+                            <StackLayout Grid.Row="5" Grid.Column="0">
+                                <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                                        ContainerType="Outlined"
+                                                           FocusedColor="{DynamicResource PrimaryColor}"
+                                                                       Margin="0,0,18,0"
+                                                                   OutlineCornerRadius="15">
+                                    <Entry Text="{Binding workorder.asset[0].serialnum}" TextColor="{StaticResource Gray-800}" FontSize="14" FontFamily="{StaticResource Montserrat-Regular}" />
+                                </inputLayout:SfTextInputLayout>
+                            </StackLayout>
+
+                            <Label Text="{i18n:Translate Manufacturer}" Grid.Row="4" Grid.Column="1" Style="{StaticResource LabelSqaTitle}"/>
+                            <StackLayout Grid.Row="5" Grid.Column="1">
+                                <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                                        ContainerType="Outlined"
+                                                           FocusedColor="{DynamicResource PrimaryColor}"
+                                                                       Margin="0,0,18,0"
+                                                                   OutlineCornerRadius="15">
+                                    <Entry Text="{Binding workorder.asset[0].manufacturer}" x:Name="manufacturer" Placeholder="{i18n:Translate PleaseEnter}" PlaceholderColor="{StaticResource Gray-800}" FontSize="14" FontFamily="{StaticResource Montserrat-Regular}" IsEnabled="False" />
+                                   
+                                </inputLayout:SfTextInputLayout>
+                            </StackLayout>
+
+                            <Label Text="{i18n:Translate Manufacturepart}" Grid.Row="6" Grid.Column="0" Style="{StaticResource LabelSqaTitle}"/>
+                            <StackLayout Grid.Row="7" Grid.Column="0">
+                                <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                                        ContainerType="Outlined"
+                                                                       Margin="0,0,18,0"
+                                                           FocusedColor="{DynamicResource PrimaryColor}"
+                                                                   OutlineCornerRadius="15">
+                                    <Entry Text="{Binding workorder.asset[0].tnbmanufacturerpart}" TextColor="{StaticResource Gray-800}" FontSize="14" FontFamily="{StaticResource Montserrat-Regular}" />
+                                </inputLayout:SfTextInputLayout>
+                            </StackLayout>
+
+                            <Label Text="{i18n:Translate Manufacturingcountry}" Grid.Row="6" Grid.Column="1" Style="{StaticResource LabelSqaTitle}"/>
+                            <StackLayout Grid.Row="7" Grid.Column="1">
+                                <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                                        ContainerType="Outlined"
+                                                                       Margin="0,0,18,0"
+                                                           FocusedColor="{DynamicResource PrimaryColor}"
+                                                                   OutlineCornerRadius="15">
+                                    <Entry Text="{Binding workorder.asset[0].tnbmanufacturingcountry}" x:Name="manufacturingcountry" Placeholder="{i18n:Translate PleaseEnter}" PlaceholderColor="{StaticResource Gray-800}" FontSize="14" FontFamily="{StaticResource Montserrat-Regular}" IsEnabled="False" />
+                                    <inputLayout:SfTextInputLayout.TrailingView>
+                                        <ImageButton 
+                                                    HeightRequest="21"
+                                                    Command="{Binding DataLookupCommand}"
+                                                            CommandParameter="country"
+                                                    BackgroundColor="Transparent"
+                                                Source="search.png"/>
+                                    </inputLayout:SfTextInputLayout.TrailingView>
+                                </inputLayout:SfTextInputLayout>
+                            </StackLayout>
+
+                            <Label Text="{i18n:Translate NonRotatingItem}" Grid.Row="8" Grid.Column="0" Style="{StaticResource LabelSqaTitle}"/>
+                            <StackLayout Grid.Row="9" Grid.Column="0">
+                                <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                                        ContainerType="Outlined"
+                                                                       Margin="0,0,18,0"
+                                                           FocusedColor="{DynamicResource PrimaryColor}"
+                                                                   OutlineCornerRadius="15">
+                                    <Entry Text="{Binding workorder.asset[0].tnbitemnum}" Placeholder="{i18n:Translate PleaseEnter}" TextColor="{StaticResource Gray-800}" FontSize="14" FontFamily="{StaticResource Montserrat-Regular}" />
+                                </inputLayout:SfTextInputLayout>
+                            </StackLayout>
+
+                            <Label Text="Material Num" Grid.Row="8" Grid.Column="1" Style="{StaticResource LabelSqaTitle}"/>
+                            <StackLayout Grid.Row="9" Grid.Column="1">
+                                <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                                        ContainerType="Outlined"
+                                                                       Margin="0,0,18,0"
+                                                           FocusedColor="{DynamicResource PrimaryColor}"
+                                                                   OutlineCornerRadius="15">
+                                    <Entry Text="{Binding workorder.asset[0].itemnum}"  Placeholder="{i18n:Translate PleaseEnter}" PlaceholderColor="{StaticResource Gray-800}" FontSize="14" FontFamily="{StaticResource Montserrat-Regular}" />
+                                </inputLayout:SfTextInputLayout>
+                            </StackLayout>
+
+                            <Label Text="{i18n:Translate DeliveryDate}" Grid.Row="10" Grid.Column="0" Style="{StaticResource LabelSqaTitle}"/>
+                            <StackLayout Grid.Row="11" Grid.Column="0">
+                                <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                                        ContainerType="Outlined"
+                                                           FocusedColor="{DynamicResource PrimaryColor}"
+                                                                       Margin="0,0,18,0"
+                                                                   OutlineCornerRadius="15">
+                                    <DatePicker Date="{Binding workorder.asset[0].tnbdeliverydate}"  FontSize="14" FontFamily="{StaticResource Montserrat-Regular}" />
+                                </inputLayout:SfTextInputLayout>
+                            </StackLayout>
+
+                            <Label Text="{i18n:Translate ManufacturingDate}" Grid.Row="10" Grid.Column="1" Style="{StaticResource LabelSqaTitle}"/>
+                            <StackLayout Grid.Row="11" Grid.Column="1">
+                                <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                                        ContainerType="Outlined"
+                                                           FocusedColor="{DynamicResource PrimaryColor}"
+                                                                       Margin="0,0,18,0"
+                                                                   OutlineCornerRadius="15">
+                                    <DatePicker Date="{Binding workorder.asset[0].tnbmanufdate}"  FontSize="14" FontFamily="{StaticResource Montserrat-Regular}" />
+                                </inputLayout:SfTextInputLayout>
+                            </StackLayout>
+
+                            <Label Text="{i18n:Translate VoltageLevel}" Grid.Row="12" Grid.Column="0" Style="{StaticResource LabelSqaTitle}"/>
+                            <StackLayout Grid.Row="13" Grid.Column="0">
+                                <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                                        ContainerType="Outlined"
+                                                           FocusedColor="{DynamicResource PrimaryColor}"
+                                                                       Margin="0,0,18,0"
+                                                                   OutlineCornerRadius="15">
+                                    <Entry Text="{Binding workorder.asset[0].tnbvoltagelevel}" Placeholder="{i18n:Translate PleaseEnter}" PlaceholderColor="{StaticResource Gray-800}" FontSize="14" FontFamily="{StaticResource Montserrat-Regular}" IsEnabled="False" />
+                                    <inputLayout:SfTextInputLayout.TrailingView>
+                                        <ImageButton 
+                                                    HeightRequest="21"
+                                                    Command="{Binding DataLookupCommand}"
+                                                            CommandParameter="voltagelevel"
+                                                    BackgroundColor="Transparent"
+                                                Source="search.png"/>
+                                    </inputLayout:SfTextInputLayout.TrailingView>
+                                </inputLayout:SfTextInputLayout>
+                            </StackLayout>
+                            <Label Text="{i18n:Translate AssetCondition}" Grid.Row="12" Grid.Column="1" Style="{StaticResource LabelSqaTitle}"/>
+                            <StackLayout Grid.Row="13" Grid.Column="1">
+                                <inputLayout:SfTextInputLayout ContainerBackgroundColor="{StaticResource Gray-White}"
+                                                                        ContainerType="Outlined"
+                                                           FocusedColor="{DynamicResource PrimaryColor}"
+                                                                       Margin="0,0,18,0"
+                                                                   OutlineCornerRadius="15">
+                                    <Entry Text="{Binding workorder.asset[0].tnbassetcondition}" Placeholder="{i18n:Translate PleaseEnter}" PlaceholderColor="{StaticResource Gray-800}" FontSize="14" FontFamily="{StaticResource Montserrat-Regular}" IsEnabled="False" />
+                                    <inputLayout:SfTextInputLayout.TrailingView>
+                                        <ImageButton 
+                                                    HeightRequest="21"
+                                                    Command="{Binding DataLookupCommand}"
+                                                            CommandParameter="assetcondition"
+                                                    BackgroundColor="Transparent"
+                                                Source="search.png"/>
+                                    </inputLayout:SfTextInputLayout.TrailingView>
+                                </inputLayout:SfTextInputLayout>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+
+                    <!-- Save Button-->
+                    <buttons:SfButton
+                    Margin="0,15"
+                        Grid.Row="1"
+                    HorizontalOptions="End"
+                    VerticalOptions="End"
+                    ShowIcon="True"
+                    x:Name="SaveBtn"
+                    FontSize="29"
+                    FontFamily="{StaticResource MaterialIcons}"
+                    TextColor="{DynamicResource Background}"
+                    Text="{StaticResource Save}"
+                    CornerRadius="50" HeightRequest="60" WidthRequest="60"
+                    Command="{Binding SaveCommand}"
+                    Style="{StaticResource RoundButtonStyle3}"/>
+                </Grid>
+            </ScrollView>
+        </ContentView>
+    </ContentPage.Content>
+</ContentPage>

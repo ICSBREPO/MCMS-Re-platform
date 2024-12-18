@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms" xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    NavigationPage.HasNavigationBar="False"
+    x:Name="SignatureChecklist"
+    xmlns:i18n="clr-namespace:mcms.Helpers" xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms" xmlns:controls="clr-namespace:mcms.Controls" xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms" xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:badge="clr-namespace:Syncfusion.XForms.BadgeView;assembly=Syncfusion.SfBadgeView.XForms"
+    x:Class="mcms.Views.Work.WorkDetail.Testform.DigitalSignatureList">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Work/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <Style TargetType="graphics:SfGradientView">
+                <Setter Property="BackgroundBrush">
+                    <Setter.Value>
+                        <graphics:SfLinearGradientBrush>
+                            <graphics:SfLinearGradientBrush.GradientStops>
+                                <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                                <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                            </graphics:SfLinearGradientBrush.GradientStops>
+                        </graphics:SfLinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid RowSpacing="0" BackgroundColor="{DynamicResource Background}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0" x:Name="iOSSafeArea"/>
+                <RowDefinition Height="55"/>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <graphics:SfGradientView Grid.RowSpan="3"/>
+            <Grid
+                x:Name="testtest"
+                Grid.Row="1"
+                Padding="16,8"
+                BackgroundColor="{StaticResource Transparent}"
+                HeightRequest="48"
+                HorizontalOptions="Fill">
+                <buttons:SfButton
+                        Text="{StaticResource Back}"
+                        TextColor="{DynamicResource Background}"
+                        Style="{StaticResource IconButtonStyle}"
+                        CornerRadius="4"
+                        Command="{Binding BackToCheckListCommand}"
+                        HorizontalOptions="Start"
+                        HorizontalTextAlignment="Start"
+                        Padding="0"/>
+                <Label
+                        FontFamily="{StaticResource Montserrat-SemiBold}"
+                        FontSize="20"
+                        HorizontalOptions="Center"
+                        LineHeight="1.25"
+                        Text="{i18n:Translate Signature}"
+                        TextColor="{DynamicResource Background}"
+                        VerticalOptions="StartAndExpand" />
+            </Grid>
+            <border:SfBorder
+                        Grid.Row="2"
+                        CornerRadius="10,10,0,0" 
+                        HorizontalOptions="FillAndExpand"
+                        BorderColor="{DynamicResource Background}"
+                        BorderWidth="1" 
+                        BackgroundColor="{DynamicResource Background}">
+                <StackLayout>
+                    <Label Text="{Binding wochecklisttype.tnbdescription}"
+                            Style="{StaticResource LabelSemiBold}" 
+                            HorizontalOptions="CenterAndExpand" 
+                            VerticalOptions="CenterAndExpand" 
+                            Padding="0,10" />
+                </StackLayout>
+            </border:SfBorder>
+            <syncfusion:SfListView
+                            Grid.Row="3"
+                            ItemsSource="{Binding wochecklisttype.tnbwochecklistsignature}"
+                            Margin="10"
+                            x:Name="SignatureList"
+                            SelectionChangedCommand="{Binding SelectionSignatureCommand}" 
+                            SelectionChangedCommandParameter="{x:Reference SignatureList}"
+                            HorizontalOptions="FillAndExpand" 
+                            VerticalOptions="FillAndExpand"
+                            HeaderSize="100"
+                            IsStickyHeader="True"
+                            AllowSwiping="True"
+                            AutoFitMode="Height">
+                <syncfusion:SfListView.HeaderTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding wochecklisttype.totalSignature, StringFormat='Total : {0}'}" 
+                                    Margin="0,0,25,0" 
+                                    TextColor="{DynamicResource Label}" 
+                                    FontFamily="{StaticResource Montserrat-SemiBold}" 
+                                    FontSize="14" HorizontalOptions="End"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </syncfusion:SfListView.HeaderTemplate>
+                <syncfusion:SfListView.RightSwipeTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <buttons:SfButton  Grid.Row="0"
+                                            Grid.Column="0"
+                                            WidthRequest="80"
+                                            HeightRequest="80"
+                                            CornerRadius="10"
+                                            FontSize="26"
+                                            Command="{Binding BindingContext.DeleteSignatureCommand, Source={x:Reference SignatureChecklist}}"
+                                            CommandParameter="{Binding .}"
+                                            VerticalOptions="Center" HorizontalOptions="Center"
+                                            BackgroundColor="{DynamicResource PrimaryColor}"
+                                            TextColor="{DynamicResource Background}"
+                                            Style="{StaticResource IconButtonStyle}"
+                                            Text="{StaticResource Trash}" />
+                        </Grid>
+                    </DataTemplate>
+                </syncfusion:SfListView.RightSwipeTemplate>
+                <syncfusion:SfListView.ItemTemplate>
+                    <DataTemplate>
+                        <badge:SfBadgeView HorizontalOptions="FillAndExpand" Padding="5,0,5,0" VerticalOptions="FillAndExpand">
+                            <badge:SfBadgeView.Content>
+                                <controls:CustomShadowFrame x:Name="frame"
+                                            CornerRadius="10"
+                                            BackgroundColor="{DynamicResource Card}"
+                                            Padding="15,5"
+                                            Margin="0,5"
+                                            BorderWidth="0"
+                                            HasShadow="True">
+                                    <Grid  RowSpacing="1"
+                                            Margin="5"
+                                            VerticalOptions="Start">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition Width="20"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <Label LineBreakMode="NoWrap"
+                                                        Grid.Column="0"
+                                                        Text="{Binding tnblabel}"
+                                                        FontFamily="{StaticResource Montserrat-Bold}"
+                                                        Margin="3"                                                 
+                                                        HorizontalTextAlignment="Start"
+                                                        VerticalTextAlignment="Center"
+                                                        TextColor="{DynamicResource Label}">
+
+                                        </Label>
+                                        <Label Grid.Row="1"
+                                                        Grid.Column="0"
+                                                        LineBreakMode="WordWrap"
+                                                        HorizontalTextAlignment="Start"
+                                                        VerticalTextAlignment="Center"
+                                                        TextColor="{DynamicResource Label}"
+                                                        Text="{Binding tnbname, StringFormat='Full name : {0}'}"
+                                                        FontFamily="{StaticResource Montserrat-Regular}">
+
+                                        </Label>
+                                        <Label Grid.Row="2"
+                                                        Grid.Column="0"
+                                                        LineBreakMode="WordWrap"
+                                                        HorizontalTextAlignment="Start"
+                                                        VerticalTextAlignment="Center"
+                                                        TextColor="{DynamicResource Label}"
+                                                        Text="{Binding tnbcomp}"
+                                                        FontFamily="{StaticResource Montserrat-Regular}">
+                                        </Label>
+                                        <Label Grid.Row="3"
+                                                        Grid.Column="0"
+                                                        LineBreakMode="WordWrap"
+                                                        HorizontalTextAlignment="Start"
+                                                        VerticalTextAlignment="Center"
+                                                        TextColor="{DynamicResource Label}"
+                                                        Text="{Binding tnbsigdate, StringFormat='Date : {0}'}"
+                                                        FontFamily="{StaticResource Montserrat-Regular}">
+
+                                        </Label>
+                                        <Image Grid.RowSpan="4"
+                                                Grid.Column="1"
+                                                HeightRequest="60"
+                                               WidthRequest="60"
+                                                Source="{Binding signature, Converter={StaticResource Base64ToImageConverter}}">
+                                        </Image>
+                                        <buttons:SfButton
+                                                    BackgroundImage="arrow.png"
+                                                    Grid.RowSpan="4"
+                                                    Grid.Column="2"
+                                                    HeightRequest="16"
+                                                    WidthRequest="10"
+                                                    HorizontalOptions="End"
+                                                    BackgroundColor="Transparent"
+                                                    VerticalOptions="Center"/>
+                                    </Grid>
+                                </controls:CustomShadowFrame>
+                            </badge:SfBadgeView.Content>
+                            <badge:SfBadgeView.BadgeSettings>
+                                <badge:BadgeSetting BadgeType="Warning"  Offset="-5, -10" BadgePosition="BottomRight" BadgeIcon="{Binding badgeicon}"/>
+                            </badge:SfBadgeView.BadgeSettings>
+                        </badge:SfBadgeView>
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
+            </syncfusion:SfListView>
+            <buttons:SfButton
+                Margin="15"
+                Grid.Row="3"
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                ShowIcon="True"
+                FontSize="29"
+                TextColor="{DynamicResource Background}"
+                Text="{StaticResource Add}"
+                CornerRadius="50" HeightRequest="60" WidthRequest="60"
+                Command="{Binding AddDigitalSignatureCommand}"
+                Style="{StaticResource RoundButtonStyle3}"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

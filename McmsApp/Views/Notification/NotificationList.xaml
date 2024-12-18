@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:graphics="clr-namespace:Syncfusion.XForms.Graphics;assembly=Syncfusion.Core.XForms"
+    xmlns:border="clr-namespace:Syncfusion.XForms.Border;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:controls="clr-namespace:mcms.Controls"
+    xmlns:listView="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:behavior="clr-namespace:mcms.Behaviors"
+    xmlns:i18n="clr-namespace:mcms.Helpers"
+    BackgroundColor="{DynamicResource Background}"
+    x:Class="mcms.Views.Notification.NotificationList">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="graphics:SfGradientView">
+                <Setter Property="BackgroundBrush">
+                    <Setter.Value>
+                        <graphics:SfLinearGradientBrush>
+                            <graphics:SfLinearGradientBrush.GradientStops>
+                                <graphics:SfGradientStop Offset="0" Color="{DynamicResource PrimaryColor}" />
+                                <graphics:SfGradientStop Offset="1" Color="{DynamicResource PrimaryGradient}" />
+                            </graphics:SfLinearGradientBrush.GradientStops>
+                        </graphics:SfLinearGradientBrush>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+         <StackLayout BackgroundColor="{DynamicResource Background}">
+             <Grid  VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="70" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                 
+                 <StackLayout Grid.Row="0" >
+                     <graphics:SfGradientView  HorizontalOptions="FillAndExpand" HeightRequest="64"/>
+
+                    <StackLayout
+                        x:Name="TitleBar"
+                        Margin="0,-78,0,0"
+                        Padding="16,8"
+                        BackgroundColor="{StaticResource Transparent}"
+                        HeightRequest="48"
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Horizontal"
+                        Spacing="0">
+                        <StackLayout
+                            x:Name="TitleView"
+                            HorizontalOptions="FillAndExpand"
+                            IsVisible="True"
+                            Orientation="Horizontal"
+                            Spacing="0"
+                            VerticalOptions="FillAndExpand">
+
+                            <!--  Workorder page Title  -->
+                            <Label
+                                Margin="16,0"
+                                FontFamily="{StaticResource Montserrat-SemiBold}"
+                                FontSize="20"
+                                HorizontalOptions="Start"
+                                LineHeight="1.25"
+                                Text="{i18n:Translate Notification}"
+                                TextColor="{DynamicResource Background}"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center" />
+
+                        </StackLayout>
+
+                        <!--  Menu Button  -->
+                        <buttons:SfButton
+                            x:Name="MenuButton"
+                            Command="{Binding MenuCommand}"
+                            Style="{StaticResource NavigationBarButtonStyle}"
+                            Text="{StaticResource Menu}" />
+                    </StackLayout>
+
+                    <!--  Border Radius after top nav  -->
+
+                    <border:SfBorder
+                        Margin="0,-10"
+                        HeightRequest="19" 
+                        CornerRadius="10,10,0,0" 
+                        HorizontalOptions="FillAndExpand" 
+                        BorderWidth="0" 
+                        BorderColor="Transparent" 
+                        BackgroundColor="{DynamicResource Background}" />
+                 </StackLayout>
+            
+
+                 <listView:SfListView x:Name="NotifList"
+                                         Grid.Row="1"
+                                         IsScrollBarVisible="False" IsScrollingEnabled="False"
+                                         AllowSwiping="True"
+                                         AutoFitMode="Height"
+                                         ItemSpacing="0"
+                                         SelectionGesture="Tap"
+                                         SelectionMode="Single"
+                                         VerticalOptions="FillAndExpand"
+                                         TapCommand="{Binding ItemTappedCommand}"
+                                         ItemsSource="{Binding NotifList}"
+                                         SelectionBackgroundColor="Transparent">
+
+                        <listView:SfListView.HeaderTemplate>
+                            <DataTemplate>
+                                <Grid RowSpacing="0" Margin="16, 0, 16, 8" ColumnSpacing="0">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <buttons:SfButton Grid.Column="1" 
+                                                      BorderWidth="0" 
+                                                      WidthRequest="134" 
+                                                      HeightRequest="18"
+                                                      BackgroundColor="{DynamicResource Background}"
+                                                      TextColor="{DynamicResource Label}"
+                                                      CornerRadius="4"
+                                                      HorizontalOptions="End">
+
+                                    <Label Text="{i18n:Translate MarkAll}"
+                                               TextColor="{DynamicResource Label}"
+                                               FontSize="12"
+                                               VerticalTextAlignment="Center"
+                                               HorizontalTextAlignment="Center"
+                                               LineHeight="{OnPlatform Android=1.5,Default=-1}"
+                                               FontFamily="{DynamicResource Montserrat-SemiBold}" />
+
+                                    </buttons:SfButton>
+
+                                </Grid>
+                            </DataTemplate>
+                        </listView:SfListView.HeaderTemplate>
+
+                        <listView:SfListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid RowSpacing="0" ColumnSpacing="16" BackgroundColor="{Binding IsRead,  Converter={x:StaticResource BoolToColorConverter}, ConverterParameter=7}">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <!-- Notify icon for readable item  -->
+                                    <Label Text="{StaticResource 'New Message'}" 
+                                               TextColor="{Binding IsRead, Converter={x:StaticResource BoolToColorConverter}, ConverterParameter=6}" 
+                                               FontSize="12" Margin="16, 20, 0, 0" 
+                                               FontFamily="{StaticResource FontIcons}"/>
+
+                                    <!-- Notification Detail -->
+                                    <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" TextColor="{DynamicResource Label}" FontSize="16" FontFamily="{StaticResource Montserrat-Medium}" Margin="0, 16, 16, 0" LineHeight="{OnPlatform Android=1.25,Default=-1}"></Label>
+
+                                    <!-- Received Time -->
+                                    <Label Grid.Row="1"
+                                               Grid.Column="1" Margin="0, 4, 16, 16"
+                                               Text="{Binding ReceivedTime}"
+                                               TextColor="{DynamicResource Label}"
+                                               FontSize="12"
+                                               LineHeight="{OnPlatform Android=1.5,Default=-1}"
+                                               LineBreakMode="TailTruncation"
+                                               FontFamily="{DynamicResource Montserrat-Medium}"/>
+
+                                    <!-- Seperator -->
+                                    <BoxView Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource SeparatorStyle}" />
+
+                                </Grid>
+                            </DataTemplate>
+                        </listView:SfListView.ItemTemplate>
+                        <listView:SfListView.Behaviors>
+                            <behavior:SfListViewExtendHeightBehavior ></behavior:SfListViewExtendHeightBehavior>
+                        </listView:SfListView.Behaviors>
+                    </listView:SfListView>
+             </Grid>
+         </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
