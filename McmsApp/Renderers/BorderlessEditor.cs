@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
-
-namespace mcms.Renderers
+﻿namespace McmsApp.Renderers
 {
     public class BorderlessEditor : Editor
     {
@@ -11,7 +6,7 @@ namespace mcms.Renderers
           = BindableProperty.Create(nameof(Placeholder), typeof(string), typeof(BorderlessEditor));
 
         public static BindableProperty PlaceholderColorProperty
-           = BindableProperty.Create(nameof(PlaceholderColor), typeof(Color), typeof(BorderlessEditor), Color.LightGray);
+           = BindableProperty.Create(nameof(PlaceholderColor), typeof(Color), typeof(BorderlessEditor), Colors.LightGray);
 
         public static BindableProperty HasRoundedCornerProperty
         = BindableProperty.Create(nameof(HasRoundedCorner), typeof(bool), typeof(BorderlessEditor), false);

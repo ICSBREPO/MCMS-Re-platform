@@ -1,10 +1,7 @@
-﻿using System;
-using Xamarin.Forms;
-
-namespace mcms.Renderers
+﻿namespace McmsApp.Renderers
 {
     public class BorderlessEntry : Entry
     {
-        
+
     }
 }
